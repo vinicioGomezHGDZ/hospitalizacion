@@ -1,0 +1,427 @@
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+            <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+              </button>
+                <br>
+            <div ng-show="vbact" ng-include='"src/sgh/bacteriologico/resultado.html"'></div>
+            <div ng-show="vhist" ng-include='"src/sgh/histopatologia/datoshistopato.html"'></div>
+            <div ng-show="vcerva" ng-include='"src/sgh/cervicovaginal/datoservico.html"'></div>
+            <div ng-show="vmicro" ng-include='"src/sgh/microbiologico/datosmicrobio.html"'></div>
+            <div ng-show="vsla" ng-include='"src/sgh/laboratorio/datoslabora.html"'></div>
+      
+            <form ng-submit="accion()">
+                   <input type="file" uploader-model="file" class="archivo" required /> 
+                 <br>
+                  <br>
+                   <div class="row text-right"  >
+                      <button type="submit" class="btn btn-white btn-info btn-round"><i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                      </button>
+                       <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                       <i class="ace-icon fa fa-times red2"></i>Cancelar
+                         </button>
+                      </div>
+            </form>
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div> 
+  
+
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+
+
+<!--TABLA DE REGISTRO --> 
+
+               <!--panel de ingresos cc--> 
+<div ng-show="tabla" class="panel panel-default">
+   <div class="panel-heading">
+       <h2 class="panel-title">SOLICITUDES A REALIZAR</h2>
+    </div>
+                  
+    <div class="panel-body">
+      <table class="table">  
+        <tr> 
+            <th class="th">EXAMENES</th>
+             <th  class="th"><center>Total</center></th> <th class="th"><center>Urgente</center></th> <th class="th"><center>Rutina</center></th> <th class="th">Control</th>
+            <th class="th"><center>Ver</center></th>
+        </tr>   
+        <tr> 
+         <th>SOLICITUD DE LABORATORIO</th>
+          <td><center>{{lab}}</center></td><td><center>{{labu}}</center></td>
+          <td><center>{{labr}}</center></td><td><center>{{labc}}</center></td>
+          <td>
+          <center>
+           <button class="btn btn-white btn-default btn-round btn-xs" ng-click="verlabo()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+          </td>
+          <tr>
+
+          <th>SOLICITUD PARA PRUEBA DE DIAGNOSTICO  Y CONTROL BACTERIOLOGICO DE TUBERCULOSIS</th>
+          <td><center>{{tbac}}</center></td> </td><td>{{}}</td><td>{{}}</td> <td>{{}}</td>
+          <td> <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="verbact()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center></td> 
+       </tr>
+       <tr>  
+          <th>SOLICITUD DE CITOLOGÍA CERVICO VAGINAL</th>
+          <td><center>{{cerva}}</center></td> </td><td>{{}}</td><td>{{}}</td> <td>{{}}</td>
+           <td> <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="vercerv()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center></td> 
+       </tr>
+       <tr>  
+           <th>HISTOPATOLOGÍA</th>
+          <td><center>{{histo}}</center></td> </td><td><center>{{histou}}</center></td><td><center>{{histor}}</center></td> <td><center>{{histoc}}</center></td>
+          <td> <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="verhisto()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center></td>  
+       </tr>
+       <tr>  
+          <th>ORDEN DE PEDIDO ESPECIAL PARA EXAMEN MICROBIOLÓGICO</th>
+          <td><center>{{micro}}</center></td> </td><td>{{}}</td><td>{{}}</td> <td>{{}}</td>
+          <td>
+          <center>
+           <button class="btn btn-white btn-default btn-round btn-xs" ng-click="vermicro()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+          </td>
+       </tr>
+       <tr>  
+           <th>SOLICITUD PARA VIH/SIDA</th>
+          <td><center>{{vih}}</center></td> </td><td>{{}}</td><td>{{}}</td> <td>{{}}</td>
+          <td>
+          <center>
+           <button class="btn btn-white btn-default btn-round btn-xs" ng-click="vervih()"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+          </td>
+       </tr>
+    </table>                 
+    </div>
+</div>
+
+  
+<div ng-show="vbact">
+
+    <label>SOLICITUD PARA PRUEBA DE DIAGNOSTOCP Y CONTROL BACTERIOLOGICO DE TUBERCULOSIS</label>
+      <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+             <b>FILTRAR : </b>
+          </div>
+          <div class="col-sm-9">             
+                 <input type="text" class="form-control" placeholder="" ng-model="search"
+            capitalize>
+          </div>
+          <div class="col-sm-2">
+              <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+           </div>
+      </div>
+      <div class="table-responsive">
+        <table  class="table" >
+          <thead>
+          <tr>
+              <th class="bt_tab"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="bt_tab, th"><center>Ver</center></th>   
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="bac in bacteriologico | filter:search  ">
+              <th class="bt_tab, th"><center>{{bac.bac_id_pk}}</center></th>
+              <td class="width-20-pct "><center>{{bac.bac_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{bac.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{bac.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{bac.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{bac.per_nombres }} {{bac.per_apellidopaterno}} {{bac.per_apellidomaterno}}</center></td>
+              <td class="bt_tab">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="bact(bac.bac_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+     </div>
+
+</div>  
+<br>
+
+<div ng-show="vcerva">
+   <label> SOLICITUD DE CITOLOGÍA CERVICO VAGINAL</label>
+     <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+           <b>FILTRAR : </b>
+          </div>
+           <div class="col-sm-9">             
+               <input type="text" class="form-control" placeholder="" ng-model="search"
+            capitalize> 
+            </div>
+            <div class="col-sm-2">
+              <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+            </div>
+      </div>
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="bt_tab, th"><center>Ver</center></th>   
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="cer in cervicovaginal | filter:search ">
+                <th class="bt_tab"><center>{{cer.ccv_id_pk}}</center></th>
+                <td class="width-20-pct "><center>{{cer.ccv_fetomu}}</center></td>
+              <td class="width-20-pct "><center>{{cer.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{cer.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{cer.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{cer.per_nombres }} {{cer.per_apellidopaterno}} {{cer.per_apellidomaterno}}</center></td>
+
+
+              <td class="bt_tab">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="dcerva(cer.ccv_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+     </div>
+</div>
+
+<div ng-show="vhist">
+   <label> SOLICITUD DE HISTOPATOLOGÍA</label>
+    <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+           <b>FILTRAR : </b>
+          </div>
+           <div class="col-sm-9">             
+           <select  ng-model="search" class="form-control">
+                          <option value="" >TODAS</option>
+                          <option value="URGENTE" >URGENTE</option>
+                          <option value="RUTINA" >RUTINA</option>
+                          <option value="CONTROL" >CONTROL</option>
+                        </select> 
+            </div>
+            <div class="col-sm-2">
+              <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+
+            </div>
+   </div>   
+        <br>
+      <div class="table-responsive">
+        <table class="table" >
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="width-20-pct, th"><center>Prioridad</center></th>
+              <th class="bt_tab, th"><center>Ver</center></th>   
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="his in istopatologia | filter:search ">
+                <th class="bt_tab"><center>{{his.his_id_pk}}</center></th>
+                <td class="width-20-pct "><center>{{his.his_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{his.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{his.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{his.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{his.per_nombres }} {{his.per_apellidopaterno}} {{his.per_apellidomaterno}}</center></td>
+              <td ng-style="estado_colores(his.his_priori)" class="width-20-pct "><center>{{his.his_priori }}</center></td>
+              <td class="bt_tab">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="dhisto(his.his_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+              </td>
+              
+            </tr>
+          </tbody>
+        </table>
+     </div>
+</div>  
+ 
+
+<div ng-show="vmicro">
+   <label>OREDEN DE PEDIDO ESPECIAL PARA EZAMEN MICROBIOLÓGICO</label>
+    <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+           <b>FILTRAR : </b>
+          </div>
+           <div class="col-sm-9">             
+               <input type="text" class="form-control" placeholder="" ng-model="search"
+            capitalize>
+            </div>
+            <div class="col-sm-2">
+              <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+            </div>
+      </div>
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="bt_tab, th"><center>Ver</center></th>   
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="mic in microbiologia | filter:search ">
+                <th class="bt_tab"><center>{{mic.mic_id_pk}}</center></th>
+              <td class="width-20-pct "><center>{{mic.mic_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{mic.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{mic.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{mic.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{mic.per_nombres }} {{mic.per_apellidopaterno}} {{mic.per_apellidomaterno}}</center></td>
+
+
+              <td class="bt_tab">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="dmicro(mic.mic_if_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+              </td>
+             </tr>
+          </tbody>
+        </table>
+     </div>
+</div> 
+
+<div ng-show="vvih">
+   <label>SILICITUD PARA VIH/SIDA</label>
+     <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+           <b>FILTRAR : </b>
+          </div>
+           <div class="col-sm-9">             
+               <input type="text" class="form-control" placeholder="" ng-model="search"
+            capitalize>
+            </div>
+            <div class="col-sm-2">
+              <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+            </div>
+      </div>
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="width-20-pct, th"><center>Motivo</center></th>
+              <th class="bt_tab, th"><center>concentimiento</center></th>
+              <th class="bt_tab, th"><center>Subir Resultado</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="vih in vihsida | filter:search ">
+                <th class="bt_tab"><center>{{vih.vih_id_pk}}</center></th>
+              <td class="width-20-pct "><center>{{vih.vih_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{vih.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{vih.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{vih.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{vih.per_nombres }} {{vih.per_apellidopaterno}} {{vih.per_apellidomaterno}}</center></td>
+
+              <td class="width-20-pct "><center>{{vih.vih_motivo}} {{vih.vih_otros}}</center></td>
+              <td class="width-20-pct">
+              <center><a href="/archivos/sgh/vihsida/consentimientos/{{vih.vih_conce}}" target="_blank">
+                  <button  class="btn btn-white btn-default btn-round btn-xs"><i class="ace-icon fa  fa-eye red2"/></button></a></center>
+              </td> 
+               <td class="bt_tab">
+              <center>
+               <button  class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="garchvih(vih.vih_id_pk)"><i class="ace-icon fa fa-folder-open red2"/></button>
+              </center>
+              </td> 
+            </tr>
+          </tbody>
+        </table>
+     </div>
+</div> 
+
+<div ng-show="vsla">
+   <label>SOLICITUD DE LABORATORIO</label>
+       <div class="row"> 
+         <div class="col-sm-2 row text-right" ><!-- -->
+           <div><h5><b>FILTRAR :</b></h5></div>
+          </div>
+           <div class="col-sm-8">             
+              <select  ng-model="search" class="form-control">
+                          <option value="" >TODAS</option>
+                          <option value="URGENTE" >URGENTE</option>
+                          <option value="RUTINA" >RUTINA</option>
+                          <option value="CONTROL" >CONTROL</option>
+                        </select> 
+            </div>
+            <div class="col-sm-2">
+               <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+
+            </div>
+   </div>   
+        <br>
+      <div class="table-responsive">
+        <table class="table" >
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>Código</center></th>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="bt_tab, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="width-20-pct, th"><center>Prioridad</center></th>
+              <th class="bt_tab, th"><center>Ver</center></th>   
+          </tr>
+          </thead>
+
+          <tbody>  
+              <tr ng-repeat="slab in laboratorio | filter:search ">
+              <th class="bt_tab"><center>{{slab.lab_id_pk}}</center></th>
+              <td class="width-20-pct "><center>{{slab.lab_fecmu | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{slab.servicio}}</center></td>
+              <td class="width-20-pct"><center>{{slab.tca_descripcion}}</center></td>
+              <td class="bt_tab"><center>{{slab.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{slab.per_nombres }} {{slab.per_apellidopaterno}} {{slab.per_apellidomaterno}}</center></td>
+
+              <td ng-style="estado_colores(slab.lab_priori)" class="width-20-pct "><center>{{slab.lab_priori}}</center></td>
+               <td class="bt_tab">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" data-toggle="modal" data-target="#myModal" ng-click="labodatos(slab.lab_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              </center>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+</div> 

@@ -1,0 +1,299 @@
+  <div class="row">
+   <div class="col-sm-6">
+     <table class="table table-bordered">
+       <tr>
+         <th> II. REFERENCIA: </th>
+         <td> <b>1</b>
+           <input readonly="readonly" ng-model="datosAguardar.ref_tipo" value="REFERENCIA" type="radio" class="ace" disabled /> <span class="lbl"> </span>
+         </td>
+         <th> DERIVACIÓN: </th>
+         <td><b>2</b>
+            <input readonly="readonly" ng-model="datosAguardar.ref_tipo" value="DERIVACIÓN" type="radio" class="ace" disabled /> <span class="lbl"></span>
+         </td>
+       </tr>
+     </table>
+    </div>
+  </div> 
+
+<div class="panel panel-default">
+               <div class="panel-body">
+                    <div class="table table-responsive">
+                      <table class="table table-bordered">
+                        <tr>
+                           <label><h5><b>1. Datos Institucionales</b></h5></label>
+                        </tr> 
+                        <tr> 
+                            <th class="width-10-pct, th"><center><FONT SIZE=1>Entidad del sistema</FONT></center></th>
+                            <th class="width-20-pct, th"><center><FONT SIZE=1>Hist.clínica No.</FONT></center></th>
+                            <th class="width-10-pct, th"><center><FONT SIZE=1>Establecimiento de salud</FONT></center></th>
+                            <th class="bt_tab, th"><center><FONT SIZE=1>Tipo</center></th>
+                            <th class="width-20-pct, th"><center><FONT SIZE=1>Distrito/Área</FONT></center></th>
+                        </tr>
+                        <tr>
+                            <th><center>{{orinsti[0].ins_descripcion}}</center></th> 
+                            <th><center>{{encabezado[0].per_numeroidentificacion}}</center></th>
+                            <th><center>{{orinsti[0].eta_descripcion}}</center></th>
+                            <th><center>{{orinsti[0].tin_descripcion}}</center></th>
+                            <th><center>{{orinsti[0].nin_descripcion}}</center></th>
+                        </tr>
+                       <tr>
+                           <th colspan="4" class="th"><center><FONT SIZE=1>Refiere o Deriva a:</FONT> </center></th> 
+                           <th class="th"><center><FONT SIZE=1>Fecha</FONT></center></th> 
+                        </tr>
+                        <tr>
+                          <td class="widthtd"> 
+                             <center>{{datosAguardar.ins_descripcion}}</center>
+                          </td>
+                          <td class="width-10-pct">
+                            <center>{{datosAguardar.eta_descripcion}}</center>
+                          </td>    
+                          <td class="widthtd">
+                              <center>{{datosAguardar.ref_servi}}</center>
+                          </td>  
+                          <td class="widthtd">
+                            <center>{{datosAguardar.ref_espec}}</center>
+                          </td> 
+                          <td class="bt_tab">
+                             <center>{{datosAguardar.ref_fecha | date:'dd/MM/yyyy'}}</center>
+                          </td> 
+                        </tr>     
+                        <tr>
+                            <th class="widthtd, th"><center><FONT SIZE=1>Entidad del sistema<FONT SIZE=1></center></th>
+                            <th class="width-10-pct, th"><center><FONT SIZE=1>Establecimiento de Salud<FONT SIZE=1></center></th>
+                            <th class="widthtd, th"><center><FONT SIZE=1>Servicio<FONT SIZE=1></center></th>
+                            <th class="widthtd, th"><center><FONT SIZE=1>Especialidad<FONT SIZE=1></center></th>
+                            <th class="bt_tab, th"><FONT SIZE=1>dia|mes|año</FONT></th>
+                        </tr>
+                      </table>
+                    </div>
+                         
+                        <div class=" row"> 
+                           <div class=" col-sm-12"> 
+                            <table class="table">
+                              <tr> <label><h5><b>2. Motivo de la Referencia o Derivación</b></h5></label></tr>
+                            <label>
+                             <fieldset> 
+                               <tr>
+                                 <td>1 Limitada capacidad resolutiva </td> 
+                                 <td><input type="radio" value="LIMITADA CAPACIDAD RESOLUTIVAA" ng-model="datosAguardar.ref_motivo" ng-click="activa('1')" class="ace" disabled> <span class="lbl"></span>
+                                 </td>
+                             
+                                 <td>4 Saturación de capacidad instalada </td> 
+                                 <td>
+                                    <input type="radio" value="SATURACIÓN DE CAPACIDAD INSTALADA" ng-model="datosAguardar.ref_motivo " ng-click="activa('1')" class="ace" disabled> <span class="lbl"></span>
+                                  </td>
+                               </tr>
+                               <tr> 
+                                 <td>2 Ausencia temporal del profesional</td> 
+                                 <td>
+                                 <input type="radio" value="AUSENCIA TEMPORAL DEL PROFESIONAL" ng-model="datosAguardar.ref_motivo " ng-click="activa('1')" class="ace" disabled> <span class="lbl"></span>
+
+                                 </td>
+
+                                 <td>5 Otro / Especifique: </td> 
+                                 <td><input type="radio" value="" ng-model="datosAguardar.ref_motivo" ng-click="activa('')" class="ace" disabled> <span class="lbl"></span>
+
+                                 </td>
+                               </tr> 
+                               <tr> 
+                                 <td>3 Falta de profesional</td>
+                                 <td><input type="radio" value="FALTA DE PROFECIONAL" ng-model="datosAguardar.ref_motivo" ng-click="activa('1')" class="ace" disabled> <span class="lbl"></span>
+
+                                 </td>
+                                 <td>
+                                  <div >
+                                      <div ng-show="verotros">{{datosAguardar.ref_motivo}}</div>
+                                    </div>
+                                  </td> 
+                                 <td></td>
+                               </tr>   
+                             </fieldset>
+                            </label>       
+                            </table>
+                          </div>
+                        </div>
+
+                    <label><h5><b>3. Resumen de cuadro clínico</b></h5></label>
+                      <textarea type="text"  ng-model="datosAguardar.ref_rescuad " class = "form-control" capitalize readonly="readonly"> </textarea>
+                    <br>
+                    <label><h5><b>4. Hallazgos relevantes de exámenes y procedimientos dianósticos<b></h5></label>      
+                      <textarea type="text"  ng-model="datosAguardar.ref_halrel " class = "form-control" capitalize readonly="readonly" disabled> </textarea>
+                   <br>
+
+                    <label><h4><b>5. diagnostico</b></h4></label>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                            </tr>
+                          
+                            <tr ng-repeat="c10 in cie10">
+                                <th class="bt_tab">{{c10.c10_id + 1}}</th>
+                                <th class="width-30-pct">
+                                  <center> <b>{{c10.c10_nombre}}</b></center>
+                                </th>
+                                <th class="width-20-pct">
+                                <b><center>{{c10.c10_codigo}}</center></b>
+                                </th>                                
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div> 
+                                
+                            </tr>
+                        </table>  
+                  <div class="row">
+                    <div class="col-sm-4">        
+                      <label><b> Nombre del profesional:</label>
+                      <input type="text" ng-model="datosAguardar.ref_medico " class = "form-control" capitalize required   maxlength="300" size="10" disabled>
+                    </div>
+                    <div class="col-sm-2">  
+                      <label><b> Código MSP:</label>
+                      <input type="text" ng-model="datosAguardar.ref_codmsp " class = "form-control" capitalize required   maxlength="300" size="10" disabled>
+                    </div>
+                  </div>  
+               </div>
+</div>
+
+
+               <div class="row">
+                    <div class="col-sm-6">
+                      <table class="table table-bordered">
+                        <tr>
+                            <th> III. CONTRAREFERENCIA: </th>
+                            <td> <b>3</b>
+                              <input ng-model="datoscontra.ref_tipo" value="CONTRAREFERENCIA" type="radio" class="ace" disabled /> <span class="lbl"> </span>
+                            </td>
+                            <th> REFERENCIA INVERSA:  </th>
+                            <td><b>4</b>
+                              <input ng-model="datoscontra.ref_tipo" value="REFERENCIA INVERSA" type="radio" class="ace" disabled /> <span class="lbl"></span>
+                            </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div> 
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="table table-responsive">
+                    <table class="table table-bordered">
+                      <tr>
+                        <label><h5><b>1. Datos Institucionales</b></h5></label>
+                      </tr> 
+                      <tr> 
+                        <th class="width-20-pct, th"><center>Entidad del sistema</center></th>
+                        <th class="width-20-pct, th"><center>Hist.clínica No.</center></th>
+                        <th class="width-20-pct, th"><center>Establecimiento de salud</center></th>
+                        <th class="bt_tab, th"><center>Tipo</center></th>
+                        <th class="width-20-pct, th"><center>Servicio</center></th>
+                        <th class="width-20-pct, th"><center>Especialidad del servicio</center>
+                        </th>
+
+                      </tr>
+                      <tr>
+                        <td class=""><center>{{corinsti[0].ins_descripcion}}</center></td> 
+                        <td class=""><center>{{encabezado[0].hce_numerohc}}</center></td>
+                        <td class=""><center>{{corinsti[0].eta_descripcion}}</center></td>
+                        <td class=""><center>{{corinsti[0].tin_descripcion}}</center></td>
+                        <td class=""><center>{{datoscontra.ref_servi}}</center></td>
+                        <td class=""><center>{{datoscontra.ref_espec}}</center></td>
+                      </tr>
+                      <tr>
+                        <th colspan="5" class="th"><center>Contrarefiere o Referencia inversa a: </center></th> 
+                        <th colspan="2" class="th"><center>Fecha</center></th> 
+                      </tr>
+                      <tr>
+                         <td class="widthtd"> 
+                             <center>{{datoscontra.ins_descripcion}}</center>
+                          </td>
+                          <td class="width-10-pct">
+                            <center>{{datoscontra.eta_descripcion}}</center>
+                          </td>    
+                          <td class="bt_tab">
+                              <center>{{datoscontra.tin_abreviacion}}</center>
+                          </td>  
+                          <td colspan="2" class="widthtd">
+                            <center>{{datoscontra.nin_descripcion}}</center>
+                          </td> 
+                        <td   class="bt_tab">
+                             <label><center><h5>{{Fecha | date:'dd/MM/yyyy'}}</h5></center></label>
+                        </td> 
+                      </tr>     
+                      <tr>
+                        <th class="widthtd, th"><h9><center>Entidad del sistema</center></h9></th>
+                        <th class="width-10-pct, th"><h9><center>Establecimiento de Salud</center> </h9></th>
+                        <th class="bt_tab, th"><h9><center>tipo</center></h9></th>
+                        <th colspan="2" class="widthtd, th"><h9><center>Distrito/Area</center></h9></th>
+                        <th class="bt_tab, th"><h9>dia|mes|año</h9></th>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <label><h5><b>2. Resumen de cuadro clínico </b> </h5> </label>
+                    <textarea type="text"  ng-model="datoscontra.ref_rescuad " class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                  <br>
+                  <label><h5><b>3. Hallazgos relevantes de exámenes y procedimientos diagnósticos</b></h5></label>      
+                    <textarea type="text"  ng-model="datoscontra.ref_halrel " class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                  <br>
+                  <label><h5><b>4. Tratamiento y procedimientos terapéuticos realizados </b> </h5>  </label>      
+                    <textarea type="text"  ng-model="datoscontra.ref_trarea " class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                  <br>
+                  <label><h5><b>5. Diagnostico</b> </h5> </label>
+                                             
+                    <table class="table table-bordered">
+                      <tr>
+                        <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                        <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                        <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                        <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                        <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                      </tr>
+                      <tr ng-repeat="c10 in cie10c">
+                        <th><center>{{c10.c10_id + 1}}</center></th>
+                        <th class="width-30-pct"><b><center>{{c10.c10_nombre}}</center></b></th>
+                        <th class="width-30-pct"><b><center>{{c10.c10_codigo}}</center></b></th>                              
+                        <div class="control-group">
+                          <th class="bt_tab">
+                            <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" disabled />
+                            <span class="lbl"></span>
+                          </th>
+                          <th class="bt_tab">
+                            <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" disabled />
+                            <span class="lbl"></span>
+                          </th>
+                        </div> 
+                      </tr>
+                    </table> 
+                  <label> <h5> <b> 6. Tratamiento recomendado a seguir en Establecimiento de salud de menor nivel de complejidad </b> </h5> </label>      
+                    <textarea type="text"  ng-model="datoscontra.ref_trarec " class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                  <br>
+                        
+                  <div class="row">
+                    <div class="col-sm-4">        
+                      <label> <b> Nombre del profesional:</b> </label> <br>
+                      <input type="text" ng-model="datoscontra.ref_medico " class = "form-control" capitalize required   maxlength="300" size="10" disabled>
+                    </div>
+                    <div class="col-sm-4">  
+                      <label> <b> Código MSP:</b> </label> <br>
+                       <input type="text" ng-model="datoscontra.ref_codmsp " class = "form-control" capitalize required   maxlength="10" size="5" disabled>
+                    </div>
+                    <div class="col-sm-4">
+                       <label> <b>7. Referencia Justificada</b> </label> <br>
+                       <input type="checkbox" checked="" class="form-control"  ng-model="datoscontra.ref_justif" disabled /> 
+                    </div>
+                  </div>  
+                </div>

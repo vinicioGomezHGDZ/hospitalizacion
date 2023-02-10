@@ -1,0 +1,47 @@
+<h5> CITA MEDICA </h5>
+<!--NUEVO REGISTRO -->
+   <form ng-submit="guardar()">
+               <div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+            <div class="row">
+
+               <div class="col-sm-12">
+                 <label >ESPECIALIDAD:</label>
+                    <br>
+                    <input type="text" class="form-control" placeholder="Buscar" ng-model="search" capitalize >    
+                  <select  required ng-model="datosAguardar.esp_id_fk" class="form-control" size="5">
+                    <option ng-show="false" value="">Seleccione</option>
+                    <option ng-repeat="es in especia | filter:search " value="{{es.epr_id_pk}}">
+                     {{es.esp_descripcion}} <--> {{es.profecional}}</option>
+                  </select >
+
+                </div>
+            </div>
+             <div>
+                <label >FECHA PRÓXIMA CITA:</label>
+                  <br>
+                  <input type="date" ng-model="datosAguardar.cit_fechaproxima" class="form-control">
+             </div>
+            
+             <div>
+             </div>
+                <label >OBSERBACIÓN ADICIONAL</label>
+                <br>
+                <textarea class="form-control" ng-model="datosAguardar.cit_observacion" capitalize></textarea>
+                          
+            <br>
+           <div class="row">
+                  <div class="text-right">
+                    <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+              </div>
+            </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                 <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div> 
+      
+      </form>
+
+</div>
+</div>

@@ -1,0 +1,77 @@
+<br>
+<br>
+<br>
+<div class="panel panel-default " >
+    <a ui-sref="censo">
+        <center>
+            <button class="form-control"> Ingresar paciente a Hospitalización</button>
+        </center>
+    </a>
+
+    <!--<center><button ng-disabled="edita_boton" class="form-control" ng-click="editar_historias()"> EDITAR HISTORIA CLÍNICA</button></center>-->
+
+    <!--<a ui-sref="censo_dia">-->
+    <!--<cente	r><button class="form-control">Censo Diario </button></center>-->
+    <!--</a>-->
+    <div class="panel-heading" >
+
+        <div>
+            <h3 class="panel-title">
+                <div class="text-center"><strong>Servicio de {{op_cargar}}</strong></div>
+            </h3>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <!--<ul ng-repeat="(key,value) in pacientes_grupo | groupBy: 'piso'">-->
+        <!--Grupo: {{key}}-->
+        <!--<li ng-repeat="pa in value">-->
+        <!--Paciente: {{pa.paciente}}-->
+        <!--</li>-->
+        <!--</ul>-->
+
+        <div  ng-repeat="(key,value) in pacientes_grupo | groupBy: 'piso'">
+            <table class="table table-responsive table-hover">
+                <thead>
+                <tr class="text-center">
+                    <th class="bg-primary text-center" colspan="7">{{key}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <input type="text" class="form-control" placeholder="Buscar" ng-model="search" CAPITALIZE>
+                </tr>
+                <tr>
+                    <th class="text-center">Fecha de ingreso</th>
+                    <!--<th class="text-center">PISO</th>-->
+                    <th class="text-center">Cama</th>
+                    <th class="text-center">N° Historia Clínica</th>
+                    <th class="text-center">Paciente</th>
+                    <th class="text-center">Edad</th>
+                    <th class="text-center">Seleccionar</th>
+                    <th class="text-center">N° Cambios</th>
+                </tr>
+                <tr ng-repeat="pa in value | filter:search">
+                    <td class="text-center">{{pa.cen_fecha | date:'dd/MM/yyyy'}}</td>
+                    <!--<td class="text-center">{{pa.piso}}</td>-->
+                    <td class="text-center">{{pa.cam_codigo}}</td>
+                    <td class="text-center">{{pa.per_numeroidentificacion}}</td>
+                    <td class="text-center">{{pa.paciente}}</td>
+                    <td class="text-center">{{pa.edad}}</td>
+                    <td class="text-center">
+                        <button class=""
+                                ng-click="accion(pa.cen_fecha,pa.hce_id_pk,pa.cam_id_pk,pa.tca_id_pk,pa.cen_id_pk)">
+                            <i class="ace-icon fa  fa-eye red2" title="VER"/></button>
+                    </td>
+                    <td class="bt_tab text-center" ng-style="estado_colores((pa.cambios === 0 ? true : false))">
+                        {{pa.cambios}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+

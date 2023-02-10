@@ -1,0 +1,372 @@
+<br>
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-8">
+  <H6>SNS-MSP / HCU-form.022/2008</H6>
+  </div>
+  <div class="col-xs-4">
+  <h6 class="text-right">ADMINISTRACIÓN DE MEDICAMENTOS</h6>
+  </div>
+</div>
+<!-- Datos de Encabezado-->
+
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{Fecha | date:'dd/MM/yyyy'}} </h4>
+      </div>
+
+      <div class="modal-body ">
+
+             <div ng-show="ver_nuevo" class="row">
+
+                    <div class="col-xs-6 col-md-4"> 
+                    <!-- PANEL 1-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h2 class="panel-title">1 MEDICAMENTO</h2>
+                        </div>
+                    <div class="panel-body">
+
+                    <!--Fomulario de medicamneto ingreso-->
+                    <div ng-model="medicinaguardar">
+                      <form >
+                        <div class="row">
+                        <div class="col-xs12 col-md-12" ng-show="nuevo">
+
+                        Presentación, Vía, Dosis unitaria, Frecuencia:  
+                        <br>
+
+                        <textarea  ng-model="medicinaguardar.kar_medica" class = "form-control" capitalize required  maxlength="1000"></textarea>
+                          <br>
+                         <!---->
+
+                         <div class="text-right">
+                           <button ng-disabled="actguardfea"  class="btn btn-white btn-info btn-round" ng-click=accion()>
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            Guardar
+                          </button>
+                         <!----> 
+                          <button class="btn btn-white btn-default btn-round" ng-click="canmedi()">
+                          <i class="ace-icon fa fa-times red2"></i>
+                          Cancelar
+                          </button>  
+                        </div> 
+                        </div>
+                        </div>
+                        </form>
+
+                        <!--Fin formulario -->
+
+                        <div ng-show="agrega">
+                        <center>
+                        <label>Selecciona medicamento:</label>
+                        </center>
+                            <input type="text" class="form-control" placeholder="Buscar " ng-model="filter">
+                          <select  required ng-model="medicombo" class="form-control" size="5" ng-click="cargamedicamento()">
+                            <option value="0"> - Seleccione</option>
+                            <option ng-click="cargamedicamento()" ng-repeat="med in medica_lista | filter:filter" value="{{med.kar_id_pk}}">
+                             {{med.kar_medica | uppercase}}</option>
+                          </select >
+                          <br>
+                          <center>
+                         <button class="btn btn-white btn-info btn-round" ng-click="nmedi()">
+                          Agregar</button>
+                         <button type="button" class="btn btn-white btn-info btn-round" ng-click="edita()" title="Editar" >Editar </button>
+                          </center>
+                        </div>
+
+                     </div>
+
+                    </div>
+                    </div>
+                    </div>
+
+                    <!--fin panel 1 medicamento-->
+
+                    <div class="col-xs-6 col-md-8">              
+
+                    <!-- Panel 2 Administracion-->
+                   <form ng-submit="guardar()">
+                     <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h2 class="panel-title">2 ADMINISTRACIÓN</h2>
+                       </div> 
+                       <div class="panel-body">
+                       <div ng-model="datosAguardar">
+
+                            {{dotosmedicamentos[0].kar_medica}}
+                           <br>
+                         <!--formulario administracion-->
+
+                            * Fecha:
+                           <input type="date" class="form-control" ng-model="hda_fecha"  required>
+                           <div class="row">
+                               <div class="col-lg-6">
+                                  hora de Administración:
+                               </div>
+                               <div class="col-lg-6">
+                               <img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="limpia()">
+                                </div>
+                           </div>
+                           <hr>
+                                    <div class="table table-responsive">
+                                     <table class="table table-bordered">
+                                    <tr>
+                                        <td><center>1</center></td>
+                                        <td><center>2</center></td>
+                                        <td><center>3</center></td>
+                                        <td><center>4</center></td>
+                                        <td><center>5</center></td>
+                                        <td><center>6</center></td>
+                                        <td><center>7</center></td>
+                                        <td><center>8</center></td>
+                                        <td><center>9</center></td>
+                                        <td><center>10</center></td>
+                                        <td><center>11</center></td>
+                                        <td><center>12</center></td>
+                                    </tr>
+                                    <tr>
+                                        <td><center> <input type="radio" value="1:00" ng-model="datosAguardar.hda_hora1" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="2:00" ng-model="datosAguardar.hda_hora2" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="3:00" ng-model="datosAguardar.hda_hora3" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="4:00" ng-model="datosAguardar.hda_hora4" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="5:00" ng-model="datosAguardar.hda_hora5" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="6:00" ng-model="datosAguardar.hda_hora6" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="7:00" ng-model="datosAguardar.hda_hora7" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="8:00" ng-model="datosAguardar.hda_hora8" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="9:00" ng-model="datosAguardar.hda_hora9" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="10:00" ng-model="datosAguardar.hda_hora10" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="11:00" ng-model="datosAguardar.hda_hora11" class="ace" ><span class="lbl"></span></center></td>
+                                        <td><center> <input type="radio" value="12:00" ng-model="datosAguardar.hda_hora12" class="ace" ><span class="lbl"></span></center></td>
+
+                                    </tr>
+                                  <tr>
+                                      <td><center>13</center></td>
+                                      <td><center>14</center></td>
+                                      <td><center>15</center></td>
+                                      <td><center>16</center></td>
+                                      <td><center>17</center></td>
+                                      <td><center>18</center></td>
+                                      <td><center>19</center></td>
+                                      <td><center>20</center></td>
+                                      <td><center>21</center></td>
+                                      <td><center>22</center></td>
+                                      <td><center>23</center></td>
+                                      <td><center>24</center></td>
+                                  </tr>
+                                  <tr>
+                                      <td><center> <input type="radio" value="13:00" ng-model="datosAguardar.hda_hora13" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="14:00" ng-model="datosAguardar.hda_hora14" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="15:00" ng-model="datosAguardar.hda_hora15" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="16:00" ng-model="datosAguardar.hda_hora16" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="17:00" ng-model="datosAguardar.hda_hora17" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="18:00" ng-model="datosAguardar.hda_hora18" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="19:00" ng-model="datosAguardar.hda_hora19" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="20:00" ng-model="datosAguardar.hda_hora20" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="21:00" ng-model="datosAguardar.hda_hora21" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="22:00" ng-model="datosAguardar.hda_hora22" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="23:00" ng-model="datosAguardar.hda_hora23" class="ace" ><span class="lbl"></span></center></td>
+                                      <td><center> <input type="radio" value="24:00" ng-model="datosAguardar.hda_hora24" class="ace" ><span class="lbl"></span></center></td>
+
+                                  </tr>
+                              </table>
+                            </div>
+                       </div>
+
+                             <!--Observación :-->
+                             <!--<textarea  ng-model="datosAguardar.hda_obcerv" class = "form-control" capitalize maxlength="100"></textarea>-->
+
+                     <br>
+                         <div class="">
+                              <button ng-disabled="actguarda"  type="submit" class="btn btn-white btn-info btn-round">
+                                  <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                  Guardar
+                                </button>
+                                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                  <i class="ace-icon fa fa-times red2"></i>
+                                  Cancelar
+                                </button>  
+                          </div>
+                       </div>
+                     </div>
+
+                  </form>
+
+                     </div>
+              </div>
+          <div ng-show="eliminar">
+                <center>
+                    <h3> Está seguro de eliminar este horario ? </h3>
+                    <br>
+
+                      <button class="btn btn-white btn-info btn-round" ng-click=con_elimina()>
+                          <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                          SI
+                      </button>
+                      <!---->
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                          <i class="ace-icon fa fa-times red2"></i>
+                          NO
+                      </button>
+                </center>
+          </div>
+
+
+      </div>
+
+              <!--Fin panel 2 de administracion-->
+        <hr>
+
+        <div class="animate fadeInDown"  ng-show="mensaje">
+            <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+                <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" >Nuevo</button>
+               
+           </div>
+    </div>
+
+    <br>
+   
+<div class="row"><!--Row de tablas-->
+   <div id="t_datos" class="col-sm-4"><!--div de la tabla de medicamentos-->
+   
+   <!--table -->
+    <div class="table-responsive">
+     <table class="table" >
+          <thead>
+           <tr>
+
+              <th class="width-30-pct, th"><center>FECHA</center></th>
+              <th class="width-30-pct, th"><center>MEDICAMENTO</center></th>
+              <th class="bt_tab, th"><center>VER</center></th>
+
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="med in medica | filter:search  | limitTo: (paginamedi * totalpaginas) | limitTo: item">
+            	<td ng-style="estado_colores(med.kar_fecha)" class="width-20-pct "><center>{{med.kar_fecha}}</center></td>
+            	<td ng-style="estado_colores(med.kar_fecha)" class="width-20-pct "><center>{{med.kar_medica | uppercase}}</center></td>
+              <td ng-style="estado_colores(med.kar_fecha)" class="bt_tab" >
+                 <center>
+                 <button class="btn btn-white btn-default btn-round btn-xs" ng-click="admi(med.kar_id_pk,med.kar_medica)"><i class="ace-icon fa  fa-eye red2"></i></button></center>
+              </td>
+            </tr>
+          <tr>
+              <th  class="th" colspan="6">
+                  <center>
+                      <button type="button" class="btn btn-white btn-default btn-xs btn-round"  ng-click="paginamedi=1"><<</button>
+                      <button type="button" class=" btn btn-white btn-default btn-xs btn-round"  ng-click="pagimedi(0)"><</button>
+                      | Page {{paginamedi}} de {{posicionmedi}} |
+                      <button type="button" class="btn btn-white btn-default btn-xs btn-round" ng-click="pagimedi(1)">></button>
+                      <button type="button" class="btn btn-white btn-default btn-xs btn-round" ng-click="paginamedi = posicionmedi">>></button>
+
+                  </center>
+              </th>
+          </tr>
+          </tbody>
+  
+      </table>
+            <!--Paginacion -->
+
+    </div><!--fin div de la tabla responsive-->
+    </div><!--fin div de la tabla de medicamentos-->
+
+    <div class="col-sm-7"><!--Div Administración-->
+    <!--table table-responsive-->
+        <div class="table-responsive">
+     <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+             <th colspan="6" class="th">  <center>
+                  {{medicamento}}
+              </center>
+             </th>
+          </tr>
+           <tr>
+              <th class="width-30-pct, th"><center>FECHA</center></th>
+              <th class="bt_tab, th"><center>HORA</center></th>
+              <th class="width-30-pct, th"><center>RESPONSABLE</center></th>
+              <th class="width-30-pct, th"><center>OBSERVACIÓN</center></th>
+              <th class="bt_tab, th"><center>ADMINISTRADO</center></th>
+               <th class="bt_tab, th"><center>
+                   <a ui-sref="repote({id:'{{anam.ana_id_pk}}',ruta:'src/sgh/kardex/php/reporte_kardex.php?c='})">
+                       <buttton class="btn btn-white btn-default btn-round btn-xs">
+                           <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                       </buttton>
+                   </a>
+               </center></th>
+
+           </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="adm in administracion |  limitTo: (pagina * totalpaginas) | limitTo: item">
+              <td class="width-20-pct "><center>{{adm.hda_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="bt_tab"><center>{{adm.hda_hora}}</center></td>
+              <td class="width-30-pct"><center>LIC. {{adm.per_nombres |uppercase}} {{adm.per_apellidopaterno |uppercase}} </center></td>
+
+              <td class="width-30-pct"><center>
+                  <input ng-disabled="activaadmin(adm.hda_estado)" type="tex" ng-model="adm.hda_obcerv" class = "form-control" capitalize maxlength="100">
+              </center></td>
+              <td class="bt_tab">
+                  <center>
+                  <input  ng-model="adm.hda_estado" ng-disabled="activaadmin(adm.hda_estado)" class="ace ace-switch ace-switch-2" type="checkbox" checked  ng-click="administrada(adm.hda_id_pk,adm.hda_obcerv)"/>
+                  <span class="lbl"></span><font size="1">
+                  </font></center>
+              </td>
+                <td class="bt_tab">
+                  <center>
+                      <button ng-disabled="activaadmin(adm.hda_estado)" data-toggle="modal" data-target="#myModal"  type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="ver_modaleli(adm.hda_id_pk,adm.kar_id_fk)" title="Eliminar"> <img src="img/cancel.png" height="20" width="20"></button>
+                  </center>
+              </td>
+            </tr>
+          </tbody>
+
+         <tr>
+             <!--Paginacion -->
+             <th class="th" colspan="6">
+                 <center>
+                     <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+                     <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>
+                     | Page {{pagina}} de {{posicion}} |
+                     <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+                     <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+                 </center>
+             </th>
+         </tr>
+      </table>
+
+        </div><!--fin div de la tabla responsive-->
+    </div><!--fin div de la tabla de medicamentos-->
+ </div><!--Div Administración-->
+
+</div><!--fin div Row de tablas-->
+
+    

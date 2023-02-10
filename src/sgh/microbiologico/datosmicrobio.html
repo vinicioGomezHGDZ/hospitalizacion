@@ -1,0 +1,55 @@
+<form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+        
+                <label><b>CULTIVO DE : </b></label>
+                <input type="text" ng-model="datosAguardar.mic_cultde " maxlength="100" capitalize class="form-control" required disabled>
+              <br>
+                <label><b>SOSPECHA DIAGNÓSTICO :</b></label>
+                <input type="text" ng-model="datosAguardar.mic_sosdia" maxlength="100" capitalize class="form-control" required disabled>
+              <br>
+                <label><b>ANTECEDENTES CLÍNICOS : </b></label>
+                 <textarea type="text"  ng-model="datosAguardar.mic_antcli " class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+              <br>
+                <label><b>DATOS EPIDEMIOLÓGICOS RELEVANTES</b> (viaje o excursión, si vive en área endémica de algún enfermedad infecciosa como malaria, cólera,etc. ; Enfermedad ocupacional, por ejemplo contacto animales ; accidentes-mordida, trauma picadura de garrapatas, chinche, etc infección hospitalaria, etc.)</label>
+                <textarea type="text" ng-model="datosAguardar.mic_daepre" maxlength="800" capitalize class="form-control" required disabled> </textarea>
+              <br>
+                <label><b>OTROS DATOS DE LABORATORIO IMPORTANTES </b> (Datos de laboratorio que evidencien el sitio del proceso infeccioso: RX, tomografía, EMO hemograma, etc)</label>
+                <textarea type="text" ng-model="datosAguardar.mic_otrlab" maxlength="800" capitalize class="form-control" required disabled> </textarea>
+              <br>
+                <label><b>ES RELACIONADO A PROCEDIMIENTO INVASIVO ¿ CUAL ?</b> (Sonda vesical, catéter, traqueaostomía, diálisis, alimentación, parental, cirugía, etc)</label>
+                <input type="text" ng-model="datosAguardar.mic_proinv" maxlength="100" capitalize class="form-control" required disabled>
+              <br>
+                <label><b>EXISTE INFECCIÓN EN OTRA REGIÓN ¿ CUALES ?</b></label>
+                <input type="text" ng-model="datosAguardar.mic_infecc" maxlength="100" capitalize class="form-control" required disabled>
+              <br>
+                <label><b>SE USÓ ANTIBIÓTICOS EN LOS ÚLTIMOS 2 DÍAS ¿ CUALES ?</b></label>
+                <input type="text" ng-model="datosAguardar.mic_antibi" maxlength="100" capitalize class="form-control" required disabled>
+              <br>
+                <label><b>HA INICIADO TRATAMIENTO ANTIBIÓTICO STAT O LUEGO DE TOMAR LA MUESTRA ? </b></label>
+                
+                 <b>SI</b> <input type="radio" ng-model="datosAguardar.mic_intran" class="ace" value="true" ng-click="activa('0')" disabled>
+                  <span class="lbl"></span>
+                
+                 <b>NO</b> <input type="radio" ng-model="datosAguardar.mic_intran" class="ace" value="false" ng-click="activa('1')" disabled>
+                  <span class="lbl"></span> <br>
+                    {{datosAguardar.mic_cuales}}
+              <br>
+                <label><b>EXISTE COMPROMISO INMUNOLÓGICO ? </b></label>
+                  <b>SI</b> <input type="radio" ng-model="datosAguardar.mic_comimu" class="ace" value="true" ng-click="activa2('0')" disabled>
+                  <span class="lbl"></span>
+                
+                 <b>NO</b> <input type="radio" ng-model="datosAguardar.mic_comimu" class="ace" value="false" ng-click="activa2('1')" disabled>
+                  <span class="lbl"></span> <br>
+                      {{datosAguardar.mic_caul}}   
+              <br>
+                 <label><b>PARA UROCULTIVO INDICAR:</b></label>
+                   <label>Sintomática  : </label>  <input type="radio" ng-model="datosAguardar.mic_urocul" class="ace" value="SINTOMÁTICO" disabled>
+                  <span class="lbl"></span>
+                
+                   <label>Asintomática  : </label>  <input type="radio" ng-model="datosAguardar.mic_urocul" class="ace" value="ASINTOMÁTICA" disabled>
+                  <span class="lbl"></span>
+              <br>
+                 <label><b>OBSERVACIONES</b></label>
+                  <textarea type="text" ng-model="datosAguardar.mic_obcerb" maxlength="800" capitalize class="form-control" required disabled> </textarea>
+
+       </form>

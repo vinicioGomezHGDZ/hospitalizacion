@@ -1,0 +1,136 @@
+        <label>
+            Fecha de la entrevista: {{Fecha | date:'yyyy-MM-dd'}}
+            <br>
+            Motivo de atención *
+            <input type="text" ng-model="datosAguardar.frm_motate" capitalize required maxlength="50"  class="form-control input sm" disabled>
+            <br>
+            embarazo / lactancia * <input type="text" ng-model="datosAguardar.frm_emblac" capitalize required maxlength="50" class="form-control input sm" disabled>
+            <br>
+            peso * <input type="number" ng-model="datosAguardar.frm_peso" min="0" max="999" class="form-control input sm" disabled>
+            <br>
+            Fuente de información(parentesco) * <input type="" ng-model="datosAguardar.frm_fueinf" capitalize required maxlength="50 " class="form-control input sm" disabled>
+            <br>
+            ¿Ha tenido o tiene alergias a medicamentos, alimentos u otro tipo de alergias ?¿Cual? * <input type="text" ng-model="datosAguardar.frm_cual" capitalize required maxlength="80 " class="form-control input sm" disabled>
+
+            <br>
+            ¿Ha sido sometido a intervenciones quirúrgicas anteriormente? ¿De qué tipo? ¿Hace cuánto tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_intqui" capitalize required maxlength="80" class="form-control" disabled>
+            <br>
+            ¿Trabaja o ha trabajado con sustancias peligrosas? ¿Durante qué tiempo? ¿Tipo de actividad y sustancias manejadas? *
+            <input type="text" ng-model="datosAguardar.frm_suspel" capitalize required maxlength="80" class="form-control" disabled>
+            <br>
+            Padecía o padece de alguna enfermedad crónica como hipertensión diabetes, colesterol alto, problemas renales, artritis. tiroides u otras? ¿Qué enfermedad? *
+            <input type="text" ng-model="datosAguardar.frm_enfcro" capitalize required maxlength="80" class="form-control" disabled>
+            <br>
+            ¿ Dónde la diagnosticaron la enfermedad y hace cuánto tiempo ? *
+            <input type="text" ng-model="datosAguardar.frm_dondia" capitalize required maxlength="80" class="form-control" disabled>
+            ¿Tiene hábitos de fumar, beber, drogas, aguas, aromáticas? ¿con que frecuencia, desde hace que tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_habito" capitalize required maxlength="50" class="form-control" disabled>
+            ¿En su familia ha habido enfermedades crónicas o muertes por este tipo de enfermedades? *
+            <input type="text" ng-model="datosAguardar.frm_faencr" capitalize required maxlength="50" class="form-control" disabled>
+            <br>
+            ¿Ha viajado fuera de su lugar residencia en el último mes? ¿ A dónde y por cuánto tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_viaje" capitalize required maxlength="50" class="form-control" disabled>
+            <br>
+            ¿Recibe fitorerapia? *
+            <input type="text" ng-model="datosAguardar.frm_fitote" capitalize required maxlength="50" class="form-control" disabled>
+            <br>
+            <br>
+
+             <div class="table table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th colspan="8"> ¿Qué medicamentos estaba recibiendo en el último mes?
+                        </th>
+                    </tr>
+                   <tr>
+                      <th><center>Medicamento</center></th>
+                      <th><center>Dosis</center></th>
+                      <th><center>Frecuencia</center></th>
+                      <th><center>Para que</center></th>
+                      <th><center>Por cuanto tiempo</center></th>
+                      <th><center>Como lo toma</center></th>
+                      <th><center>Quien se lo receto</center></th>
+                      <th><center>Continuar / descontinuar</center></th>
+                   </tr>
+                   <tr ng-repeat="mrum in medrecibe">
+                      <td>{{mrum.mum_medica}}</td>
+                      <td>{{mrum.mum_dosis}}</td>
+                      <td>{{mrum.mum_frecue}}</td>
+                      <td>{{mrum.mum_paraq}}</td>
+                      <td>{{mrum.mum_xcuati}}</td>
+                      <td>{{mrum.mum_comtom}}</td>
+                      <td>{{mrum.mum_quirec}}</td>
+                      <td>{{mrum.mum_condes}}</td>
+                   </tr>
+                   <tr>
+                     <td colspan="8">
+                       <b> 
+                        Observaciones:  
+                       </b>
+                        {{datosAguardar.frm_obmeul}}
+                     </td>
+                   </tr>
+                </table>
+                <table class="table table-bordered">
+                  <tr>
+                      <th colspan="7">
+                           Medicamentos prescritos durante la hospitalización / cambios de tratamientos
+                      </th>
+                  </tr>
+                   <tr>
+                      <th> <center> Medicamento </center></th>
+                      <th> <center> Dosis </center></th>
+                      <th> <center> Frecuencia </center></th>
+                      <th> <center> vía </center></th>
+                      <th> <center> Discrepancia / error </center></th>
+                      <th> <center> Médico que realiza el cambio </center></th>
+                   </tr>
+                   <tr ng-repeat="meho in medhospital">
+                      <td>{{meho.mph_medica}}</td>
+                      <td>{{meho.mph_dosis}}</td>
+                      <td>{{meho.mph_frecue}}</td>
+                      <td>{{meho.mph_via}}</td>
+                      <td>{{meho.mph_discre}}</td>
+                      <td>{{meho.mph_meqcam}}</td>
+                   </tr>
+                   <tr>
+                      <td colspan="3">
+                          Química Faramacéutico que revisas:
+                      </td>
+                      <td colspan="4">
+                      {{datosAguardar.frm_quifar}}
+                      </td>
+                   </tr>
+                   <tr>
+                   <td colspan="7">
+                      <b> 
+                        Observaciones:  
+                       </b>
+                      {{datosAguardar.frm_obmeho}}
+                     </td>
+                   </tr>
+                 </table>
+                <table class="table table-bordered">
+                    <th colspan="5">
+                         Medicamentos prescritos para alta médica
+                    </th>
+                   <tr>
+                    
+                      <th>  <center>Medicamento </center></th>
+                      <th>  <center>Dosis </center></th>
+                      <th>  <center>Frecuencia </center></th>
+                      <th>  <center>vía </center></th>
+                      <th>  <center>Recomendación </center> </th>
+
+                   </tr>
+                   <tr ng-repeat="mepa in medalta">
+                      <td>{{mepa.mpa_medica}}</td>
+                      <td>{{mepa.mpa_dosis}}</td>
+                      <td>{{mepa.mpa_frecue}}</td>
+                      <td>{{mepa.mpa_via}}</td>
+                      <td>{{mepa.mpa_recome}}</td>
+                   </tr>
+                </table>
+              </div>
+                         

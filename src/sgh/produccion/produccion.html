@@ -1,0 +1,111 @@
+<script type="text/javascript">
+    jQuery(function($) {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('.input-mask-date').mask('9999/99/99');
+
+    });
+
+</script>
+<!--CONTROLADOR-->
+<h5>Reporte de Producción</h5>
+
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+       
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Reporte, Condición del paciente</h4>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <div ng-include='"src/sgh/censo_dia/reportes.php"'></div>
+        </div>
+      </div>
+     </div>
+</div>
+  </div>
+
+<div >
+    <!--TABLA DE REGISTRO -->
+
+    <div class="col-sm-12">
+        <label>Médico(a):</label><br>
+        <ui-select ng-model="reporte.pro_id_pk" theme="selectize">
+            <ui-select-match>
+                <span ng-bind="$select.selected.pro_nombres"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="item.pro_id_pk as item in medicos | filter: $select.search"
+            refresh="cargarMedicos()">
+                <span ng-bind-html="item.pro_nombres | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+    <div class="col-sm-12">
+        <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="reporte.opcion1_fecha1"
+                   is-open="opcion1_opened1"
+
+                   ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,1)">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+    </div>
+
+    <div class="col-sm-12">
+        <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="reporte.opcion1_fecha2"
+                   is-open="opcion1_opened2"
+                   datepicker-options="dateOptions"
+                   ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,2)">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-btn">
+
+                <button class="btn btn-white btn-info btn-round" type="button" data-toggle="modal" data-target="#myModal"  ng-click="generar_reporte(1)">
+                 <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/> Generar pdf
+                </button>
+            </span>
+    </div>
+
+    <hr>
+    <label>Servicio:  </label>
+    <br>
+
+    <select  required ng-model="datosAguardar.tca_serv_fk" class="form-control">
+        <option value="0">Seleccione</option>
+        <option  ng-repeat="ser in servicio" value="{{ser.tca_id_pk}}"> {{ser.servicio}} </option>
+    </select >
+
+    <label>Fecha: </label>
+
+    <div class="input-group">
+        <input class="form-control input-mask-date" placeholder="YYYY/mm/dd" type="text" ng-model="datosAguardar.fecha" />
+        <span class="input-group-btn">
+
+                <button class="btn btn-white btn-info btn-round" type="button" data-toggle="modal" data-target="#myModal"  ng-click="generar_reporte(1)">
+                 <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/> Generar pdf
+                </button>
+            </span>
+    </div>
+</div>
+
+
+ 

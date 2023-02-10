@@ -1,0 +1,210 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+  <!-- <H6>HOSPITAL GENERAL SANTODOMINGO</H6> -->
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">ESCALA DE BRADEN MODIFICADA</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+          <div class="table-responsive">
+              <div ng-show="ver_fecha">
+                  Fecha *
+                  <input type="date" class="form-control" ng-model="datosAguardar.bra_fecha"  required="required">
+                  <br>
+              </div>
+            <table class="table">
+              <tr>
+                <th>VALOR :</th>  <th>PERCEPCIÓN SENSORIAL</th>   <th>EXPOSICIÓN A LA HUMEDAD</th>  <th>ACTIVIDAD</th> <th>MOVILIDAD</th> <th>NUTRICIÓN</th>     <th>RIESGO DE LESION CUTÁNEA</th>
+              </tr>
+               <tr>
+                <td>1</td>  <td>Complemento limitado</td>   <td>Constante mente húmeda</td> <td>Encamado</td>  <td>Completamente Móvil</td>  <td>Muy Pobre</td> <td>Problema</td>
+               </tr>
+               <tr>
+                 <td>2</td> <td>Muy Limpio</td> <td>Húmedo con Frecuencia</td> <td>En Silla</td>  <td>Muy Limitada</td> <td>Probablemente Inadecuada</td> <td>Problema Potencial</td>
+               </tr>
+               <tr>
+                 <td>3</td> <td>Ligeramente Limitada</td> <td>Ocasionalmente Húmeda</td>  <td>Deambula Ocasionalmente</td>  <td>Ligeramente Limitada</td> <td>Adecuada</td> <td>No Existe Problema Aparente</td>
+               </tr>
+               <tr>
+                  <td>4</td>  <td>Sin Limitación</td> <td>Raramente Húmeda</td> <td>Deambula Frecuentemente</td> <td>Sin Limitaciones</td> <td>Excelente</td>  <td></td>
+               </tr> 
+               <tr>
+                  <th>CALIFICACIÓN</th> 
+                  <td><input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_percen"  required  min="0" max="4">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_exphum"  required  min="0" max="4">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_activi"  required  min="0" max="4">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_movili"  required  min="0" max="4">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_nutric"  required  min="0" max="4">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.bra_rilecu"  required  min="0" max="4">
+                  </td>
+               </tr>
+
+            </table>
+            
+            <div class="col-xs-8">
+                <table class="table table-bordered">
+                    <tr>
+                        <td><b>Calificación de Riesgo </b></td>
+                        <td>
+                         <center>
+                         <b> 
+                        {{datosAguardar.bra_califi=datosAguardar.bra_percen+
+                                                   datosAguardar.bra_exphum+
+                                                   datosAguardar.bra_activi+
+                                                   datosAguardar.bra_movili+
+                                                   datosAguardar.bra_nutric+
+                                                   datosAguardar.bra_rilecu
+                                                   }}
+                        </b>
+                        </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN DE 13 </th>
+                        <TH>RIESGO ALTO</TH>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN DE 13 a 15 </th>
+                        <TH>RIESGO MEDIO</TH>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN MAYOR A 16</th>
+                        <TH>RIESGO BAJO</TH>
+                    </tr>
+                </table>
+            </div>
+          </div>                   
+            <br>
+             <div class="row text-right"  >
+                <button  ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+
+
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" ng-disabled="admi" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+           <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>PERCEPCIÓN SENSORIAL</center></th>
+              <th class="width-20-pct, th"><center>EXPOSICION A LA HUMEDAD</center></th>
+              <th class="width-20-pct, th"><center>ACTIVIDAD</center></th>
+              <th class="width-20-pct, th"><center>MOVILIDAD</center></th>
+              <th class="width-20-pct, th"><center>NUTRICIÓN</center></th>
+              <th class="width-20-pct, th"><center>RIESGO DE LESION CUTÁNEA</center></th>
+
+              <th class="width-20-pct, th"><center>CALIFICACIÓN DE RIESGO</center></th>
+              <th class="width-20-pct ,  th"><center>ACCIÓN</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="bra in brander | filter:search | limitTo:item:(pagina * totalpaginas)">
+            	<td class="width-20-pct "><center>{{bra.bra_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td class="width-20-pct "><center>{{bra.bra_percen}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_exphum}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_activi}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_movili}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_nutric}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_rilecu}}</center></td>
+              <td class="width-20-pct "><center>{{bra.bra_califi}}</center></td>
+              <td class="width-20-pct ">
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(bra.bra_id_pk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+                  -
+                  <a ui-sref="repote({id:'{{bra.bra_id_pk}}',ruta:'src/sgh/brander/php/reporte_Brander.php?c='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+            </td>
+              </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+</div>

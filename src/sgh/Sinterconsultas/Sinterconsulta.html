@@ -1,0 +1,138 @@
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+            <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+              </button>
+                <br>
+            <div ng-show="vbact" ng-include='"src/sgh/bacteriologico/resultado.html"'></div>
+            <form ng-submit="accion()">
+                   <input type="file" uploader-model="file" class="archivo" required /> 
+                 <br>
+                  <br>
+                   <div class="row text-right"  >
+                      <button type="submit" class="btn btn-white btn-info btn-round"><i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                      </button>
+                       <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                       <i class="ace-icon fa fa-times red2"></i>Cancelar
+                         </button>
+                      </div>
+            </form>
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div> 
+  
+
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+
+
+<!--TABLA DE REGISTRO --> 
+
+               <!--panel de ingresos cc--> 
+<div  class="panel panel-default">
+   <div class="panel-heading">
+       <h2 class="panel-title">SOLICITUDES DE INTERCONSULTA</h2>
+    </div>
+                  
+    <div class="panel-body">
+      <table class="table">  
+        <tr> 
+            <th class="th"></th>
+             <th  class="th"><center>Total</center></th> <th class="th"><center>Urgente</center></th> <th class="th"><center>Normal</center>
+        </tr>   
+        <tr> 
+         <th>TOTAL:</th>
+          <th><center>{{tinterconsultas}}</center></th>
+          <td><center>{{}}</center></td>
+          <td><center>{{}}</center></td>
+        </tr>
+        <tr>
+        <th>MEDICINA INTERNA :</th>
+          <th><center>{{smito}}</center></th>
+          <td><center>{{smtur}}</center></td>
+          <td><center>{{smtno}}</center></td>
+        </tr>
+        <tr> 
+        <th>PEDIATRIA :</th>
+          <th><center>{{spedto}}</center></th>
+          <td><center>{{spedur}}</center></td>
+          <td><center>{{spedno}}</center></td>
+        </tr> <th>CIRUGÍA  :</th>
+          <th><center>{{scirto}}</center></th>
+          <td><center>{{scirur}}</center></td>
+          <td><center>{{scirno}}</center></td>
+        </tr>
+
+    </table>
+
+    </div>
+
+
+
+
+      <div class="row"> 
+         <div class="col-sm-1 row text-right" ><!-- -->
+             <b>FILTRAR : </b>
+          </div>
+          <div class="col-sm-2">
+              <select  ng-click="selec_servicio(0)" ng-model="search.servicio" class="form-control">
+                  <option value="" >TODAS</option>
+                  <option  ng-repeat="ser in servicio" value="{{ser.servicio}}"> {{ser.servicio}} </option>
+              </select >
+          </div>
+          <div class="col-sm-9">             
+                 <input type="text" class="form-control" placeholder="Buscar" ng-model="search.$"
+            capitalize>
+          </div>
+
+           </div>
+    
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-20-pct, th"><center>Servicio or</center></th>
+              <th class="width-20-pct, th"><center>Sala</center></th>
+              <th class="width-20-pct, th"><center>Cama</center></th>
+              <th class="width-20-pct, th"><center>Paciente</center></th>
+              <th class="width-20-pct, th"><center>Ser. Que solicita </center></th>
+              <th class="width-20-pct, th"><center>Gravedad</center></th>
+              <th class="width-20-pct, th"><center>Médico</center></th>
+              <th class="width-20-pct, th"><center></center></th>
+
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="bac in sinterconsulta | filter:search  ">
+              <td class="width-20-pct "><center>{{bac.int_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{bac.servicio}}</center></td>
+              <td class="width-20-pct "><center>{{bac.tca_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{bac.cam_codigo }}</center></td>
+              <td class="width-20-pct "><center>{{bac.paceinte}}</center></td>
+              <td class="width-20-pct "><center>{{bac.mds_sersol}}</center></td>
+              <td class="width-20-pct "><center>{{bac.mds_grabed}}</center></td>
+              <td class="width-20-pct "><center>{{bac.mds_medico}}</center></td>
+              <td class="width-20-pct "><center>
+                  <a ui-sref="reinterconsulta({id:'{{bac.int_id_pk}}'})">
+                  <buttton class="btn btn-white btn-default btn-round btn-xs">
+                      <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                  </buttton>
+              </a></center></td>
+
+            </tr>
+          </tbody>
+        </table>
+     </div>
+
+</div>  
+

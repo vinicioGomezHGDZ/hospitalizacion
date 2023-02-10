@@ -1,0 +1,744 @@
+<div ng-show="false">
+    <button ng-click="ocpie()" class="form-control" id="ocfooter">ocultar pie de pagina</button>
+    <button ng-click="mospie()" class="form-control" id="mofooter">mostrar pie de pagina</button>
+</div>
+<br>
+<!-- Div de encabesado -->
+<div ng-show="regresar" class="row">
+    <div class="col-sm-8">
+        <H6>SNS-MSP/GCU-FORM.006/2008</H6>
+    </div>
+    <div class="col-sm-4">
+        <h6 class="text-right">EPICRISIS</h6>
+    </div>
+</div>
+<!-- edita_paciente:{{edita_paciente}}-->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" data-bs-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog{width:whatever}" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{titulo}} / {{Fecha|date:'dd/MM/yyyy'}}</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div ng-model="datosAguardar">
+
+                    <form ng-submit="accion()">
+                        <!--Contenido del formulario-->
+
+                        <div class="panel panel-info ">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">1 RESUMEN DE CUADRO CLÍNICO * </h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <textarea type="text" ng-model="datosAguardar.epi_recucl " class="form-control"
+                                          capitalize required maxlength="30000"> </textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">2 RESUMEN DE EVOLUCIÓN Y COMPLICACIONES *</h3>
+                            </div>
+                            <div class="panel-body">
+                                <textarea type="text" ng-model="datosAguardar.epi_reevco " class="form-control"
+                                          capitalize required maxlength="2000"> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">3 HALLAZGOS RELEVANTES DE EXÁMENES Y PROCEDIMIENTOS DIAGNÓSTICOS
+                                    *</h3>
+                            </div>
+                            <div class="panel-body">
+                                <textarea type="text" ng-model="datosAguardar.epi_harexa " class="form-control"
+                                          capitalize required maxlength="2000"> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">4 RESUMEN DE TRATAMIENTO Y PROCEDIMIENTO TERAPEÚTICOS *</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <textarea type="text" ng-model="datosAguardar.epi_rtrprt " class="form-control"
+                                          capitalize required maxlength="30000"> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-sm-6"><h3 class="panel-title">5 DIAGNOSTICO INGRESO </h3>
+                                            </div>
+                                            <div class="col-sm-6 row text-right">
+                                                <h9> PRE = PRESUNTIVO DEF = DEFINITIVO</h9>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div ng-show="bc10" class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <input type="text" class="form-control" placeholder="Buscar"
+                                                           ng-model="search2" capitalize>
+                                                </tr>
+                                                <tr>
+
+                                                    <th class="width-10-pct, th">
+                                                        <center>Cie10</center>
+                                                    </th>
+                                                    <th class="width-30-pct, th">
+                                                        <center>Descripción</center>
+                                                    </th>
+                                                    <th colspan="3" class="width-20-pct, th "></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <!--| limitTo: posicion | limitTo: item -->
+                                                <tr class="puntero"
+                                                    ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)"
+                                                    ng-click="agregac10(cie.c10_codigo)">
+                                                    <td class="width-10-pct">
+                                                        <center>{{cie.c10_codigo}}</center>
+                                                    </td>
+                                                    <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button ng-show="b_buscar" type="button" class="form-control"
+                                                ng-click="buscac10()">Buscar
+                                        </button>
+
+                                        <table class="table">
+                                            <tr>
+                                                <th colspan="4" class="width-20-pct">
+                                                    <center>Código Cie10</center>
+                                                </th>
+                                                <th class="bt_tab">Agregar</th>
+                                                <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="4" class="width-20-pct">
+                                                    <center><input type="text" class="form-control input-sm"
+                                                                   ng-model="codigo" capitalize maxlength="5"></center>
+                                                </th>
+                                                <th class="bt_tab">
+                                                    <center>
+                                                        <img ng-show="c10nuevo" class="puntero" src="img/aceptar.png"
+                                                             height="25" width="25" ng-click="c10_accion()"></center>
+                                                    <center>
+
+                                                        <img ng-show="c10editar" class="puntero" src="img/aceptar.png"
+                                                             height="25" width="25" ng-click="ec10_accion()"></center>
+                                                </th>
+
+                                                <th class="bt_tab" ng-show="c10nuevo">
+                                                    <center>
+                                                        <img class="puntero" src="img/cancel.png" height="20" width="20"
+                                                             title="Eliminar" ng-click="delec10()"></center>
+                                                </th>
+
+                                            </tr>
+                                        </table>
+                                        <table class="table">
+                                            <tr>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>#</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="width-30-pct, th">
+                                                    <center>
+                                                        <h9>DESCRIPCIÓN</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="width-20-pct, th">
+                                                    <center>
+                                                        <h9>CIE</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>PRE</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>DEF</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>EDITAR</h9>
+                                                    </center>
+                                                </th>
+                                            </tr>
+
+                                            <tr ng-repeat="c10 in cie10">
+                                                <th>{{c10.c10_id + 1}}</th>
+                                                <th class="width-30-pct">
+                                                    <b>{{c10.c10_nombre}}</b>
+                                                </th>
+                                                <th class="width-30-pct">
+                                                    <b>
+                                                        <center>{{c10.c10_codigo}}</center>
+                                                    </b>
+                                                </th>
+                                                <div class="control-group">
+                                                    <th class="bt_tab">
+                                                        <label>
+                                                            <input ng-model="c10.dia_resp" value="true" type="radio"
+                                                                   class="ace"/>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th class="bt_tab">
+                                                        <label>
+                                                            <input ng-model="c10.dia_resp" value="false" type="radio"
+                                                                   class="ace"/>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                </div>
+                                                <td class="bt_tab">
+                                                    <center>
+                                                        <img ng-show="c10nuevo" class="puntero" src="img/edit.png"
+                                                             height="20" width="20" ng-click="edic10(c10.c10_id)">
+                                                    </center>
+
+                                                    <img ng-show="c10editar" class="puntero" src="img/edit.png"
+                                                         height="20" width="20"
+                                                         ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-sm-6"><h3 class="panel-title">6 DIAGNOSTICO EGRESO </h3>
+                                            </div>
+                                            <div class="col-sm-6 row text-right">
+                                                <h9> PRE = PRESUNTIVO DEF = DEFINITIVO</h9>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div ng-show="bc10e" class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <input type="text" class="form-control" placeholder="Buscar"
+                                                           ng-model="search2" capitalize>
+                                                </tr>
+                                                <tr>
+
+                                                    <th class="width-10-pct, th">
+                                                        <center>Cie10</center>
+                                                    </th>
+                                                    <th class="width-30-pct, th">
+                                                        <center>Descripción</center>
+                                                    </th>
+                                                    <th colspan="3" class="width-20-pct, th "></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <!--| limitTo: posicion | limitTo: item -->
+                                                <tr class="puntero"
+                                                    ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)"
+                                                    ng-click="agregac10e(cie.c10_codigo)">
+                                                    <td class="width-10-pct">
+                                                        <center>{{cie.c10_codigo}}</center>
+                                                    </td>
+                                                    <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button ng-show="b_buscare" type="button" class="form-control"
+                                                ng-click="buscac10e()">Buscar
+                                        </button>
+
+                                        <table class="table">
+                                            <tr>
+                                                <th colspan="4" class="width-20-pct">
+                                                    <center>Código Cie10</center>
+                                                </th>
+                                                <th class="bt_tab">Agregar</th>
+                                                <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="4" class="width-20-pct">
+                                                    <center><input type="text" class="form-control input-sm"
+                                                                   ng-model="codigoe" capitalize maxlength="5"></center>
+                                                </th>
+                                                <th class="bt_tab">
+                                                    <center>
+                                                        <img ng-show="c10nuevoe" class="puntero" src="img/aceptar.png"
+                                                             height="25" width="25" ng-click="c10_accione()"></center>
+                                                    <center>
+
+                                                        <img ng-show="c10editare" class="puntero" src="img/aceptar.png"
+                                                             height="25" width="25" ng-click="ec10_accione()"></center>
+                                                </th>
+
+                                                <th class="bt_tab" ng-show="c10nuevo">
+                                                    <center>
+                                                        <img class="puntero" src="img/cancel.png" height="20" width="20"
+                                                             title="Eliminar" ng-click="delec10e()"></center>
+                                                </th>
+
+                                            </tr>
+                                        </table>
+                                        <table class="table">
+                                            <tr>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>#</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="width-30-pct, th">
+                                                    <center>
+                                                        <h9>DESCRIPCIÓN</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="width-20-pct, th">
+                                                    <center>
+                                                        <h9>CIE</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>PRE</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>DEF</h9>
+                                                    </center>
+                                                </th>
+                                                <th class="bt_tab, th">
+                                                    <center>
+                                                        <h9>EDITAR</h9>
+                                                    </center>
+                                                </th>
+                                            </tr>
+
+                                            <tr ng-repeat="c10 in cie10e">
+                                                <th>{{c10.c10_id + 1}}</th>
+                                                <th class="width-30-pct">
+                                                    <b>{{c10.c10_nombre}}</b>
+                                                </th>
+                                                <th class="width-30-pct">
+                                                    <b>
+                                                        <center>{{c10.c10_codigo}}</center>
+                                                    </b>
+                                                </th>
+                                                <div class="control-group">
+                                                    <th class="bt_tab">
+                                                        <label>
+                                                            <input ng-model="c10.dia_resp" value="true" type="radio"
+                                                                   class="ace"/>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                    <th class="bt_tab">
+                                                        <label>
+                                                            <input ng-model="c10.dia_resp" value="false" type="radio"
+                                                                   class="ace"/>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </th>
+                                                </div>
+                                                <td class="bt_tab">
+                                                    <center>
+                                                        <img ng-show="c10nuevo" class="puntero" src="img/edit.png"
+                                                             height="20" width="20" ng-click="edic10e(c10.c10_id)">
+                                                    </center>
+
+                                                    <img ng-show="c10editar" class="puntero" src="img/edit.png"
+                                                         height="20" width="20"
+                                                         ng-click="eedic10e(c10.c10_id,c10.dia_id_pk)"></center>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">7 CONDICIONES DE EGRESO Y PRONÓSTICO *</h3>
+                            </div>
+                            <div class="panel-body">
+                                <textarea type="text" ng-model="datosAguardar.epi_condic " class="form-control"
+                                          capitalize required maxlength="2000"> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">8 MÉDICOS TRATANTES</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div ng-show="medi">
+                                    <input type="text" class="form-control" placeholder="Buscar " ng-model="busca"
+                                           capitalize>
+                                    <select required ng-model="idmedi" class="form-control" size="4" ng-ckic="">
+                                        <option ng-show="false" value=0>seleciones</option>
+                                        <option ng-repeat="med in medico | filter:busca " value="{{med.pro_id_pk}}">
+                                            {{med.per_nombres | uppercase}} {{med.per_apellidopaterno | uppercase}}
+                                        </option>
+
+                                    </select> <br>
+                                    <img ng-show="c10nuevo" class="puntero" src="img/agrega.png" height="40" width="90"
+                                         ng-click="med_accion()"></h5>
+                                    <img ng-show="c10editar" class="puntero" src="img/agrega.png" height="40" width="90"
+                                         ng-click="med_accione()"></h5>
+
+                                    <img class="puntero" src="img/cancelar.png" height="40" width="90"
+                                         ng-click="medcancela()"></h5>
+                                </div>
+                                <br>
+
+                                <table class="table">
+                                    <tr>
+                                        <th class="bt_tab">
+                                            <center>Agregar</center>
+                                        </th>
+
+                                        <th ng-show="c10nuevo" class="bt_tab" ng-show="mednuevo">
+                                            <center>Eliminar</center>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="bt_tab">
+                                            <center>
+                                                <img class="puntero" src="img/busca.png" height="25" width="25"
+                                                     ng-click="buscar()"></center>
+                                            <center>
+                                        </th>
+
+                                        <th ng-show="c10nuevo" class="bt_tab" ng-show="mednuevo">
+                                            <center>
+                                                <img class="puntero" src="img/cancel.png" height="20" width="20"
+                                                     title="Eliminar" ng-click="delemed()"></center>
+                                        </th>
+
+                                    </tr>
+                                </table>
+                                <table class="table">
+                                    <tr>
+                                        <th class="bt_tab, th">
+                                            <center>
+                                                <h9>#</h9>
+                                            </center>
+                                        </th>
+                                        <th class="width-30-pct, th">
+                                            <center>
+                                                <h9>Nombre y Apellidos</h9>
+                                            </center>
+                                        </th>
+                                        <th class="width-20-pct, th">
+                                            <center>
+                                                <h9>ESPECIALIDAD</h9>
+                                            </center>
+                                        </th>
+                                        <th class="bt_tab, th">
+                                            <center>
+                                                <h9>CÓDIGO</h9>
+                                            </center>
+                                        </th>
+                                        <th class="bt_tab, th">
+                                            <center>
+                                                <h9>PERIODO DE RESPONSABILIDAD</h9>
+                                            </center>
+                                        </th>
+                                        <!--<th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>-->
+                                    </tr>
+
+                                    <tr ng-repeat="medi in medico1">
+                                        <th class="bt_tab">{{medi.med_id + 1}}</th>
+                                        <th class="width-30-pct">
+                                            {{medi.per_nombres | uppercase}}
+                                            {{medi.per_apellidopaterno | uppercase}}
+                                            {{medi.per_apellidomaterno | uppercase}}
+                                        </th>
+                                        <th class="width-20-pct">
+                                            <b>
+                                                <center>{{medi.esp_descripcion | uppercase}}</center>
+                                            </b>
+                                        </th>
+                                        <th class="bt_tab">
+                                            {{medi.pro_codigomsp | uppercase}}
+                                        </th>
+                                        <th class="bt_tab">
+                                            <input type="text" ng-model="medi.med_period" class="form-control">
+                                        </th>
+                                        <!--<td class="bt_tab">-->
+                                        <!--<center>-->
+                                        <!--<img class="puntero" src="img/edit.png" height="20" width="20" ng-click="edimed(medi.med_id)"></center>-->
+                                        <!--</td> -->
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">9 CONDICIONES DE EGRESO Y PRONÓSTICO</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="th, text-right">Alta Definitiva</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_altdef" type="checkbox"
+                                                       checked="checked" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Asintomático</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_asinto" type="checkbox"
+                                                       checked="checked" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Discapacidad moderado</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_dismod" type="checkbox"
+                                                       checked="checked" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Retiro autorizado</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_retaut" type="checkbox"
+                                                       checked="checked" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right ">Defunción Menos de 48 Horas</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_dme48h" type="checkbox"
+                                                       checked="checked" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right ">Días de estada</th>
+                                            <th class="widthtd">
+                                                <input ng-model="datosAguardar.epi_diaest" type="number" class="width"
+                                                       required/>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="th, text-right">Alta Transitoria</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_altran" checked="checked"
+                                                       type="checkbox" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Discapacidad leve</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_dislev" checked="checked"
+                                                       type="checkbox" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Discapacidad Grave</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_disgra" checked="checked"
+                                                       type="checkbox" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">retiro no Autorizado</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_retnau" checked="checked"
+                                                       type="checkbox" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Defunción Más de 48 Horas</th>
+                                            <th>
+                                                <input ng-model="datosAguardar.epi_dma48h" checked="checked"
+                                                       type="checkbox" class="ace"/> <span class="lbl"></span>
+                                            </th>
+                                            <th class="th, text-right">Días de incapacidad</th>
+                                            <th class="widthtd">
+                                                <input ng-model="datosAguardar.epi_diadin" type="number" class="width"/>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">RESPONSABLE</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>NOMBRES:</label><br>
+                                        <input type="text" ng-model="datosAguardar.epi_respon" class="form-control"
+                                               capitalize maxlength="90">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label>CÓDIGO MSP:</label><br>
+                                        <input type="text" ng-model="datosAguardar.epi_rescmsp" class="form-control"
+                                               capitalize maxlength="29">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--tabla de ingesta  table-responsive-->
+                        <div class="row text-right">
+                            <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                Guardar
+                            </button>
+                            <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                <i class="ace-icon fa fa-times red2"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                    <!--div mensaje de guardado -->
+                    <div class="animate fadeInDown" ng-show="mensaje">
+                        <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                    </div>  <!--/div mensaje de guardado -->
+
+                </div><!--/div datos guardar-->
+
+            </div><!--dibo body modal-->
+        </div><!--modal-content-->
+    </div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<div ng-show="tabla">
+    <!--TABLA DE REGISTRO -->
+    <div class="row">
+        <div class="col-sm-11"><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+                   capitalize">
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal"
+                    ng-disabled="admi" ng-click="resetGlobal()">Nuevo
+            </button>
+
+            <button ng-show="false" id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal"
+                    data-target="#myModal">Nuevo2
+            </button>
+
+
+        </div>
+    </div>
+    <br>
+    <div class="animate fadeInDown" ng-show="mensaje2">
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+
+    <div class="table-responsive">
+        <table id="tabla" class="table">
+            <thead>
+            <tr>
+                <th class="width-20-pct, th">
+                    <center>FECHA</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>RESUMEN DE CUADRO CLÍNICO</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>VERIFICADO</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>ACCIONES</center>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="epi in epicrisis | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                <td class="width-20-pct ">
+                    <center>{{epi.epi_fecha | date:'dd/MM/yyyy'}} {{epi.epi_hora.substr(0,8)}}</center>
+                </td>
+                <td class="width-20-pct ">
+                    <center>{{epi.epi_recucl}}</center>
+                </td>
+
+                <td class="bt_tab">
+                    <center>
+
+                        <input ng-model="epi.epi_estado" ng-disabled="act_voalresidente(epi.epi_estado)"
+                               class="ace ace-switch ace-switch-2" type="checkbox" checked
+                               ng-click="esresident(epi.epi_id_pk)"/>
+
+                        <span class="lbl"></span><font size="1">{{epi.epi_respon}} {{epi.epi_rescmsp}} </font>
+
+                    </center>
+                </td>
+
+                <td class="width-20-pct">
+                    <center>
+                        
+                        <button title="Ver" class="btn btn-white btn-default btn-round btn-xs"
+                                ng-click="datosepi(epi.epi_id_pk)"><i class="ace-icon fa  fa-eye red2"></i></button>
+                        -
+                        <button ng-disabled="act_editaepi(epi.epi_estado)" title="Editar"
+                                class="btn btn-white btn-default btn-round btn-xs"
+                                ng-click="edita(epi.epi_id_pk,epi.epi_fecha)"><img src="img/edit.png" height="20"
+                                                                                   width="20"></button>
+                        -
+                        <a ui-sref="repicrisis({id:'{{epi.epi_id_pk}}'})">
+                            <buttton class="btn btn-white btn-default btn-round btn-xs">
+                                <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                            </buttton>
+                        </a>
+                    </center>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <th class="th">
+        <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina=1"><<</button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(0)"><</button>
+            | Page {{pagina}} de {{posicion}} |
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>>
+            </button>
+
+        </center>
+    </th>
+</div>
+<div ng-show="false">
+    <input type='button' onclick='window.print();' value='Imprimir' id="print"/>
+</div>
+<div ng-show="datos">
+    <button ng-show="regresar" class="form-control" ng-click="atras()">Retroceder</button>
+    <br>
+    <div ng-include='"src/sgh/epicrisis/DatosEpi.html"'></div>
+</div>
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script>

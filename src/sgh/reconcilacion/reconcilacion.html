@@ -1,0 +1,374 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <!-- <div class="col-xs-4">
+  <H6>HOSPITAL GENERAL SANTODOMINGO</H6>
+  </div> -->
+  <div class="col-xs-8">
+  <h6 class="text-right">FORMULARIO DE CONCILIACIÓN DE MEDICAMENTOS</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+        <label>
+         <b>
+            <div ng-show="ver_vecha">
+                Fecha de la entrevista *
+                <input type="date" class="form-control" ng-model="datosAguardar.frm_fecha"  required>
+
+            </div>
+
+             <br>
+            Motivo de atención *
+            <input type="text" ng-model="datosAguardar.frm_motate" capitalize required maxlength="100"  class="form-control input sm">
+            <br>
+            embarazo / lactancia * <input type="text" ng-model="datosAguardar.frm_emblac" capitalize required maxlength="100" class="form-control input sm">
+            <br>
+            peso *
+             <input type="number" ng-model="datosAguardar.frm_peso" min="0" max="999" step="any" class="form-control input sm">
+            <br>
+            Fuente de información(parentesco) * <input type="" ng-model="datosAguardar.frm_fueinf" capitalize required maxlength="100 " class="form-control input sm">
+            <br>
+            ¿Ha tenido o tiene alergias a medicamentos, alimentos u otro tipo de alergias ?¿Cual? * <input type="text" ng-model="datosAguardar.frm_cual" capitalize required maxlength="100" class="form-control input sm">
+    
+            <br>
+            ¿Ha sido sometido a intervenciones quirúrgicas anteriormente? ¿De qué tipo? ¿Hace cuánto tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_intqui" capitalize required maxlength="100" class="form-control">
+            <br>
+            ¿Trabaja o ha trabajado con sustancias peligrosas? ¿Durante qué tiempo? ¿Tipo de actividad y sustancias manejadas? *
+            <input type="text" ng-model="datosAguardar.frm_suspel" capitalize required maxlength="100" class="form-control">
+            <br>
+            Padecía o padece de alguna enfermedad crónica como hipertensión diabetes, colesterol alto, problemas renales, artritis. tiroides u otras? ¿Qué enfermedad? *
+            <input type="text" ng-model="datosAguardar.frm_enfcro" capitalize required maxlength="100" class="form-control">
+            <br>
+            ¿ Dónde la diagnosticaron la enfermedad y hace cuánto tiempo ? *
+            <input type="text" ng-model="datosAguardar.frm_dondia" capitalize required maxlength="100" class="form-control">
+            ¿Tiene hábitos de fumar, beber, drogas, aguas, aromáticas? ¿con que frecuencia, desde hace que tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_habito" capitalize required maxlength="100" class="form-control">
+            ¿En su familia ha habido enfermedades crónicas o muertes por este tipo de enfermedades? *
+            <input type="text" ng-model="datosAguardar.frm_faencr" capitalize required maxlength="100" class="form-control">
+            <br>
+            ¿Ha viajado fuera de su lugar residencia en el último mes? ¿ A dónde y por cuánto tiempo? *
+            <input type="text" ng-model="datosAguardar.frm_viaje" capitalize required maxlength="100" class="form-control">
+             <br> 
+            ¿Recibe fitorerapia? *
+            <input type="text" ng-model="datosAguardar.frm_fitote" capitalize required maxlength="100" class="form-control">
+            <br>
+            ¿Qué medicamentos estaba recibiendo en el último mes?
+          </b>
+            </label>
+              <div class="table table-responsive">
+                <table class="table table-bordered">
+                   <tr>
+                      <th><center>Medicamento</center></th>
+                      <th><center>Dosis</center></th>
+                      <th><center>Frecuencia</center></th>
+                      <th><center>Para que</center></th>
+                      <th><center>Por cuanto tiempo</center></th>
+                      <th><center>Como lo toma</center></th>
+                      <th><center>Quien se lo receto</center></th>
+                      <th><center>Continuar / descontinuar</center></th>
+                      <th><center>Aceptar</center></th>
+                   </tr>
+                   <tr>
+                      <td>
+                        <input type="text" ng-model="medicamento" capitalize  maxlength="20" class="form-control"> 
+                      </td> 
+                      <td>
+                        <input type="text" ng-model="dosis" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="frecuencia" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="paraque" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="porcuantotiempo" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="comolotoma" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="quienseloreceto" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="continuar" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <center><img ng-show="rec_editar" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="edita_rec_accion()"></center>
+                         
+                        <center><img ng-show="rec_nuevo" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="rec_accion()"></center>
+                      </td>
+                   </tr> 
+                   <tr ng-repeat="mrum in medrecibe">
+                      <td>{{mrum.mum_medica}}</td>
+                      <td>{{mrum.mum_dosis}}</td>
+                      <td>{{mrum.mum_frecue}}</td>
+                      <td>{{mrum.mum_paraq}}</td>
+                      <td>{{mrum.mum_xcuati}}</td>
+                      <td>{{mrum.mum_comtom}}</td>
+                      <td>{{mrum.mum_quirec}}</td>
+                      <td>{{mrum.mum_condes}}</td>
+                      <td>
+                        <center><button ng-show="rec_editar" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="ededimedrecibe(mrum.mum_id_pk)" data-toggle="modal">
+                        <img src="img/edit.png" height="20" width="20"></button></center>
+
+                        <center><button ng-show="rec_nuevo" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edimedrecibe(mrum.mum_id_pk)" data-toggle="modal">
+                        <img src="img/edit.png" height="20" width="20"></button></center>
+                      </td>
+                   </tr>
+                </table>
+              </div>
+          <label>
+           <b> 
+            Observaciones: 
+           </b>
+          </label> 
+            <textarea type="text" ng-model="datosAguardar.frm_obmeul" capitalize  maxlength="400" class="form-control"></textarea>
+            <br>
+          <label>
+               <b> 
+                Medicamentos prescritos durante la hospitalización / cambios de tratamientos
+                </b>
+          </label> 
+              <div class="table table-responsive">
+                <table class="table table-bordered">
+                   <tr>
+                      <th> <center> Medicamento </center></th>
+                      <th> <center> Dosis </center></th>
+                      <th> <center> Frecuencia </center></th>
+                      <th> <center> vía </center></th>
+                      <th> <center> Discrepancia / error </center></th>
+                      <th> <center> Médico que realiza el cambio </center></th>
+                      <th> <center> Aceptar </center></th>
+                   </tr>
+                   <tr>
+                      <td>    
+                        <input type="text" ng-model="mph_medicamento" capitalize maxlength="20" class="form-control"> 
+                      </td> 
+                      <td>
+                        <input type="text" ng-model="mph_dosis" capitalize maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mph_frecuencia" capitalize maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mph_via" capitalize maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mph_discre" capitalize maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mph_meqcam" capitalize maxlength="20" class="form-control"> 
+                      </td>                    
+                      <td>
+                         <center><img ng-show="rec_editar" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="edita_hos_accion()"></center> 
+                         <center><img ng-show="rec_nuevo" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="hos_accion()"></center>
+                      </td>
+                   </tr> 
+                   <tr ng-repeat="meho in medhospital">
+                      <td>{{meho.mph_medica}}</td>
+                      <td>{{meho.mph_dosis}}</td>
+                      <td>{{meho.mph_frecue}}</td>
+                      <td>{{meho.mph_via}}</td>
+                      <td>{{meho.mph_discre}}</td>
+                      <td>{{meho.mph_meqcam}}</td>
+                      <td>
+                      <center><button ng-show="rec_editar" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="ededimedhospi(meho.mph_id_pk)" data-toggle="modal">
+                      <img src="img/edit.png" height="20" width="20"></button></center>
+
+                      <center><button ng-show="rec_nuevo" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edimedhospi(meho.mph_id_pk)" data-toggle="modal">
+                      <img src="img/edit.png" height="20" width="20"></button></center>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td colspan="3">
+                          Química Faramacéutico que revisas:
+                      </td>
+                      <td colspan="4">
+                     <input type="text" ng-model="datosAguardar.frm_quifar" capitalize maxlength="20" class="form-control">
+                      </td>
+                   </tr>
+                 </table>
+              </div>
+          <label>
+           <b> 
+            Observaciones:   
+           </b>
+          </label> 
+            <textarea type="text" ng-model="datosAguardar.frm_obmeho" capitalize  maxlength="400" class="form-control"></textarea>
+            <br>
+            <b>
+              Medicamentos prescritos para alta médica
+            </b>
+
+             <div class="table table-responsive">
+                <table class="table table-bordered">
+                   <tr>
+                      <th>  <center>Medicamento </center></th>
+                      <th>  <center>Dosis </center></th>
+                      <th>  <center>Frecuencia </center></th>
+                      <th>  <center>vía </center></th>
+                      <th>  <center>Recomendación </center> </th>
+                      <th>  <center>Aceptar </center></th>
+
+                   </tr>
+                   <tr>
+                      <td>    
+                        <input type="text" ng-model="mpa_medica" capitalize  maxlength="20" class="form-control"> 
+                      </td> 
+                      <td>
+                        <input type="text" ng-model="mpa_dosis" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mpa_frecuencia" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mpa_via" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                      <td>
+                        <input type="text" ng-model="mpa_recome" capitalize  maxlength="20" class="form-control"> 
+                      </td>
+                                           
+                      <td>
+
+                         <center><img ng-show="rec_editar" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="edita_alt_accion()"></center>
+                         <center><img ng-show="rec_nuevo" class="puntero" src="img/aceptar.png" height="35" width="35" ng-click="alt_accion()"></center>
+                      </td>
+                   </tr> 
+                   <tr ng-repeat="mepa in medalta">
+                      <td>{{mepa.mpa_medica}}</td>
+                      <td>{{mepa.mpa_dosis}}</td>
+                      <td>{{mepa.mpa_frecue}}</td>
+                      <td>{{mepa.mpa_via}}</td>
+                      <td>{{mepa.mpa_recome}}</td>
+                      <td>
+                      <center><button ng-show="rec_editar" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="ededimedalta(mepa.mpa_id_pk)" data-toggle="modal">
+                      <img src="img/edit.png" height="20" width="20"></button></center>
+
+                      <center><button ng-show="rec_nuevo" type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edimedalta(mepa.mpa_id_pk)" data-toggle="modal">
+                      <img src="img/edit.png" height="20" width="20"></button></center>
+                      </td>
+                   </tr>
+                 </table>
+              </div>
+            <br>
+             <div class="row text-right"  >
+                <button ng-disable="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+
+
+<div ng-show="tabla"> 
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+           <tr>
+              <th class="width-29-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>MOTIVO</center></th>
+              <th class="width-20-pct, th"><center>FUENTE DE LA INFORMACIÓN</center></th>
+
+              <th class="width-20-pct,  th"><center>ACCIÓN</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="rec in reconcilacion | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{rec.frm_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td class="width-20-pct "><center>{{rec.frm_motate}}</center></td>
+              <td class="width-20-pct "><center>{{rec.frm_fueinf}}</center></td>
+              <th class="width-20-pct"><center>
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(rec.frm_id_pk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+                  -
+                  <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="verdatos(rec.frm_id_pk)" data-toggle="modal">
+                      <i class="ace-icon fa fa-eye red2" title="VER"/>
+                  </button>
+                  -
+                  <a ui-sref="repote({id:'{{rec.frm_id_pk}}',ruta:'src/sgh/reconcilacion/php/reporte_reconciliacionmedicamento.php?c='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+              </center>
+            </th>
+
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+<div ng-show="datos">
+  <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+  <div ng-include='"src/sgh/reconcilacion/datosreconciliacion.html"'></div>
+
+</div>

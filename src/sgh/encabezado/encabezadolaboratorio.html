@@ -1,0 +1,26 @@
+<div class="table-responsive">
+<table class="table"> 
+
+  <tr> 
+      <th class="width-10-pct, th" > <center> APELLIDO PATERNO </center> </th>
+      <th class="width-10-pct, th" > <center> APELLIDO MATERNO </center> </th>
+      <th class="width-10-pct, th" > <center> NOMBRE </center> </th>
+      <th class="width-10-pct, th" > <center> EDAD </center> </th>
+      <th class="th"> <center> SEXO </center> </th>
+      <th class="width-10-pct, th" > <center> N° HISTORIA CLÍNICA </center> </th>
+      <th class="width-30-pct, th" > <center> COD. LOCALIZACIÓN </center> </th>
+      <th class="width-10-pct,th" > <center> CÉDULA DE IDENTIDAD</center> </th>
+
+  </tr>
+    <tr> 
+          <td class="width-10-pct">  <center> {{encabezado[0].per_apellidopaterno}}</center></td>
+          <td class="width-10-pct">  <center> {{encabezado[0].per_apellidomaterno}}</center></td>
+          <td class="width-10-pct">  <center> {{encabezado[0].per_nombres}}</center></td>
+          <td class="width-10-pct">  <center> {{encabezado[0].edad}}</center></td>
+          <td>  <center> {{encabezado[0].per_sexo}}</center></td>
+          <td class="width-10-pct">  <center> {{encabezado[0].hce_numerohc}}</center></td>
+          <td class="width-30-pct"> <font size="1"><center> {{encabezado[0].prv_descripcion}} - {{encabezado[0].can_descripcion}} - {{encabezado[0].par_descripcion}}</center></font> </td>
+          <td class="width-10-pct">  <center>{{encabezado[0].per_numeroidentificacion}} </center></td>
+  </tr>
+</table>
+</div>

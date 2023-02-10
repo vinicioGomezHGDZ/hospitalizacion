@@ -1,0 +1,180 @@
+<!-- Div de encabesado -->
+<div ng-show="formulario" class="row">
+  <div class="col-xs-8">
+  <H6>HOSPITAL GENERAL SANTO DOMINGO</H6>
+  </div>
+  <div class="col-xs-4">
+  <h6 class="text-right">FORMATO DE INFORMACIÓN AL PACIENTE</h6>
+  </div>
+</div>
+<!-- -->
+<div ng-show="formulario" ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+          <!--Contenido del formulario-->
+                  
+                <label><b>CUIDADOS ESPECIALES * : </b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_cuides " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                <br>
+                  <label><b>ASEO:</b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_aseo " class = "form-control" capitalize maxlength="2000">
+                    </textarea>
+                <br>    
+                  <label><b>REPOSO * : </b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_reposo " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                 <br>   
+                  <label><b>ALIMENTACIÓN * :</b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_alimen " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                  <br>  
+                  <label><b>LO QUE DEBE HACER * :</b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_ldhace " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                <br>    
+                  <label><b>COMO DEBEN TOMAR SUS MEDICAMENTOS * :</b></label>
+                   <textarea type="text" ng-model="datosAguardar.inp_indica " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                <br>
+                  <label><b>FECHA DE CITA MÉDICA :</b></label>
+                   <input type="date" name=""  ng-model="datosAguardar.inp_fpcita" class="form-control">
+                <br>
+                  <label><b>LLAMAR EN CASO DE EMERGENCIA A : 911</b></label>
+                  <!--<input type="number"  ng-model="datosAguardar.inp_llamar" maxlength="10" class="form-control">        -->
+                        <!---->
+            <!--Botones de acciones guardar o cancelar-->    
+          
+              <div class="text-right">
+                    <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+              </div>  
+       </form>
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO -->
+<div ng-show="tabla">
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" id="n" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="">Nuevo</button>
+               
+
+            </div>
+   </div>
+    <br>
+
+   <div class="table-responsive">
+       <table  class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-30-pct, th"><center>CUIDADOS ESPECIALES</center></th>
+              <th class="width-20-pct, th"><center>ASEO</center></th>
+              <th class="width-20-pct, th"><center>REPOSO</center></th>
+              <th class="width-10-pct, th"><center>ALIMENTACIÓN</center></th>
+
+              <th class="width-30-pct, th"><center>LO QUE DEBE HACER</center></th>
+              <th class="width-30-pct, th"><center>INDICACIONES</center></th>
+              <th class="width-20-pct, th"><center>CITA MÉDICA</center></th>
+              <th colspan="3" class="width-20-pct, th "><center> ACCIONES</center></th>
+                         
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="inf in informacion | filter:search  | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct ">{{inf.inp_fecha | date:'dd/MM/yyyy'}}</td>
+            	<td class="width-30-pct ">{{inf.inp_cuides | uppercase}}</td>
+              <td class="width-20-pct ">{{inf.inp_aseo | uppercase}}</td>
+            	<td class="width-20-pct ">{{inf.inp_reposo | uppercase}}</td>
+              <td class="width-10-pct ">{{inf.inp_alimen | uppercase}}</td>
+              
+              <td class="width-30-pct ">{{inf.inp_ldhace | uppercase}}</td>
+              <td class="width-30-pct ">{{inf.inp_indica | uppercase}}</td>
+              <td class="width-20-pct ">{{inf.inp_fpcita | date:'dd/MM/yyyy'}}</td>
+
+              <td class="width-20-pct">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="verdatos(inf.inp_id_pk)"><i class="ace-icon fa fa-eye" title="Ver"/></button>
+              </center>
+              </td> 
+
+              <td class="bt_tab">
+               <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="edita(inf.inp_id_pk)"  title="Editar">
+                <img src="img/edit.png" height="15" width="15">
+                </button>
+              </td>
+              <td class="width-20-pct">
+              <center>
+              <a ui-sref="reinformacion({id:'{{inf.inp_id_pk}}'})">
+                  <buttton class="btn btn-white btn-default btn-round btn-xs">
+                      <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                  </buttton>
+
+                </a>
+              </center>
+              </td> 
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+</div>  
+
+<div ng-show="">
+    <input id="print" type='button' onclick='window.print();' value='Imprimir' />
+</div>
+<div ng-show="datos">
+  <button ng-show="formulario" class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+  <div ng-include='"src/sgh/informacion/datosinfor.html"'></div>
+</div>
+

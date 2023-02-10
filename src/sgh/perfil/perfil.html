@@ -1,0 +1,106 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="atras()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Por su seguridad</h4>
+      </div>
+
+      <div class="modal-body">
+
+               <div class="row">
+
+                  <div class="col-sm-12">
+                     <center>	
+                     <label> <b>	Ingrese contraceña anterion:</b> </label>
+                      <br>
+                      <span class="input-icon input-icon-right">
+						<input type="password" id="form-field-email" ng-model="usu_password" />
+						<i class="ace-icon fa fa-key"></i>
+				      </span>	
+				    </center>  	
+                </div>
+            </div>
+           
+            <br>
+             <div class="text-right">
+                    <button type="button" class="btn btn-white btn-info btn-round" >
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Verificar
+                      </button>
+              </div>   
+             <div class="animate fadeInDown"  ng-show="mensaje">            
+                 <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+             </div>  
+  </div>
+ </div>
+</div>
+</div>
+
+
+<form class="form-horizontal">
+    <div class="tab-content profile-edit-tab-content">
+		<div id="edit-basic" class="tab-pane in active">
+			<h4 class="header blue bolder smaller">General</h4>
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="form-field-username">Nombre de usuario</label>
+						    <div class="col-sm-8">
+						    		<span class="input-icon input-icon-right">
+										<input class="" type="text" ng-model="perfil.usu_login" />
+										<i class="ace-icon fa fa-users fa-flip-horizontal"></i>
+									</span>
+
+							</div>
+						</div>
+					    </div>
+						<div class="space-4"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="form-field-first">Contraseña </label>
+
+						    <div class="col-sm-8">
+						    	<span class="input-icon input-icon-right">
+									<input type="password" id="form-field-email" ng-model="perfil.usu_password" />
+									<i class="ace-icon fa fa-key"></i>
+								</span>			
+							</div>
+						</div>
+				
+
+				<div class="space"></div>
+					<h4 class="header blue bolder smaller">Contactos</h4>
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-padding-right" for="form-field-email">Email</label>
+							<div class="col-sm-7">
+								<span class="input-icon input-icon-right">
+									<input type="email" id="form-field-email" value="alexdoe@gmail.com" />
+									<i class="ace-icon fa fa-envelope"></i>
+								</span>
+							</div>
+						</div>
+				<div class="space-4"></div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label no-padding-right" for="form-field-phone">Telefono</label>
+						<div class="col-sm-7">
+							<span class="input-icon input-icon-right">
+								<input class="" type="text" id="form-field-phone" maxlength="10"/>
+								<i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+							</span>
+						</div>
+				</div>
+													
+				<div class="clearfix form-actions">
+					<div class="col-md-offset-3 col-md-9">
+						<button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">
+							<i class="ace-icon fa fa-check bigger-110"></i>Actualizar
+						</button>
+						&nbsp; &nbsp;
+						<button class="btn" type="button" ng-click="cancelar()">
+						<i class="ace-icon fa fa-undo bigger-110"></i>Cancelar
+						</button>
+					</div>
+				</div>
+</form>
+										

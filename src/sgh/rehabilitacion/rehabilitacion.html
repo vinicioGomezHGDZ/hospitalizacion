@@ -1,0 +1,222 @@
+<br>
+<script type="text/javascript">
+
+            $('#timepicker1').timepicker(
+              {
+                showMeridian:false,
+                template: false,
+                showInputs: false,
+                minuteStep: 1
+              }
+              );
+</script>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-8">
+  <H6>HOSPITAL GENERAL SANTO DOMINGO</H6>
+  </div>
+  <div class="col-xs-4">
+  <h6 class="text-right">DPTO. DE MEDICINA FÍSICA Y REHABILITACIÓN</h6>
+  </div>
+</div>
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <h4 class="modal-title" id="myModalLabel">{{titulo}} / {{Fecha|date:'dd/MM/yyyy'}}</h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+          <!--Contenido del formulario-->
+                   <div class="col-sm-12">
+                   <label >Diagnostico:</label><br>
+                   <textarea type="text"  ng-model="datosAguardar.mfr_diagno " class = "form-control" capitalize required   maxlength="100"> </textarea>
+                   </div>
+                  <br>  
+              <div class="row">           
+                <div class="col-sm-6">
+                     <br>  
+                    <table class="table">
+                      <fieldset>   
+                      <tr>
+                          <th>HORARIO:</th>  
+                          <th>Lunes</th>
+                          <th>Martes</th>
+                          <th>Miércoles</th>
+                          <th>Jueves</th>
+                          <th>Viernes</th>
+                      </tr>
+                      <tr>  
+                      <th>  </th>
+                          <th>
+                          <center><input class="ace" type="radio" value="LUNES" ng-model="datosAguardar.mfr_horari ">
+                           <span class="lbl"></span> 
+                          </center> 
+                          </th>
+                          <th><center><input class="ace" type="radio" value="MARTES" ng-model="datosAguardar.mfr_horari ">
+                                <span class="lbl"></span>
+                          </center>  
+                          </th>
+                          <th><center><input class="ace" type="radio" value="MIÉRCOLES" ng-model="datosAguardar.mfr_horari "><span class="lbl"></span></center>  
+                          </th>
+                          <th><center><input class="ace" type="radio" value="JUEVES" ng-model="datosAguardar.mfr_horari "><span class="lbl"></span></center>  
+                          </th>
+                          <th><center><input class="ace" type="radio" value="VIERNES" ng-model="datosAguardar.mfr_horari ">
+                              <span class="lbl"></span>
+                          </center>  
+                          </th>  
+                      </tr>
+                      </fieldset>
+                    </table>
+                 
+                </div>
+                  <div class="col-sm-6">
+                      <br>  
+                      <table class="table">
+                      <fieldset>   
+                      <tr> 
+                          <th></th> 
+                          <th><center>Mañana</center></th>
+                          <th><center>Tarde</center></th>
+                          
+                      </tr>
+                      <tr>  
+                            <th>  </th>
+                            <th><center><input type="radio" value="MAÑANA" ng-model="datosAguardar.mfr_turnmt " class="ace"><span class="lbl"></span></center> </th>
+                            <th><center><input type="radio" value="TARDE" ng-model="datosAguardar.mfr_turnmt " class="ace"><span class="lbl"></span></center> </th>
+                            </tr>
+                      </fieldset>
+                     </table>
+                </div>
+             </div>
+             <label >Médico terapista:</label><br>
+                   <textarea type="text"  ng-model="datosAguardar.mer_terapi " class = "form-control" capitalize required   maxlength="40"> </textarea>
+             <br> 
+               <!--tabla de ingesta  table-responsive-->
+                   
+                 <div class="row text-right">
+                    <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                     <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button> 
+        </div>
+       </div> 
+       </form>
+          
+                     
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<div ng-show="formp"> 
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" id="n" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+               
+
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="col-sm-10"><!--div tabla 1-->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>Fecha</center></th>
+              <th class="width-30-pct, th"><center>Diagnostico</center></th>
+              <th class="width-10-pct, th"><center>Horario</center></th>
+              <th class="width-10-pct, th"><center>M. Terapéutico</center></th>
+              <th class="bt_tab, th"><center>Registrar visita</center></th>
+              <th class="width-10-pct, th"><center>Acción</center></th>                        
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="re in rehabi | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct ">{{re.mfr_fecha | date:'dd/MM/yyyy'}}</td>
+            	<td class="width-30-pct "><center>{{re.mfr_diagno| uppercase}}</center></td>
+              <td class="width-10-pct "><center>{{re.mfr_horari}} EN LA {{re.mfr_turnmt}}</center></td>
+              <td class="width-10-pct "><center>{{re.mer_terapi}}</center></td>
+              <td class="bt_tab">
+              <center>
+              <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click=" guardavisista(re.mfr_di_pk)">
+                <i class="glyphicon glyphicon-list"></i>
+                </button>
+                </center>
+                </td>
+                <td class="width-10-pct">
+                <center>
+                 <button class="btn btn-white btn-default btn-round btn-xs" ng-click="fechas(re.mfr_di_pk)" title="Ver Fechas de visitas de rehabilitación"><i class="ace-icon fa  fa-eye red2"></i></button>
+                 <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(re.mfr_di_pk)" title="Editar"><img src="img/edit.png" height="20" width="20"> </button></center> 
+               </td> 
+            </tr>
+          </tbody>
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+    </div><!--/Tabla 1-->
+    <div class="col-sm-2"><!--tabla 2-->
+      <table class="table">
+        <tr>
+        <th class="th"><center>
+          FECHAS VICITAS
+        </center></th>
+        </tr>
+        <tr ng-repeat="ho in horario">
+          <th>
+          <center> {{ho.hra_dia}}/{{ho.hra_mes}}/{{ho.hra_anio}}</center>
+          </th>
+        </tr>
+      </table>
+
+    </div><!--/tabla 2--> 
+    
+          
+</div>
+</div>

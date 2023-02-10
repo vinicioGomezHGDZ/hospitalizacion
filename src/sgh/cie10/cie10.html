@@ -1,0 +1,153 @@
+<!--CONTROLADOR-->
+<h5>CÓDIGO CIE10</h5>
+
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}} </h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+        <form ng-submit="accion()">
+
+            <div class="row">           
+                <div class="col-sm-12">
+                 <label >Código:</label><br>
+                   <input type="text"  ng-model="datosAguardar.c10_codigo " class = "form-control" capitalize required   maxlength="10"> 
+                </div>
+            </div>
+            
+             <div class="row">
+                  <div class="col-sm-12">
+                  <label>Nombre:</label>
+                        <br>
+                   <textarea type="text" ng-model="datosAguardar.c10_nombre " class = "form-control" capitalize required maxlength="2000">
+                    </textarea>
+                </div>
+            </div>
+            
+            <div class="row" ng-show="false">
+
+                <div class="col-sm-12" >
+                <label>Categoría que pertenece:</label>
+                  <br>
+                  
+                   <select  ng-model="CombC10" class="form-control" size="5">
+                    <option value="">Seleccione</option>
+                    <option ng-repeat="titu in c10" value="{{titu.c10_id_pk}}">  
+                     {{titu.c10_codigo}}  {{titu.c10_nombre | uppercase}}</option>
+                  </select >
+
+                </div>
+                
+            </div>
+            <br>
+            <div class="row">
+              <div class="text-right">
+                    <button type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+              </div>  
+              </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                  
+              </div>          
+      </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+<hr>
+   <div class="row" > 
+    
+    <div class="col-sm-4">
+    <select  ng-click="selec_servicio(0)" required ng-model="search.c10_estado" class="form-control">
+        <option value="">ESTADO:</option>
+        <option value="TRUE">Activados</option>
+        <option value="FALSE">Desactivados</option>
+    </select>
+    </div>
+          <div class="col-sm-7" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar" ng-model="search.$" capitalize >
+          </div>
+           <div class="col-sm-1">
+           <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal">Nuevo
+            </button>
+            </div>
+         
+    </div>
+    <br>
+       <div  ng-show="editado">            
+      <center><H4 class="bg-info animated fadeInDown">{{edita}}</H4></center>
+    </div>        
+  
+     <div class="table-responsive">
+      <table  id="tabla" class="table" > 
+          <thead>
+           <tr>
+             
+              <th class="width-10-pct, th"><center>CIE10</center></th>
+              <th class="width-30-pct, th"><center>DESCRIPCIÓN</center></th>
+              <th class="width-30-pct, th"><center>REGISTRO</center></th>
+			  <th class="width-30-pct, th"><center>FECHA</center></th>
+			  
+              <th colspan="3" class="width-20-pct, th "></th>
+            </tr>
+           </thead>
+           <tbody>
+            <!--| limitTo: posicion | limitTo: item -->
+            <tr ng-repeat="cie in cie10  | filter:search | limitTo:item:(pagina * totalpaginas)" >
+
+             	<td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+            	<td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+				<td class="width-30-pct, td">{{cie.fecha_registro_usuario }} </td>
+				<td class="width-30-pct, td">{{cie.fecha_registro }} </td>
+              <td class="bt_tab">
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(cie.c10_id_pk,cie.c10_id_fk)" data-toggle="modal" data-target="#myModal" title="Editar">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+            </td>
+			
+             <td class="bt_tab">
+                <input ng-model="cie.c10_estado" class="ace ace-switch ace-switch-2" type="checkbox" checked  
+				ng-click="eliminar(cie.c10_id_pk,cie.c10_estado)"/>
+                    <span class="lbl"></span>
+                    <font size="1"></font>
+              </td>
+            </tr>
+           <tr>
+               <th class="th" colspan="5">
+                   <center>
+                       <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+                       <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>
+                       | Page {{pagina}} de {{posicion}} |
+                       <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+                       <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+                   </center>
+               </th>
+           </tr>
+       </tbody>
+    </table>
+    </div>
+
+</div>
+ 

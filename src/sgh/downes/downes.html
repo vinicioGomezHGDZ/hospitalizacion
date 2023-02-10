@@ -1,0 +1,240 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+  <H6>HOSPITAL GENERAL SANTODOMINGO</H6>
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">SCORE DOWNES</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form>
+          <center><label><b><H3>SCORE DOWNES</H3></b></label></center>  
+          <div class="table-responsive">    
+            <table class="table">
+              <tr>
+                  <th><H9> <center> Puntos </center> </H9></th>
+                  <th><H9> <center> Sibilancias</center> </H9></th>
+                  <th><H9> <center> Tiraje</center> </H9></th>
+                  <th><H9> <center> FR</center> </H9></th>
+                  <th><H9> <center> FC </center></H9></th>
+                  <th><H9> <center> Ventilación </center> </H9></th>
+                  <th><H9> <center> Cianosis </center> </H9></th>
+              </tr>
+               <tr>
+                  <td><center>0</center></td>
+                  <td><center>No</center></td>
+                  <td><center>No</center></td>
+                  <td><center>< 30</center></td>
+                  <td><center>< 120</center></td>
+                  <td><center>Buena. Simétria</center></td>
+                  <td><center>No</center></td>
+
+               </tr>
+               <tr>
+                  <td><center>1</center></td>
+                  <td><center>Final Espiración</center></td>
+                  <td><center>Subcostal. Intercostal</center></td>
+                  <td><center>31 - 35</center></td>
+                  <td><center>> 120</center></td>
+                  <td><center>Regular. Simétria</center></td>
+                  <td><center>Si</center></td>
+               </tr>
+               <tr>
+                  <td><center>2</center></td>
+                  <td><center>Toda Espiración</center></td>
+                  <td><center>+ Supraclavicular <br>+ Aleteo nasal</center></td>
+                  <td><center>46 - 60</center></td>
+                  <td><center></center></td>
+                  <td><center>Muy disminuida</center></td>
+                  <td><center></center></td>
+               </tr>
+               <tr>
+                  <td><center>3</center></td>
+                  <td><center>+ Inspiración</center></td>
+                  <td><center>+ Todo lo anterior <br>+ suprasternal</center></td>
+                  <td><center></center></td>
+                  <td><center></center></td>
+                  <td><center>Tórax silente</center></td>
+                  <td><center></center></td>
+               </tr> 
+               <tr>
+                  <th>CALIFICACIÓN</th> 
+                  <td><input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_sibila"  required  min="0" max="3">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_tiraje"  required  min="0" max="3">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_frespi"  required  min="0" max="2">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_frecar"  required  min="0" max="1">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_ventil"  required  min="0" max="3">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm"  ng-model="datosAguardar.scd_cianos"  required  min="0" max="2">
+                  </td>
+               </tr>
+
+            </table>
+            
+            <div class="col-xs-8">
+                <table class="table table-bordered">
+                    <tr>
+                        <td><b>Calificación de Riesgo </b></td>
+                        <td>
+                         <center>
+                         <b> 
+                        {{datosAguardar.scd_total=datosAguardar.scd_tiraje+
+                                                   datosAguardar.scd_frespi+
+                                                   datosAguardar.scd_frecar+
+                                                   datosAguardar.scd_ventil+
+                                                   datosAguardar.scd_cianos+
+                                                   datosAguardar.scd_sibila
+                                                   }}
+                        </b>
+                        </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN DE 13 </th>
+                        <TH>RIESGO ALTO</TH>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN DE 13 a 15 </th>
+                        <TH>RIESGO MEDIO</TH>
+                    </tr>
+                    <tr>
+                        <th>PUNTUACIÓN MAYOR A 16</th>
+                        <TH>RIESGO BAJO</TH>
+                    </tr>
+                </table>
+            </div>
+          </div>                   
+            <br>
+             <div class="row text-right"  >
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round" ng-click="accion()">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+
+
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+           <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>SIBILANCIAS</center></th>
+              <th class="width-20-pct, th"><center>TIRAJE</center></th>
+              <th class="width-20-pct, th"><center>F RESPIRATORIA</center></th>
+              <th class="width-20-pct, th"><center>F CARDIACA</center></th>
+              <th class="width-20-pct, th"><center>VENTILACIÓN</center></th>
+              <th class="width-20-pct, th"><center>CIANOSIS</center></th>
+
+              <th class="width-20-pct, th"><center>TOTAL</center></th>
+              <th class="width-20-pct,  th"><center>EDITAR
+                  <a ui-sref="repote({id:'{{dow.dow_id_pk}}',ruta:'src/sgh/downes/php/reporte_scoredownes.php?c='})">
+                  <buttton class="btn btn-white btn-default btn-round btn-xs">
+                      <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                  </buttton>
+              </a>
+              </center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="dow in downes | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{dow.scd_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td class="width-20-pct "><center>{{dow.scd_sibila}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_tiraje}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_frespi}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_frecar}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_ventil}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_cianos}}</center></td>
+              <td class="width-20-pct "><center>{{dow.scd_total}}</center></td>
+              
+              <td class="width-20-pct">
+                  <center>
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(dow.scd_id_pk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+                  </center>
+            </td>
+              </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+</div>

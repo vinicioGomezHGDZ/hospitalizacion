@@ -1,0 +1,34 @@
+   <br>
+   <div class="panel panel-default ">
+   <div class="panel-heading">
+       <center><button class="form-control" ng-click="cancela_editar_historias()">CANCELAR</button></center>
+
+       <div><h3 class="panel-title"><center>LISTA DE HISTORIA CLÍNICAS</center></h3> </div>
+   </div>
+
+   <div class="panel-body">
+       <div class="table-responsive">
+    <table class="table ">
+        <tr>
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" CAPITALIZE>
+        </tr>
+        <tr>
+            <th> <center> C.I</center></th>
+            <th> <center> PACIENTE </center> </th>
+            <th> <center> UBICACIÓN </center> </th>
+            <th> <center> SELECCIÓN DE PACIENTE </center>  </th>
+        </tr>
+
+        <tr ng-repeat="pa in historia | filter:search| limitTo: (pagina * totalpaginas)">
+            <td><center> {{pa.per_numeroidentificacion}} </center></td>
+            <td><center> {{pa.persona}} </center></td>
+            <td><center> {{pa.hce_observacion}} </center></td>
+            <td><center> <button class="" ng-click="verhistoria(pa.hce_id_pk)"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+        </tr>
+
+    </table>
+       </div>
+   </div>
+
+
+   </div>

@@ -1,0 +1,506 @@
+<br>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>SNS-MSP / HCU-FORM.007 / 2008</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> INTERCONSULTAS</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button ng-click="cancelar()" type="button" class="close"  data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <button ng-show="false" id="closemodal" type="button" class="close"  data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+
+          <h4 class="modal-title" id="myModalLabel"> {{op}}  {{Fecha|date:'dd/MM/yyyy'}}</h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+          <div ng-show="opedicion">
+                <h3><center><b>¿ QUÉ DESEA EDITAR ?</b></center></h3> <br>
+                  <center>
+                <button class="btn btn-white btn-default btn-round" ng-click="edisol()">
+                <i class="ace-icon glyphicon glyphicon-file red2"></i> INTERCONSULTA - SOLICITUD
+                </button>
+
+                <button ng-disabled="sol_edita" class="btn btn-white btn-default btn-round" ng-click="ediinfor()">
+                <i class="ace-icon glyphicon glyphicon-file red2"></i> INTERCONSULTA - INFORME 
+                </button>
+                </center>
+          </div>
+
+          <form ng-submit="accionsoli()">
+          <!--Contenido del formulario-->
+                <div ng-show="solicitud"> <!-- div de interconsulta solicitud-->
+                   <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">1 MOTIVO Y DESTINO DE LA SOLICITUD</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="tab table-responsive">
+                        <table class="table">
+                          <tr>
+                            <td><b>SERVICIO CONSULTADO :</b> <br>{{encabezado[0].tca_descripcion}}</td>
+                            <td><center><b>* SERVICIO QUE SOLICITA </b><br>
+                            <input type="text" ng-model="datosAguardar.mds_sersol " required maxlength="30" capitalize > </center>
+                            </td>
+                            <td><center><b>SALA:</b><br> {{encabezado[0].piso}} </center></td>
+                            <td><center><b>CAMA:</b><br> {{encabezado[0].cam_codigo}} </center></td>
+                            <div class="control-group">
+                                <th class=""><center>
+                                      <label> <b>NORMAL</b> <br>                                        
+                                       <input ng-model="datosAguardar.mds_grabed" value="NORMAL" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label></center>
+                                </th>
+                                <th class=""><center>
+                                      <label> <b>URGENTE  </b> <br> 
+                                      <input ng-model="datosAguardar.mds_grabed" value="URGENTE" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label></center>
+                                </th>
+                                </div>  
+                                  </tr><tr>
+                            <td><b>MÉDICO INTERCONSULTA :</b> <br>
+                                <input type="text" ng-model="datosAguardar.mds_medico "  maxlength="30" capitalize > </center>
+
+                            </td>
+                            <td>
+                            <center>
+                             <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="busmed()">  </center>
+                             </td>
+                              <td colspan="4">
+                          <div ng-show="medi">
+                          <input type="text" class="form-control" placeholder="Buscar " ng-model="busca"
+                          capitalize>
+                           <select  required ng-model="idmedi" class="form-control" size="3" ng-ckic="">
+                               <option value=0 ng-show="false">selecciona</option>
+                            <option ng-repeat="med in medico | filter:busca " value="{{med.pro_id_pk}}">  
+                             {{med.per_nombres | uppercase}} {{med.per_apellidopaterno | uppercase}}</option>
+                            
+                           </select > 
+                           <center>
+                           <img class="puntero" src="img/agrega.png" height="40" width="80" ng-click="cargar()">
+                           </center>
+                           </div>
+                            </td>
+                          </tr>  
+                        </table>
+                        </div>
+                     </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">2 CUADRO CLÍNICO ACTUAL *</h3>
+                      </div>
+                      <div class="panel-body">
+                          <textarea type="text"  ng-model="datosAguardar.int_cuclia " class = "form-control" capitalize required   maxlength="3000"> </textarea>
+                     </div>
+                    </div> 
+
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">3 RESULTADO DE EXÁMENES Y PROCEDIMIENTOS DIAGNÓSTICOS  *</h3>
+                      </div>
+                      <div class="panel-body">
+                          <textarea type="text"  ng-model="datosAguardar.int_resexa " class = "form-control" capitalize required   maxlength="3000"> </textarea>
+                     </div>
+                    </div> 
+
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-6"><h3 class="panel-title">4 DIAGNOSTICO</h3></div>
+                          <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+                        </div>
+                      </div>
+
+                      <div class="panel-body">
+                       <div ng-show="bc10" class="table-responsive">
+                              <table  class="table" >
+                                  <thead>
+                                  <tr>
+                                      <input type="text" class="form-control" placeholder="Buscar" ng-model="search2" capitalize >
+                                  </tr>
+                                  <tr>
+
+                                      <th class="width-10-pct, th"><center>Cie10</center></th>
+                                      <th class="width-30-pct, th"><center>Descripción</center></th>
+                                      <th colspan="3" class="width-20-pct, th "></th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <!--| limitTo: posicion | limitTo: item -->
+                                  <tr class="puntero" ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)" ng-click="agregac10(cie.c10_codigo)">
+                                      <td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+                                      <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <button ng-show="b_buscar" type="button" class="form-control" ng-click="buscac10()">Buscar</button>
+                          <div class="table-responsive">
+                          <table class="table ">
+                          <tr>
+                           <th colspan="4" class="width-20-pct"><center>Código Cie10 </center></th>
+                           <th class="bt_tab">Agregar</th>
+                           <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                          </tr>
+                          <tr>
+                               <th colspan="4" class="width-20-pct">
+                                  <center> <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5"></center>
+                              </th>  
+                              <th class="bt_tab">
+                                <center>
+                                <img ng-show="c10nuevo" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="c10_accion()"></center>
+                                <center>
+
+                                <img ng-show="c10editar" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="ec10_accion()"></center>
+                              </th>
+
+                              <th class="bt_tab" ng-show="c10nuevo">
+                                   <center>
+                                    <img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="delec10()"></center>
+                              </th>
+                                                          
+                          </tr>
+                          </table>
+                          <table class="table">
+                            <tr>
+                              <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>
+                            </tr>
+                          
+                            <tr ng-repeat="c10 in cie10">
+                                <th>{{c10.c10_id + 1}}</th>
+                                <th class="width-30-pct">
+                                <b>{{c10.c10_nombre}}</b>
+                                </th>
+                                <th class="width-30-pct">
+                                <b><center>{{c10.c10_codigo}}</center></b>
+                                </th>                                
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div> 
+                                <td class="bt_tab" >
+                                <center>
+                                   <img ng-show="c10nuevo" class="puntero" src="img/edit.png" height="20" width="20" ng-click="edic10(c10.c10_id)"></center>
+
+                                   <img ng-show="c10editar" class="puntero" src="img/edit.png" height="20" width="20" ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+
+                                </td> 
+                            </tr>
+                        </table>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">5 PLAN DE DIAGNOSTICO TERAPÉUTICOS Y EDUCACIONAL REALIZADOS *</h3>
+                      </div>
+                      <div class="panel-body">
+                          <textarea type="text"  ng-model="datosAguardar.int_planes " class = "form-control" capitalize required   maxlength="3000"> </textarea>
+                     </div>
+                    </div> 
+                 <div class="row text-right">
+                    <button ng-disabled="actguar" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                    <button  id="can" ng-click="cancelar()" type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal" aria-label="Close">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button> 
+                 </div>
+              </div>
+           </form>  
+
+            <form ng-submit="accioninform()">
+    
+              <!-- datos de interconsulta informe-->
+              <div ng-show="informe">
+                      <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">6 CUADRO CLÍNICO DE INTERCONSULTA</h3>
+                        </div>
+                        <div class="panel-body">
+                            <textarea type="text"  ng-model="datosAguardar.int_cucint " class = "form-control" capitalize required   maxlength="3000"> </textarea>
+                       </div>
+                      </div> 
+                      
+                      <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">7 PLAN DE DIAGNOSTICO PROPUESTO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <textarea type="text"  ng-model="datosAguardar.int_plandia " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                       </div>
+                      </div>
+
+                      <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-6"><h3 class="panel-title">8 DIAGNOSTICO</h3></div>
+                          <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                          <div ng-show="bc10" class="table-responsive">
+                              <table  class="table" >
+                                  <thead>
+                                  <tr>
+                                      <input type="text" class="form-control" placeholder="Buscar" ng-model="search2" capitalize >
+                                  </tr>
+                                  <tr>
+
+                                      <th class="width-10-pct, th"><center>Cie10</center></th>
+                                      <th class="width-30-pct, th"><center>Descripción</center></th>
+                                      <th colspan="3" class="width-20-pct, th "></th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <!--| limitTo: posicion | limitTo: item -->
+                                  <tr class="puntero" ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)" ng-click="agregac10(cie.c10_codigo)">
+                                      <td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+                                      <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                          <button ng-show="b_buscar" type="button" class="form-control" ng-click="buscac10()">Buscar</button>
+
+                          <table class="table">
+                          <tr>
+                           <th colspan="4" class="width-20-pct"><center>Código Cie10</center></th>
+                           <th class="bt_tab">Agregar</th>
+                           <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                          </tr>
+                          <tr>
+                               <th colspan="4" class="width-20-pct">
+                                  <center> <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5"></center>
+                              </th>  
+                              <th class="bt_tab">
+                                <center>
+                                <img ng-show="c10nuevo" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="c10_accion()"></center>
+                                <center>
+
+                                <img ng-show="c10editar" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="ec10_accion()"></center>
+                              </th>
+
+                              <th class="bt_tab" ng-show="c10nuevo">
+                                   <center>
+                                    <img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="delec10()"></center>
+                              </th>
+                                                          
+                          </tr>
+                          </table>
+                          <table class="table">
+                            <tr>
+                              <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>
+                            </tr>
+                          
+                            <tr ng-repeat="c10 in cie10">
+                                <th>{{c10.c10_id + 1}}</th>
+                                <th class="width-30-pct">
+                                <b>{{c10.c10_nombre}}</b>
+                                </th>
+                                <th class="width-30-pct">
+                                <b><center>{{c10.c10_codigo}}</center></b>
+                                </th>                                
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div> 
+                                <td class="bt_tab" >
+                                <center>
+                                   <img ng-show="c10nuevo" class="puntero" src="img/edit.png" height="20" width="20" ng-click="edic10(c10.c10_id)"></center>
+
+                                   <img ng-show="c10editar" class="puntero" src="img/edit.png" height="20" width="20" ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+
+                                </td> 
+                            </tr>
+                        </table>  
+
+                     </div>
+                    </div>
+
+                      <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">9 PLAN DE TRATAMIENTO PROPUESTO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <textarea type="text"  ng-model="datosAguardar.int_pltrap " class = "form-control" capitalize required   maxlength="1000"> </textarea>
+                       </div>
+                      </div>
+                      <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">10 RESUMEN DE CRITERIO CLÍNICO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <textarea type="text"  ng-model="datosAguardar.int_recrcl " class = "form-control" capitalize required   maxlength="3000"> </textarea>
+                       </div>
+                      </div>
+                  <div class="panel panel-info" ng-show="infoarchivo">
+                      <div class="panel-heading">
+                          <h3 class="panel-title">ARCHIVO</h3>
+                      </div>
+                      <div class="panel-body">
+                          <input type="file" id="id-input-file-3" uploader-model="file" class="archivo" /></div>
+                      </div>
+
+
+
+                  <div class="row text-right">
+                    <button ng-disabled="actguar" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button  ng-click="cancelar()" type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal" aria-label="Close">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button> 
+                </div>
+               </div> 
+         </form>
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row">
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button id="nuevo" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+         <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>FECHA</center></th>
+              <th class="idth-20-pct, th"><center>SER. QUE SOLICITA</center></th>
+              <th class="bt_tab, th"><center>GRAVEDAD</center></th>
+              <th class="width-10-pct, th"><center>CUA. CLÍNICO</center></th>
+              <th class="width-10-pct, th"><center>RESUL DE EXÁMENES </center></th>
+              <th class="width-10-pct, th"><center>PLANES DE DIAGNOSTICO</center></th>
+             <th class="idth-20-pct, th"><center>ACCIONES</center></th>
+          </tr>
+          </thead>
+          <tbody>  
+            <tr ng-repeat="int in interconsulta | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="bt_tab"><center>{{int.int_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="idth-20-pct "><center>{{int.mds_sersol }}</center></td>
+              <td class="bt_tab"><center>{{int.mds_grabed }}</center></td>
+              <td class="width-10-pct "><center>{{int.int_cuclia }}</center></td>
+              <td class="width-10-pct "><center>{{int.int_resexa }}</center></td>
+              <td class="width-10-pct "><center>{{int.int_planes }}</center></td>
+              <th class="idth-20-pct">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="datos(int.int_id_pk)"><i class="ace-icon fa  fa-eye red2" title="VER"/></button>
+              -
+              <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="editar(int.int_id_pk)" data-toggle="modal" data-target="#myModal" title="Editar">
+              <img src="img/edit.png" height="20" width="20"></button>
+              -
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="verinfo(int.int_id_pk)"><i class="ace-icon fa fa-book red2" title="INFORME"/></button>
+              -
+                  <a ui-sref="reinterconsulta({id:'{{int.int_id_pk}}'})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+
+              </center>
+              </th>
+            </tr>
+          </tbody>
+        
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>
+
+<!--inicio de anamnesis mostrar datos-->
+<div ng-show="intdatos">
+<div ng-include='"src/sgh/interconsulta/datosinter.html"'></div>
+</div><!--fin de mostrar anamnesis -->
+    <script>
+        autosize(document.querySelectorAll('textarea'));
+    </script>

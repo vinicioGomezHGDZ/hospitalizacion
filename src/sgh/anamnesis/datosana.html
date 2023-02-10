@@ -1,0 +1,793 @@
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-6">
+             <h3 class="panel-title">1 MOTIVO DE CONSULTA</h3> 
+          </div>
+          <div class="col-sm-6 row text-right">  
+             <H10>Anotar las causas del problema en la versión del infórmate</H10>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">{{anamnesis[0].ana_motivo}}</div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3 class="panel-title">2 ANTECEDENTES PERSONALES</h3> 
+          </div>
+          <div class="col-sm-6 row text-right">
+            <H15>Describa abajo, con el numero respectivo</H15>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+         <div class="table table-responsive ">
+            <table class="table">
+              <tr> 
+                <th  colspan="12">
+                 <div class="text-right "> 
+                  <H15>FUM= Fecha de ultima menstruación,  FUP= Fecha de ultimo parto,  FUC= Fecha de ultima citología</H15>
+                 </div>
+                </th>  
+              </tr>
+              <tr>
+                <td><b>1.</b> Vacunas</td>
+                <td><b>5.</b> Enf. Alérgica</td>
+                <td><b>9.</b> Enf. Neurológica</td>
+                <td><b>13.</b> Enf. Traumatol</td>
+                <td><b>17.</b> Tendencia Sexual </td>
+                <td><b>21. </b>Actividad Física</td>
+                <td> <center>MENARQUÍA -EDAD- <br>{{anamnesis[0].ana_menarq}}</center> </td>
+                <td><center>MENOPAUSIA -EDAD- <br>{{anamnesis[0].ana_menopa}}</center> </td>
+                <td><center>CICLOS<br>{{anamnesis[0].ana_ciclos}}</center> </td>
+                <td colspan="2"><center>VIDA SEXUAL ACTIVA <br><input ng-model="anamnesis[0].ana_vidasex" type="checkbox"  checked="checked" class="ace" disabled><span class="lbl"></span> </center> </td>
+              </tr>
+              <tr>
+                <td><b>2. </b>Enf. Perinatal</td>
+                <td><b>6. </b>Enf. Cardiaca</td>
+                <td><b>10.</b> Enf. Metabólica</td>
+                <td><b>14.</b> Enf. Quirúrgica</td>
+                <td><b>18.</b> Riesgo Social </td>
+                <td><b>22.</b> Dieta y Hábitos</td>
+                <td><center>GESTA <br>{{anamnesis[0].ana_gesta}}</center> </td>
+                <td><center>PARTOS <br>{{anamnesis[0].ana_paros}}</center> </td>
+                <td><center>ABORTOS <br>{{anamnesis[0].ana_aborto}} </center> </td> 
+                <td colspan="2"><center>CESÁREAS <br>{{anamnesis[0].ana_cesarea}} </center> </td>
+              </tr>
+              <tr>
+                <td><b>3. </b>Enf. Infacial</td>
+                <td><b>7.</b> Enf. Respiratoria</td>
+                <td><b>11.</b> Enf. Hemo linf</td>
+                <td><b>15.</b> Enf. Mental</td>
+                <td><b>19.</b> Riesgo Laboral </td>
+                <td><b>23.</b> Religión y cultura</td>
+                <td><center>FUM<br>{{anamnesis[0].ana_cesarea}}</center> </td>  
+                <td><center>FUP<br>{{anamnesis[0].ana_cesarea}}</center> </td>
+                <td><center>FUC<br>{{anamnesis[0].ana_cesarea}}</center> </td>
+                <td colspan="2"><center>BIOPSIA <br>
+                    <input ng-model="anamnesis[0].ana_biopsia" type="checkbox"  checked="checked" class="ace" disabled><span class="lbl"></span></center> </td>
+              </tr>
+              <tr>
+                <td><b>4.</b> Enf. Adolecentes</td>
+                <td><b>8.</b> Enf. Digestivo</td>
+                <td><b>12.</b>Enf. Urinario</td>
+                <td><b>16.</b> Enf. T. Sexual</td>
+                <td><b>20.</b> Riesgo Familiar </td>
+                <td><b>24.</b> Otro</td>
+                <td><center>MÉTODO DE P. FAMILIAR<br>{{anamnesis[0].ana_mepfam }} </center> </td>
+                <td><center>TERAPIA HORMONAL<br><input ng-model="anamnesis[0].ana_terhor " type="checkbox" checked="checked" class="ace" disabled><span class="lbl"></span></center> </td>
+                <td><center>COLPOS COPIA <br><input ng-model="anamnesis[0].ana_colcop " type="checkbox" checked="checked" class="ace" disabled><span class="lbl"></span> </center> </td>
+                <td><center>MAMO GRAFÍA <br><input ng-model="anamnesis[0].ana_mamogr " type="checkbox" checked="checked" class="ace" disabled><span class="lbl"></span></center> </td>
+                <td><center>HIJOS VIVOS<br>{{anamnesis[0].ana_hijosv }} </center> </td>
+              </tr>
+            </table>
+          </div>
+          {{anamnesis[0].ana_desant }}
+                         
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3 class="panel-title">3 ANTECEDENTES FAMILIARES</h3> 
+          </div>
+          <div class="col-sm-6 row text-right">
+            <H15>Describa abajo anotando el numero</H15>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class=" table table-responsive" >  
+          <table class=" table">  
+            <tr>  
+              <td>1. CardiopatÍa</td> <td>2. Diabetis </td> <td>3. Enf. C. Vascular</td> <td>4. Hiper Tensión</td> <td>5. Cáncer</td> <td>6. Tuberculosis</td> <td>7. Enf. Mental</td> <td>8. Enf. Infecciosa</td> <td>9. Mal Formación</td> <td>10. Otro</td>
+            </tr>
+          </table>
+        </div>
+        {{anamnesis[0].ana_antfam}}
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">4 ENFERMEDAD O PROBLEMA ACTUAL</h3>
+      </div>
+      <div class="panel-body">
+        {{anamnesis[0].ana_enfpra}}
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-4"> 
+            <h3 class="panel-title"> 5 REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMA</h3>
+          </div>
+          <div class="col-sm-7row text-right"> 
+            <h9><b>CP</b> = Con evidencia de patologia: Describir abajo anotando el número y letra</h9>
+            <h9><b>SP</b> = Sin evidencia de patologia: No Describir </h9>
+          </div>
+        </div> 
+      </div>
+      <div class="panel-body">
+        <div class="table table-responsive">
+          <table class="table ">
+            <tr>
+              <td ></td><td>CP</td><td>SP</td>
+              <td ></td><td>CP</td><td>SP</td>
+              <td ></td><td>CP</td><td>SP</td>
+              <td ></td><td>CP</td><td>SP</td>
+              <td ></td><td>CP</td><td>SP</td>
+            </tr>
+            <tr>
+              <td><div class="col-sm-1">1</div><div class="col-sm-11row text-right">Órganos de los sentidos</div></td>
+              <div class="control-group">
+                <th class="bt_tab">
+                  <label><input ng-model="respuestas[27].pat_result" value="CP" type="radio" class="ace" disabled/><span class="lbl"></span></label>
+                </th>
+                <th class="bt_tab">
+                    <label><input ng-model="respuestas[27].pat_result" value="SP" type="radio" class="ace" disabled/><span class="lbl"></span></label>
+                </th>
+              </div>
+              <td><div class="col-sm-1">3</div> <div class="col-sm-11row text-right">Cardio Vascular</div> </td> 
+              <div class="control-group">
+                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[5].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[5].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+              </div>
+              <td> <div class="col-sm-1">5</div> <div class="col-sm-11row text-right">Genital</div></td> 
+              <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[12].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[12].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+              </div>
+              <td><div class="col-sm-1">7</div><div class="col-sm-11row text-right"> Músculos Esqueléticos</div></td> 
+              <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[19].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[19].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+              </div>
+              <td><div class="col-sm-1">9</div><div class="col-sm-11row text-right"> Hemo Linfático</div></td> 
+              <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[15].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[15].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+              </div>
+            </tr>
+            <tr>
+                        <td> <div class="col-sm-1"> 2</div> <div class="col-sm-11row text-right"> Respiratorio</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[31].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[31].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">4</div><div class="col-sm-11row text-right">Digestivo</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[9].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[9].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">6</div> <div class="col-sm-11row text-right"> Urinario</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[34].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[34].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">8</div> <div class="col-sm-11row text-right"> Endocrino</div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[11].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[11].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-1">10</div> <div class="col-sm-11row text-right"> Nervioso</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[22].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[22].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+            </tr>
+          </table>
+        </div>
+          {{anamnesis[0].ana_desrev}}
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">6 SIGNOS VITALES Y MEDICIONES</h3>
+      </div>
+      <div class="panel-body">
+        <div class="table table-responsive">   
+          <table class="table">  
+            <tr>
+            <tr>
+              <td> <center>Presión Arterial </center></td> <td><input type="text" size="4" ng-model="singnosvitales[0].siv_prarta"  required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  disabled></td>  
+              <td><center>Frecuencia Cardiaca. min </center></td><td> <input type="text" size="3" ng-model="singnosvitales[0].siv_frecar"  required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>  
+              <td><center>Frecuencia Respiratoria. min </center></td><td> <input type="text" size="3" ng-model="singnosvitales[0].siv_freres"  required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>  
+              <td><center>Temperatura Bucal. °C </center></td><td> <input type="text" size="3" ng-model="singnosvitales[0].siv_tempvo"  required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td> 
+              <td><center>Temperatura Axilar. °C </center></td> <td><input type="text" size="3"  ng-model="singnosvitales[0].siv_temper" required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>
+              <td><center>Peso. Kg  </center></td> <td><input type="text" size="3"  ng-model="singnosvitales[0].siv_peso" required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>
+              <td><center>Talla. m </center></td><td> <input type="text" size="3"  ng-model="singnosvitales[0].siv_talla" required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>
+              <td><center>Perímetro Cefálico.cm  </center></td> <td><input type="text" size="3" ng-model="singnosvitales[0].siv_percef"  required maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" disabled></td>
+            </tr>             
+          </table>   
+        </div> 
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-2"> 
+            <h3 class="panel-title">7 EXAMEN FÍSICO</h3>
+          </div>
+          <div class="col-sm-10row text-right"> 
+            <h9><b>R = Regional S = Sistémico</b></h9>   
+            <h9><b>CP</b> = Con evidencia de patología: Describir abajo anotando el número y letra correspondiente </h9>
+            <h9><b>SP</b> = Sin evidencia de patología: No Describir </h9>
+          </div>
+        </div> 
+      </div>
+      <div class="panel-body">
+        <div class="table table-responsive">
+          <table class="table ">
+                    <tr>
+                          <td></td><td>CP</td><td>SP</td>
+                          <td ></td><td>CP</td><td>SP</td>
+                          <td ></td><td>CP</td><td>SP</td>
+                          <td ></td><td>CP</td><td>SP</td>
+                          <td ></td><td>CP</td><td>SP</td>
+                    </tr>
+                    <tr>
+                      <td><div class="col-sm-5">1-R</div><div class="col-sm-7row text-right">Piel-Faneras</div></td> 
+                      <div class="control-group">
+                                <th class="bt_tab">
+                                <label>
+                                        <input ng-model="respuestas[29].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[29].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                      </div>
+                      <td><div class="col-sm-6">6-R</div><div class="col-sm-6row text-right">Boca</div></td> 
+                      <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[2].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[2].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                      </div>
+                      <td> <div class="col-sm-6">11-R</div> <div class="col-sm-6row text-right">Abdomen</div></td> 
+                      <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[0].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[0].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                      </div>
+                      <td><div class="col-sm-6">1-S</div><div class="col-sm-6row text-right">Órganos de los sentidos</div></td> 
+                      <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[26].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[26].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                      </div>
+                      <td><div class="col-sm-6">6-S</div><div class="col-sm-6row text-right">Urinario</div></td> 
+                      <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[33].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[33].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                      </div>
+                    </tr>
+                      <tr>
+                        <td> <div class="col-sm-6">2-R</div> <div class="col-sm-6row text-right">Cabeza</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[3].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[3].pat_result" value="SP" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">7-R</div><div class="col-sm-11row text-right">Oro Faringe</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[28].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[28].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">12-R</div> <div class="col-sm-6row text-right">Columna Vertebral</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[6].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[6].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">2-S</div> <div class="col-sm-6row text-right">Respiratorio</div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[30].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[30].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-6">7-S</div> <div class="col-sm-6row text-right">Músculo Esquelético</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[20].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[20].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                       </tr>
+
+                      <tr>
+                        <td> <div class="col-sm-6">3-R</div> <div class="col-sm-6row text-right">Ojos</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[25].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[25].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">8-R</div><div class="col-sm-11row text-right">Cuello</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[7].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[7].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">13-R</div> <div class="col-sm-6row text-right">Ingle-Periné</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[16].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[16].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">3-S</div> <div class="col-sm-6row text-right">Cardio Vascular</div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[4].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[4].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-6">8-S</div> <div class="col-sm-6row text-right">Endocrino</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[10].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[10].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                      </tr>
+                      <tr>
+                        <td> <div class="col-sm-6">4-R</div> <div class="col-sm-6row text-right">Oídos</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[24].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[24].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">9-R</div><div class="col-sm-11row text-right">Axilas - Mamas</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[1].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[1].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">14-R</div> <div class="col-sm-6row text-right">Miembros Superiores</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[18].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[18].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">4-S</div> <div class="col-sm-6row text-right">Digestivo</div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[8].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[8].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-6">9-S</div> <div class="col-sm-6row text-right">Hemo Linfático</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[14].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[14].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                       </tr>
+                      <tr>
+                        <td> <div class="col-sm-6">5-R</div> <div class="col-sm-6row text-right">Nariz</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[21].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[21].pat_result" value="SP" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">10-R</div><div class="col-sm-11row text-right">Tórax</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[32].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[32].pat_result" value="SP" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">15-R</div> <div class="col-sm-6row text-right">Miembros Inferiores</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[17].pat_result" value="CP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[17].pat_result" value="SP" type="radio" class="ace"  disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-6">5-S</div> <div class="col-sm-6row text-right">Genital</div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[13].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[13].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-6">10-S</div> <div class="col-sm-6row text-right">Neurológico</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="respuestas[23].pat_result" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="respuestas[23].pat_result" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                       </tr>
+          </table>
+        </div>
+          {{anamnesis[0].ana_exafis }}
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+       <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-6"><h3 class="panel-title">8 DIAGNOSTICO</h3></div>
+              <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+        </div>
+       </div>
+       <div class="panel-body">
+        <table class="table">  
+          <tr>
+            <th class="bt_tab, th"><center><h9>#</h9></center></th>
+            <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+            <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+            <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+            <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+          </tr>
+          <tr ng-repeat="c10 in cie10">
+            <th><center>{{c10.c10_id + 1}}</center></th>
+            <th class="width-30-pct">
+            <b>{{c10.c10_nombre}}</b>
+            </th>
+            <th class="width-30-pct">
+              <b><center>{{c10.c10_codigo}}</center></b>
+            </th>                                
+            <div class="control-group">
+            <th class="bt_tab">
+              <label>
+                <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" disabled />
+                <span class="lbl" ></span>
+              </label>
+            </th>
+            <th class="bt_tab">
+              <label>
+              <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" disabled/>
+                <span class="lbl" ></span>
+              </label>
+            </th>
+            </div> 
+                            
+         </tr>
+        </table>
+       </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">9 PLANES DE TRATAMIENTO</h3>
+      </div>
+      <div class="panel-body">
+        {{anamnesis[0].ana_plantr}}
+      </div>
+    </div>
+
+          

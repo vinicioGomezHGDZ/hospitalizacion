@@ -1,0 +1,94 @@
+<br>
+<br>
+<br>
+<div class="panel panel-default ">
+    <a ui-sref="censo">
+        <center>
+            <button class="form-control"> AGREGAR PACIENTE A HOSPITALIZACIÓN</button>
+        </center>
+    </a>
+
+
+    <!--<center><button ng-disabled="edita_boton" class="form-control" ng-click="editar_historias()"> EDITAR HISTORIA CLÍNICA</button></center>-->
+
+
+    <!--<a ui-sref="censo_dia">-->
+    <!--<cente	r><button class="form-control">Censo Diario </button></center>-->
+    <!--</a>-->
+    <div class="panel-heading">
+
+        <div>
+            <h3 class="panel-title">
+                <center>LISTA DE PACIENTES</center>
+            </h3>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table responsive">
+                <tr>
+                    <input type="text" class="form-control" placeholder="Buscar " ng-model="search" CAPITALIZE>
+                </tr>
+                <tr>
+
+                    <th>
+                        <center> FECHA DE INGRESO</center>
+                    </th>
+                    <th>
+                        <center> PISO</center>
+                    </th>
+                    <th>
+                        <center> CAMA</center>
+                    </th>
+                    <th>
+                        <center> N° HISTORIA CLINICA</center>
+                    </th>
+                    <th>
+                        <center> PACIENTE</center>
+                    </th>
+                    <th>
+                        <center> SELECCIÓN DE PACIENTE</center>
+                    </th>
+                    <th>
+                        <center> N° CAMBIOS</center>
+                    </th>
+                </tr>
+
+                <tr ng-repeat="pa in pacientes | filter:search">
+
+
+                    <td>
+                        <center> {{pa.cen_fecha | date:'dd/MM/yyyy'}}</center>
+                    </td>
+                    <td>
+                        <center> {{pa.piso}}</center>
+                    </td>
+                    <td>
+                        <center> {{pa.cam_codigo}}</center>
+                    </td>
+                    <td>
+                        <center> {{pa.per_numeroidentificacion}}</center>
+                    </td>
+                    <td>
+                        <center> {{pa.paciente}}</center>
+                    </td>
+                    <td>
+                        <center>
+                            <button class=""
+                                    ng-click="accion(pa.cen_fecha,pa.hce_id_pk,pa.cam_id_pk,pa.tca_id_pk,pa.cen_id_pk)">
+                                <i class="ace-icon fa  fa-eye red2" title="VER"/></button>
+                        </center>
+                    </td>
+                    <td class="bt_tab" ng-style="estado_colores(pa.color)">
+                        <center> {{pa.Num}}</center>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+</div>
+

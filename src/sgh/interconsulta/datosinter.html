@@ -1,0 +1,200 @@
+              <br>
+               <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+                  <h5>INTERCONSULTA - SOLICITUD</h5>
+                      <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">1 MOTIVO Y DESTINO DE LA SOLICITUD</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="tab table-responsive">
+                        <table class="table">
+                          <tr>
+                            <td><b>SERVICIO CONSULTADO :</b> <br>{{datosoli[0].tca_descripcion}}</td>
+                            <td><center><b>SERVICIO QUE SOLICITA:</b> <br>
+                            {{datosoli[0].mds_sersol}}</center></td>
+                            <th><center>SALA: <br> {{datosoli[0].piso}} </center></th>
+                            <th><center>CAMA: <br> {{datosoli[0].cam_codigo}} </center></th>
+                            <div class="control-group">
+                                <th class=""><center>
+                                      <label> <b>NORMAL</b> <br>                                        
+                                       <input ng-model="datosoli[0].mds_grabed" value="NORMAL" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label></center>
+                                </th>
+                                <th class=""><center>
+                                      <label> <b>URGENTE</b>  <br>
+                                      <input ng-model="datosoli[0].mds_grabed" value="URGENTE" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label></center>
+                                </th>
+                                </div>  
+                                              
+                            <td><b>MÉDICO INTERCONSULTA :{{datosoli[0].mds_medico |uppercase}}
+                             </td>
+                          </tr>  
+                        </table>
+                        </div>
+                     </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">2 CUADRO CLÍNICO</h3>
+                      </div>
+                      <div class="panel-body">
+                        {{datosoli[0].int_cuclia}}
+                     </div>
+                    </div> 
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">3 RESULTADO DE EXÁMENES Y PROCEDIMIENTOS DIAGNÓSTICOS</h3>
+                      </div>
+                      <div class="panel-body">
+                      {{datosoli[0].int_resexa }}
+                     </div>
+                    </div> 
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-6"><h3 class="panel-title">4 DIAGNOSTICO</h3></div>
+                          <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                          <table class="table">  
+                            <tr>
+                                <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                            </tr>
+                              <tr ng-repeat="c10 in diasol">
+                                  <th><center>{{c10.c10_id + 1}}</center></th>
+                                  <th class="width-30-pct">
+                                      <b>{{c10.c10_nombre}}</b>
+                                  </th>
+                                  <th class="width-30-pct">
+                                      <b><center>{{c10.c10_codigo}}</center></b>
+                                  </th>
+                                  <div class="control-group">
+                                      <th class="bt_tab">
+                                          <label>
+                                              <input ng-model="c10.dia_resp" value=true type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                          </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                          <label>
+                                              <input ng-model="c10.dia_resp" value=false type="radio" class="ace" disabled  />
+                                              <span class="lbl"></span>
+                                          </label>
+                                      </th>
+                                  </div>
+                              </tr>
+                           
+                           </table>
+                       </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">5 PLAN DE DIAGNOSTICO TERAPÉUTICOS Y EDUCACIONAL REALIZADOS</h3>
+                      </div>
+                      <div class="panel-body">
+                        {{datosoli[0].int_planes }}
+                     </div>
+                    </div> 
+                      
+                      <h5>INTERCONSULTA - INFORME</h5>
+             
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">6 CUADRO CLÍNICO DE INTERCONSULTA</h3>
+                        </div>
+                        <div class="panel-body">
+                        {{datosinfor[0].int_cucint}}
+                       </div>
+                      </div> 
+                      
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">7 PLAN DE DIAGNOSTICO PROPUESTO</h3>
+                        </div>
+                        <div class="panel-body">
+                        {{datosinfor[0].int_plandia}}
+                       </div>
+                      </div>
+                   
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-6"><h3 class="panel-title">8 DIAGNOSTICO</h3></div>
+                          <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                          <table class="table">  
+                            <tr>
+                              <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                            </tr>
+                              <tr ng-repeat="c10 in diainfo">
+                                  <th><center>{{c10.c10_id + 1}}</center></th>
+                                  <th class="width-30-pct">
+                                      <b>{{c10.c10_nombre}}</b>
+                                  </th>
+                                  <th class="width-30-pct">
+                                      <b><center>{{c10.c10_codigo}}</center></b>
+                                  </th>
+                                  <div class="control-group">
+                                      <th class="bt_tab">
+                                          <label>
+                                              <input ng-model="c10.dia_resp" value=true type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                          </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                          <label>
+                                              <input ng-model="c10.dia_resp" value=false type="radio" class="ace" disabled  />
+                                              <span class="lbl"></span>
+                                          </label>
+                                      </th>
+                                  </div>
+                              </tr>
+                           </table>
+                       </div>
+                    </div>
+                   
+                               
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">9 PLAN DE TRATAMIENTO PROPUESTO</h3>
+                        </div>
+                        <div class="panel-body">
+                          {{datosinfor[0].int_pltrap}}                       
+                          </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">10 RESUMEN DE CRITERIO CLÍNICO</h3>
+                        </div>
+                        <div class="panel-body">
+                          {{datosinfor[0].int_recrcl }}
+                       </div>
+                      </div>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">ARCHIVO </h3>
+                  </div>
+                  <div class="panel-body" ng-show="archivo">
+                      <center><a href="/archivos/sgh/interconsultas/{{datosinfor[0].int_archivo}}" target="_blank"> <img
+                              src="img/pdf.png" alt="" width="50" height="50"></a></center>
+                  </div>
+              </div>

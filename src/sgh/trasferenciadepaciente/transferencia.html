@@ -1,0 +1,182 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+  <H6>HOSPITAL GENERAL SANTODOMINGO</H6>
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">FORMATO DE TRANSFERENCIA DE PACIENTE EN PUNTOS DE TRANSICIÓN - TÉCNICA SAER</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+           <table class="table">
+
+              <tr>
+                <th class="width-10-pct">
+                    Diagnóstico : *
+                </th>
+                <td>  
+                    <input type="text" ng-model="datosAguardar.tpa_diagno" class = "form-control" capitalize required  maxlength="20"> 
+                </td>
+              </tr>
+          </table>
+
+           <table class="table">
+             <tr>
+                  <th><center>TÉCNICAS</center></th>
+                  <th><center>ANALISIS</center></th>
+             </tr>
+
+             <tr>
+                  <td><b>(S) Situación *</b> <br> Que ocurre en ese momento </td>
+
+                  <td>  <input type="text" ng-model="datosAguardar.tpa_situas" class = "form-control" capitalize required  maxlength="60"> 
+                  </td>
+             </tr>
+             <tr>
+                 <td><b>(A) Antecedentes *</b> <br> Que circunstancias llevaron a esta situación </td>
+                 <td><input type="text" ng-model="datosAguardar.tpa_antece" class = "form-control" capitalize required  maxlength="60"> </td>
+             </tr>
+             <tr>
+                  <td><b>(E) Evaluación *</b> <br> Que piensa que pueda ocurrir </td>
+                  <td><input type="text" ng-model="datosAguardar.tpa_evalua" class = "form-control" capitalize required  maxlength="60"> </td>
+             </tr>
+                  <tr>
+                  <td><b>(R) Recomendación *</b> <br> Que debemos hacer para corregir </td>
+                  <td><input type="text" ng-model="datosAguardar.tpa_recome" class = "form-control" capitalize required  maxlength="60"> </td>
+             </tr>
+
+           </table>
+           <table class="table">
+              <tr>
+                <th>
+                   Punto de origen - hora *
+                </th>
+                <td><input type="text" ng-model="datosAguardar.tpa_punori" class = "form-control" capitalize required  maxlength="60"></td>
+                <th>
+                  Punto de transición - hora *
+                </th>
+                <td><input type="text" ng-model="datosAguardar.tpa_puntra" class = "form-control" capitalize required  maxlength="60"></td>
+              </tr>
+
+           </table>
+           
+                             
+            <br>
+             <div class="row text-right"  >
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="busca"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   <div class="table-responsive">
+      <table id ="tabla" class="table" >
+          <thead>
+           <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th">DIAGNOSTICO</th>
+              <th class="width-20-pct, th">SITUACIÓN</th>
+              <th class="width-20-pct, th">ANTECEDENTES</th>
+              <th class="width-20-pct, th">EVALUACION</th>
+              <th class="width-20-pct, th">RECOMENDACION</th>
+              <th class="width-20-pct, th">PUNTO DE ORIGEN</th>
+              <th class="width-20-pct, th">PUNTO DE TRANSICIÓN</th>
+              <th class="width-20-pct,  th"><center>ACCIÓN</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="tra in transferencia | filter:busca |limitTo:item:(pagina * totalpaginas)">
+            	<td class="width-20-pct "><center>{{tra.tpa_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td class="width-20-pct ">{{tra.tpa_diagno}}</td>
+              <td class="width-20-pct ">{{tra.tpa_situas}}</td>
+              <td class="width-20-pct ">{{tra.tpa_antece}}</td>
+              <td class="width-20-pct ">{{tra.tpa_evalua}}</td>
+              <td class="width-20-pct ">{{tra.tpa_recome}}</td>
+              <td class="width-20-pct ">{{tra.tpa_punori}}</td>
+              <td class="width-20-pct ">{{tra.tpa_puntra}}</td>
+
+              <th class="width-20-pct">
+
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(tra.tpa_id_pk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+                 -
+                  <a ui-sref="repote({id:'{{tra.tpa_id_pk}}',ruta:'src/sgh/trasferenciadepaciente/php/reporte_transferencia.php?c='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+            </th>
+              </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+</div>

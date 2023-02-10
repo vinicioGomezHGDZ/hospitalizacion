@@ -1,0 +1,630 @@
+<br>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>MSP/DNEAIS/FORM.053/ENERO/2014</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> FORMULARIO DE REFERENCIA, DERIVACIÓN, CONTRAREFERENCIA Y REFERENCIA INVERSA</h6>
+  </div>
+</div>
+
+<!-- -->
+<!--<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+-->
+<H5>I. DATOS DEL USUARIO/USUARIA</H5>
+<div class="table table-responsive">
+<table class="table table-bordered"> 
+
+  <tr> 
+      <th class="th"><center>Apellido Parterno</center></th>
+      <th class="th"><center>Apellido materno</center></th>
+      <th class="th"><center>Nombre</center></th>
+      <th class="th"><center>Fecha de nacimeinto</center></th>
+      <th class="th"><center>Edad</center></th>
+      <th class="th"><center>Sexo</center></th>
+  </tr>
+    <tr> 
+          <td><center>{{encabezado[0].per_apellidopaterno}}</center></td>
+          <td><center>{{encabezado[0].per_apellidomaterno}}</center></td>
+          <td><center>{{encabezado[0].per_nombres}}</center></td>
+          <td><center>{{encabezado[0].per_fechanacimiento | date :'dd/MM/yyyy'}}</center></td>
+          <td><center>{{encabezado[0].edad}}</center></td>
+          <td><center>{{encabezado[0].per_sexo}}</center></td>
+   </tr>
+  <tr>
+    <td class="th"><center><FONT SIZE=1><b>Nacionalidad</b></FONT></center></td>
+    <td class="th"><center><FONT SIZE=1><b>País</b></FONT></center></td>
+    <td class="th"><center><FONT SIZE=1><b>Cédula de Ciudadanía ó pasaporte</b></FONT></center></td>
+    <td class="th"><center><FONT SIZE=1><b>Lugar de residecia actual</b></FONT></center></td>
+    <td class="th"><center><FONT SIZE=1><b>Dirección Domicilio</b></FONT></center></td>
+    <td class="th"><center><FONT SIZE=1><b>N° Telefono</b></FONT></center></td>
+  </tr>
+  <tr>
+    <td><center>{{encabezado[0].pai_descripcion}}</center></td>
+    <td><center>{{encabezado[0].pai_descripcion}}</center></td>
+    <td><center>{{encabezado[0].per_numeroidentificacion}}</center></td>
+    <td><center>{{encabezado[0].prv_descripcion}} - {{encabezado[0].can_descripcion}} - {{encabezado[0].par_descripcion}}</center></td>
+    <td> <center>{{encabezado[0].per_direccionprincipal}}</center></td>
+    <td ><center>{{encabezado[0].tel_numero}}</td></center></td>
+  </tr>
+</table>
+</div>
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+          <div ng-show="opedicion">
+                <h3><center><b>¿ QUÉ DESEA EDITAR ?</b></center></h3> <br>
+                  <center>
+                <button id="ref"ng-disabled="desactiva_referencia" class="btn btn-white btn-default btn-round" ng-click="edirefe()">
+                <i class="ace-icon glyphicon glyphicon-file red2"></i> REFERENCIA
+                </button>
+
+                <button ng-disabled="desactiva_contrareferencia" class="btn btn-white btn-default btn-round" ng-click="edicrefe()">
+                <i class="ace-icon glyphicon glyphicon-file red2"></i> CONTRAREFERENCIA  
+                </button>
+                </center>
+          </div>
+       
+          <form ng-show="vercontra" ng-submit="accion2()">
+              <div class="control-group ">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <table class="table table-bordered">
+                        <tr>
+                            <th> III. CONTRAREFERENCIA: </th>
+                            <td> <b>3</b>
+                              <input ng-model="datosAguardar.ref_tipo" value="CONTRAREFERENCIA" type="radio" class="ace" /> <span class="lbl"> </span>
+                            </td>
+                            <th> REFERENCIA INVERSA:  </th>
+                            <td><b>4</b>
+                              <input ng-model="datosAguardar.ref_tipo" value="REFERENCIA INVERSA" type="radio" class="ace" /> <span class="lbl"></span>
+                            </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div> 
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="table table-responsive">
+                    <table class="table table-bordered">
+                      <tr>
+                        <label><h5><b>1. Datos Institucionales</b></h5></label>
+                      </tr> 
+                      <tr> 
+                         <th class="width-20-pct, th"><center>Entidad del sistema</center></th>
+                        <th class="bt_tab, th"><center>Hist.clínica No.</center></th>
+                        <th class="width-20-pct, th"><center>Establecimiento de salud</center></th>
+                        <th class="bt_tab, th"><center>Tipo</center></th>
+                        <th class="width-20-pct, th"><center>Servicio</center></th>
+                        <th class="width-20-pct, th"><center>Especialidad del servicio</center>
+                        </th>
+                      </tr>
+                      <tr>
+                          <td class="width-20-pct"><center>{{orinsti[0].ins_descripcion}}</center></td> 
+                        <td class="bt_tab"><center>{{encabezado[0].per_numeroidentificacion}}</center></td>
+                        <td class="width-20-pct"><center>{{orinsti[0].eta_descripcion}}</center></td>
+                        <td class="width-20-pct"><center>{{orinsti[0].tin_descripcion}}</center></td>
+                        <td class="width-20-pct"><center>{{datosAguardar.ref_servi}}</center></td>
+                        <td class="width-20-pct"><center>{{datosAguardar.ref_espec}}</center></td>
+                      </tr>
+                      </table>
+                      <table class="table table-bordered">
+                      <tr>
+                        <th colspan="5" class="th"><center>Contrarefiere o Referencia inversa a: </center></th> 
+                        <th colspan="2" class="th"><center>Fecha</center></th> 
+                      </tr>
+                      <tr>
+                        <td class="widthtd"> 
+                             <center>{{datosAguardar.ins_descripcion}}</center>
+                          </td>
+                          <td class="width-10-pct">
+                            <center>{{datosAguardar.eta_descripcion}}</center>
+                          </td>    
+                          <td class="bt_tab">
+                              <center>{{datosAguardar.tin_abreviacion}}</center>
+                          </td>  
+                          <td colspan="2" class="widthtd">
+                            <center>{{datosAguardar.nin_descripcion}}</center>
+                          </td> 
+                        <td   class="bt_tab">
+                             <label><center><h5>{{Fecha | date:'dd/MM/yyyy'}}</h5></center></label>
+                        </td> 
+                      </tr>     
+                      <tr>
+                        <th class="widthtd, th"><h9><center>Entidad del sistema</center></h9></th>
+                        <th class="width-10-pct, th"><h9><center>Establecimiento de Salud</center> </h9></th>
+                        <th class="bt_tab, th"><h9><center>tipo</center></h9></th>
+                        <th colspan="2" class="widthtd, th"><h9><center>Distrito/Area</center></h9></th>
+                        <th class="bt_tab, th"><h9>dia|mes|año</h9></th>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <label><h5><b>2. Resumen de cuadro clinico *</b> </h5> </label>  
+                    <textarea type="text"  ng-model="datosAguardar.ref_rescuad " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                  <br>
+                  <label><h5><b>3. Hallazgos relevantes de exámenes y procedimientos diagnósticos *</b></h5></label>      
+                    <textarea type="text"  ng-model="datosAguardar.ref_halrel " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                  <br>
+                  <label><h5><b>4. Tratamiento y procedimientos terapéuticos realizados *</b> </h5>  </label>      
+                    <textarea type="text"  ng-model="datosAguardar.ref_trarea " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                  <br>
+                  <label><h5><b>5. Diagnostico </b> </h5> </label>
+                    <div ng-show="bc10" class="table-responsive">
+                        <table  class="table" >
+                            <thead>
+                            <tr>
+                                <input type="text" class="form-control" placeholder="Buscar" ng-model="search2" capitalize >
+                            </tr>
+                            <tr>
+
+                                <th class="width-10-pct, th"><center>Cie10</center></th>
+                                <th class="width-30-pct, th"><center>Descripción</center></th>
+                                <th colspan="3" class="width-20-pct, th "></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--| limitTo: posicion | limitTo: item -->
+                            <tr class="puntero" ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)" ng-click="agregac10(cie.c10_codigo)">
+                                <td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+                                <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button ng-show="b_buscar" type="button" class="form-control" ng-click="buscac10()">Buscar</button>
+
+                    <table class="table">
+                      <tr>
+                        <th colspan="4" class="width-20-pct"><center>Codigo Cie10 </center></th>
+                        <th class="bt_tab">Agregar</th>
+                        <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                      </tr>
+                      <tr>
+                        <th colspan="4" class="width-20-pct">
+                          <center> <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5"></center>
+                        </th>  
+                        <th class="bt_tab">
+                          <center><img ng-show="c10nuevo" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="c10_accion()"></center>
+                          <center><img ng-show="c10editar" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="ec10_accion()"></center>
+                        </th>
+                        <th class="bt_tab" ng-show="c10nuevo">
+                          <center><img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="delec10()"></center>
+                        </th>
+                      </tr>
+                    </table>
+                    <table class="table">
+                      <tr>
+                        <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                        <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                        <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                        <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                        <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                        <th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>
+                      </tr>
+                      <tr ng-repeat="c10 in cie10">
+                        <th>{{c10.c10_id + 1}}</th>
+                        <th class="width-30-pct"><b>{{c10.c10_nombre}}</b></th>
+                        <th class="width-30-pct"><b><center>{{c10.c10_codigo}}</center></b></th>                              
+                        <div class="control-group">
+                          <th class="bt_tab">
+                            <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                            <span class="lbl"></span>
+                          </th>
+                          <th class="bt_tab">
+                            <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                            <span class="lbl"></span>
+                          </th>
+                        </div> 
+                        <td class="bt_tab" >
+                          <center><img ng-show="c10nuevo" class="puntero" src="img/edit.png" height="20" width="20" ng-click="edic10(c10.c10_id)">
+                          <img ng-show="c10editar" class="puntero" src="img/edit.png" height="20" width="20" ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+                        </td> 
+                      </tr>
+                    </table> 
+
+                  <label> <h5> <b> 6. Tratamiento recomendado a seguir en Establecimiento de salud de menor nivel de complejidad *</b> </h5> </label>
+                    <textarea type="text"  ng-model="datosAguardar.ref_trarec " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                  <br>
+
+                  <div class="row">
+                    <div class="col-sm-4">        
+                      <label> <b>* Nombre del profecional:</b> </label> <br>
+                      <input disabled type="text" ng-model="datosAguardar.ref_medico " class = "form-control" capitalize maxlength="300" size="10">
+                    </div>
+                    <div class="col-sm-4">  
+                      <label> <b>* Código MSP:</b> </label> <br>
+                       <input disabled type="text" ng-model="datosAguardar.ref_codmsp " class = "form-control" capitalize maxlength="10" size="5">
+                    </div>
+                    <div class="col-sm-4">
+                       <label> <b>7. Referencia Justificada</b> </label> <br>
+                       <input type="checkbox" checked="" class="form-control"  ng-model="datosAguardar.ref_justif"/> 
+                    </div>
+                  </div>  
+                </div>
+
+                </div>
+                <div class="row text-right">
+                  <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                  </button>
+                  <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                    <i class="ace-icon fa fa-times red2"></i>Cancelar
+                  </button> 
+                </div>
+          </form>
+
+          <form ng-show="verrefe" ng-submit="accion()">
+          <!--Contenido del formulario-->
+            <div class="panel panel-default">
+               <div class="panel-body">
+                 <div class="control-group ">
+                     <div class="row">
+                     <div class="col-sm-5">
+                        <table class="table table-bordered">
+                        <tr>
+                            <th>
+                              II. REFERENCIA: 
+                            </th>
+                            <td> <b>1</b>
+                              <input ng-model="datosAguardar.ref_tipo" value="REFERENCIA" type="radio" class="ace" /> <span class="lbl"> </span>
+                            </td>
+                            <th>
+                                DERIVACIÓN: 
+                            </th>
+                            <td><b>2</b>
+                              <input ng-model="datosAguardar.ref_tipo" value="DERIVACIÓN" type="radio" class="ace" /> <span class="lbl"></span>
+                            </td>
+                        </tr>
+                     </table>
+                     </div>
+                    </div> 
+                  </div>
+
+                    <div class="table table-responsive">
+                      <table class="table table-bordered">
+                        <tr>
+                           <label><h5><b>1. Datos Institucionales</b></h5></label>
+                        </tr> 
+                        <tr> 
+                            <th class="width-10-pct, th"><center>Entidad del sistema</center></th>
+                            <th class="width-20-pct, th"><center>Hist.clínica No.</center></th>
+                            <th class="width-10-pct, th"><center>Establecimiento de salud</center></th>
+                            <th class="bt_tab, th"><center>Tipo</center></th>
+                            <th class="width-20-pct, th"><center>Distrito/Área</center></th>
+                        </tr>
+                        <tr>
+                            <th class=""><center>{{orinsti[0].ins_descripcion}}</center></th> 
+                            <th class=""><center>{{encabezado[0].per_numeroidentificacion}}</center></th>
+                            <th class=""><center>{{orinsti[0].eta_descripcion}}</center></th>
+                            <th class=""><center>{{orinsti[0].tin_descripcion}}</center></th>
+                            <th class=""><center>{{orinsti[0].nin_descripcion}}</center></th>
+                        </tr>
+                      </table>
+                      <table class="table table-bordered">
+                        <tr>
+                           <th colspan="4" class="th"><center>Refiere o Deriva a: </center></th> 
+                           <th class="th"><center>Fecha</center></th> 
+                        </tr>
+                        <tr>
+                          <td class="widthtd"> 
+
+                            <select  required ng-model="inst_id" ng-click="establecimiento()" class="form-control">
+                              <option value="" class="form-control" ng-show="fasle">seleccione </option> 
+                              <option  ng-repeat="ins in insti" value="{{ins.ins_id_pk}}" class="form-control" ng-click="establecimiento()">{{ins.ins_descripcion}} 
+                              </option>   
+                            </select>
+                          </td>
+                          <td class="width-10-pct">
+                            <select  required ng-model="ins_de_fk" class="form-control"> 
+                              <option value="" class="form-control" ng-show="fasle">seleccione</option> 
+                              <option ng-repeat="des in destino" value="{{des.eta_id_pk}}" class="form-control">{{des.eta_descripcion}}
+                              </option>   
+                            </select>
+                          </td>    
+                          <td class="widthtd">
+                            <input type="tex" ng-model="datosAguardar.ref_servi " class = "form-control" capitalize required   maxlength="50">
+                          </td>  
+                          <td class="widthtd">
+                            <input type="tex" ng-model="datosAguardar.ref_espec " class = "form-control" capitalize required   maxlength="50">
+                          </td> 
+                          <td class="bt_tab">
+                             <label><center><h5>{{Fecha | date:'dd/MM/yyyy'}}</h5></center></label>
+                          </td> 
+                        </tr>     
+                        <tr>
+                            <th class="widthtd, th"><h9>Entidad del sistema <h9></th>
+                            <th class="width-10-pct, th"><h9>* Establecimiento de Salud </h9></th>
+                            <th class="widthtd, th"><h9><center>* Servicio</center></h9></th>
+                            <th class="widthtd, th"><h9><center>* Especialidad</center></h9></th>
+                            <th class="bt_tab, th"><h9>dia|mes|año</h9></th>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="table-responsive"> 
+                            <table class="table">
+                            <tr>  <label><h5><b>2. Motivo de la Referencia o Derivación *</b></h5></label>  </tr>
+                            <label>
+                             <fieldset> 
+                               <tr>
+                                 <td>1 Limitada capacidad resolutiva </td> 
+                                 <td><input type="radio" value="LIMITADA CAPACIDAD RESOLUTIVAA" ng-model="datosAguardar.ref_motivo" ng-click="activa('1')"class="ace"> <span class="lbl"></span>
+                                 </td>
+                             
+                                 <td>4. Saturación de capacidad instalada </td> 
+                                 <td>
+                                    <input type="radio" value="SATURACIÓN DE CAPACIDAD INSTALADA" ng-model="datosAguardar.ref_motivo " ng-click="activa('1')" class="ace"> <span class="lbl"></span>
+                                  </td>
+                               </tr>
+                               <tr> 
+                                 <td>2 Ausencia temporal del profesional</td> 
+                                 <td>
+                                 <input type="radio" value="AUSENCIA TEMPORAL DEL PROFESIONAL" ng-model="datosAguardar.ref_motivo " ng-click="activa('1')"class="ace"> <span class="lbl"></span>
+
+                                 </td>
+
+                                 <td>5 Otro / Especifique: </td> 
+                                 <td><input type="radio" value="" ng-model="datosAguardar.ref_motivo" ng-click="activa('')" class="ace"> <span class="lbl"></span>
+
+                                 </td>
+                               </tr> 
+                               <tr> 
+                                 <td>3 Falta de profecional</td> 
+                                 <td><input type="radio" value="FALTA DE PROFECIONAL" ng-model="datosAguardar.ref_motivo" ng-click="activa('1')" class="ace"> <span class="lbl"></span>
+
+                                 </td>
+                                 <td>
+                                  <div ng-show="otros">
+                                     <input type="text"  class="form-control" ng-model="datosAguardar.ref_motivo" capitalize> 
+                                    </div>
+                                  </td> 
+                                 <td></td>
+                               </tr>   
+                             </fieldset>
+                            </label>       
+                            </table>
+                    </div>
+                       
+
+                    <label><h5><b>3. Resumen de cuadro clinico *</b></h5></label>  
+                      <textarea type="text"  ng-model="datosAguardar.ref_rescuad " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                    <br>
+                    <label><h5><b>4. Hallazgos relevantes de exámenes y procedimientos diagnósticos *<b></h5></label>      
+                      <textarea type="text"  ng-model="datosAguardar.ref_halrel " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+                   <br>
+
+
+                   <table class="table">
+                       <tr><label><h5><b>5. Diagnostico </b></h5></label></tr>
+                           <tr>
+                                <td colspan="6">
+                                    <div ng-show="bc10" class="table-responsive">
+                                        <table  class="table" >
+                                            <thead>
+                                            <tr>
+                                                <input type="text" class="form-control" placeholder="Buscar" ng-model="search2" capitalize >
+                                            </tr>
+                                            <tr>
+
+                                                <th class="width-10-pct, th"><center>Cie10</center></th>
+                                                <th class="width-30-pct, th"><center>Descripción</center></th>
+                                                <th colspan="3" class="width-20-pct, th "></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <!--| limitTo: posicion | limitTo: item -->
+                                            <tr class="puntero" ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)" ng-click="agregac10(cie.c10_codigo)">
+                                                <td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+                                                <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button ng-show="b_buscar" type="button" class="form-control" ng-click="buscac10()">Buscar</button>
+                                </td>
+                           </tr>
+
+                              <tr>
+                               <th colspan="4" class="width-20-pct"><center>Codigo Cie10 </center></th>
+                               <th class="bt_tab">Agregar</th>
+                               <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                              </tr>
+                              <tr>
+                                   <th colspan="4" class="width-20-pct">
+                                      <center> <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5"></center>
+                                  </th>  
+                                  <th class="bt_tab">
+                                    <center>
+                                    <img ng-show="c10nuevo" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="c10_accion()"></center>
+                                    <center>
+
+                                    <img ng-show="c10editar" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="ec10_accion()"></center>
+                                  </th>
+
+                                  <th class="bt_tab" ng-show="c10nuevo">
+                                       <center>
+                                        <img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="delec10()"></center>
+                                  </th>
+                                                              
+                              </tr>
+                          </table>
+                          
+                          <table class="table">
+                            <tr>
+                              <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>
+                            </tr>
+                          
+                            <tr ng-repeat="c10 in cie10">
+                                <th>{{c10.c10_id + 1}}</th>
+                                <th class="width-30-pct">
+                                <b>{{c10.c10_nombre}}</b>
+                                </th>
+                                <th class="width-30-pct">
+                                <b><center>{{c10.c10_codigo}}</center></b>
+                                </th>                                
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div> 
+                                <td class="bt_tab" >
+                                <center>
+                                   <img ng-show="c10nuevo" class="puntero" src="img/edit.png" height="20" width="20" ng-click="edic10(c10.c10_id)">
+                                   <img ng-show="c10editar" class="puntero" src="img/edit.png" height="20" width="20" ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+
+                                </td> 
+                            </tr>
+                        </table>  
+
+
+
+                  <div class="row">
+                    <div class="col-sm-6">        
+                      <label><b>Nombre del profesional:</b></label>
+                      <input type="text" ng-model="datosAguardar.ref_medico " class = "form-control" capitalize size="10" disabled>
+                    </div>
+                    <div class="col-sm-6">  
+                      <label><b>Código MSP:</b></label>
+                       <input type="text" ng-model="datosAguardar.ref_codmsp " class = "form-control" capitalize  size="5" disabled>
+                    </div>
+                  </div>  
+               </div>
+            </div>
+            <div class="row text-right">
+              <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+              </button>
+              <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                <i class="ace-icon fa fa-times red2"></i>Cancelar
+              </button> 
+            </div>
+          </form>
+          </b></b></h5></label>
+        <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+      </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+   <div class="row"> 
+         <div class="col-sm-3">  
+
+              <select  ng-model="search.ref_tiporef" class="form-control">
+                          <option value="S" >ENVIADAS</option>
+                          <option value="E" >RECIBIDAS</option>
+                        </select> 
+            </div>
+         <div class="col-sm-8" >
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search.$" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>INSTITUCIÓN DESTINO</center></th>
+              <th class="width-20-pct, th"><center>MOTIVO</center></th>
+              <th class="width-20-pct, th"><center>RESUMEN CUADRO CLÍNICO</center></th>
+              <th class="width-20-pct, th"><center>TIPO</center></th>
+              <th class="width-20-pct, th"><center>ACCIÓN</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="ref in referencia | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{ref.ref_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{ref.eta_descripcion}}</center></td>
+              <td class="width-20-pct "><center>{{ref.ref_motivo}}</center></td>
+              <td class="width-20-pct "><center>{{ref.ref_rescuad}}</center></td>
+              <td class="width-20-pct "><center>{{ref.ref_tipo}}</center></td>
+              <td class="width-20-pct">
+          
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="datosrefe(ref.ref_id_pk)" title="Ver"><i class="ace-icon fa  fa-eye red2"/></button>
+              -
+              <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="editar(ref.ref_id_pk,ref.ref_tiporef)" data-toggle="modal" data-target="#myModal" title="Editar">
+              <img src="img/edit.png" height="20" width="20"></button>
+              -
+              <!--ng-disabled="activa_desactiva(ref.ref_tiporef)"
+              <button  class="btn btn-white btn-default btn-round btn-xs" ng-click="contra(ref.ref_id_pk)"><i class="ace-icon fa fa-book red2" title="Contra Referencia"/></button>
+              --->
+              <a ui-sref="reporte({id:'{{ref.ref_id_pk}}'})">
+                <buttton class="btn btn-white btn-default btn-round btn-xs">
+                   <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                </buttton>
+               </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     </div>
+   <th class="th">
+      <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+      </center>
+    </th>
+</div>
+
+<!--inicio de anamnesis mostrar datos-->
+<div ng-show="datos">
+<button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+  <div ng-include='"src/sgh/referencia/datosreferencia.html"'></div>
+</div><!--fin de mostrar anamnesis -->
+<script>
+    autosize(document.querySelectorAll('textarea'));
+</script>

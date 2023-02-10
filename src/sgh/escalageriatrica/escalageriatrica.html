@@ -1,0 +1,1304 @@
+<br>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-8">
+  <H6>SNS-MSP/GCU-FORM.00000 / 2008</H6>
+  </div>
+  <div class="col-sm-4">
+  <h6 class="text-right">ESCALA GERIÁTRICA</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <h4 class="modal-title" id="myModalLabel"> {{Fecha | date:'dd/MM/yyyy'}}</h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+        <form>
+          <!--Contenido del formulario-->
+
+            <div class="panel panel-info">
+                 <div class="panel-heading">
+                     <h4 class="panel-title">TAMIZAJE RÁPIDO</h4>
+                 </div>
+
+                       <div class="panel-body">
+                         <div class="table table-responsive col-sm-8">
+                         
+                          <table class="table ">
+                         
+                            <tr>
+                                <td></td> <th> SI </th> <th> NO </th>
+                            </tr>
+
+                            <tr>
+                                <th><div>Dificultad visual</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="tamizaje.dificultadvisual" value="SI" type="radio" class="ace" / ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="tamizaje.dificultadvisual" value="NO" type="radio" class="ace" / ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                             </tr>
+ 
+                             <tr>
+                                <th><div>Dificultad Auditiva</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.dificultadauditiva" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.dificultadauditiva" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                             <tr>
+                                <th><div>Prueba de "levante y anda " mayor de 15 seg</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.levandtayanda" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.levandtayanda" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                              <tr>
+                                <th><div>Perdida involuntaria de orina</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.perdidadeorina" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.perdidadeorina" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                              <tr>
+                                <th><div>Perdida de peso mayor de 4,5 Kg en 6 meses</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.perdidadepeso" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.perdidadepeso" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr>
+
+                              <tr>
+                                <th><div>Perdida de memoria reciente</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.perdidadememoria" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.perdidadememoria" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                              <tr>
+                                <th><div>Se siente triste o deprimida</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.sientetriste" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.sientetriste" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                            <tr>
+                                <th><div>Puede bañarse solo</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.puedebaniarse" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.puedebaniarse" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr> 
+
+                            <tr>
+                                <th><div>Sale de compras solo</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.saledecompras" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.saledecompras" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr>
+
+                             <tr>
+                                <th><div>Vive solo</div></th> 
+                                <div class="control-group">
+                                  <th class="bt_tab">
+                                     <label>
+                                        <input ng-model="tamizaje.vivesolo" value="SI" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                              </label>
+                                  </th>
+                                  <th class="bt_tab">
+                                     <label>
+                                      <input ng-model="tamizaje.vivesolo" value="NO" type="radio" class="ace" /  ng-disabled="desactivar">
+                                                  <span class="lbl"></span>
+                                     </label>
+                                  </th>
+                                </div>
+                             </tr>
+
+
+                           </table>
+
+                         </div>
+                       </div>
+            </div>
+
+            <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-sm-4">
+                       <h4 class="panel-title">ACTIVIDAD BÁSICA</h4>
+                      </div>
+                      <div class="col-sm-8 row text-right">
+                        <h9> <b>IN:</b>  Independiente <b>CA:</b> Con Ayuda <b>DE:</b> Dependiente</h9> 
+                      </div>
+                    </div>
+                 </div>
+
+                  <div class="panel-body">
+                    <div class="table table-responsive">
+                        
+                      <table class="table">
+                          
+                        <tr>
+                                <td></td> <th> IN </th> <th> CA </th> <th>DE</th>
+                        </tr>
+
+                        <tr>
+                            <th><div>Se baña solo</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.sebasolo" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.sebasolo" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.sebasolo" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Se viste y desviste solo</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.vistedesviste" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.vistedesviste" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.vistedesviste" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Cuida su apariencia personal</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.cuidapariencia" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.cuidapariencia" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.cuidapariencia" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Utiliza el inodoro</div></th>
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.utilizainodoro" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.utilizainodoro" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.utilizainodoro" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Controla esfínteres</div></th>
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.controlaesfinteres" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.controlaesfinteres" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.controlaesfinteres" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Se traslada, se acuesta, se levanta</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.setraslada" value="INDEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.setraslada" value="CON AYUDA" type="radio" class="ace" /  ng-disabled="desactivar">
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.setraslada" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Camina</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.camina" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.camina" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.camina" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Se alimenta</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.sealimenta" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesBasicas.sealimenta" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesBasicas.sealimenta" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+                    </table>
+                    </div>
+                 </div>
+            </div>
+       
+            <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-sm-5">
+                       <h4 class="panel-title">ACTIVIDAD INSTRUMENTAL</h4>
+                      </div>
+                      <div class="col-sm-7 row text-right">
+                        <h9> <b>IN:</b>  Independiente <b>CA:</b> Con Ayuda <b>DE:</b> Dependiente</h9> 
+                      </div>
+                    </div>
+                 </div>
+
+                  <div class="panel-body">
+                    <div class="table table-responsive">
+                         
+                      <table class="table">
+                 
+                        <tr>
+                            <td></td> <th> IN </th> <th> CA </th> <th>DE</th>
+                        </tr>
+
+                        <tr>
+                            <th><div>Usa el teléfono</div></th>
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.usatelefono" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.usatelefono" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.usatelefono" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Usa medios de transporte</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.transporte" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.transporte" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.transporte" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Va de compras</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.vadecompras" value="INDEPENDIENTE" type="radio" class="ace"  ng-disabled="desactivar" />
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.vadecompras" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.vadecompras" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Prepara la comida</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.preparacomida" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.preparacomida" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.preparacomida" value="DEPENDIENTE" type="radio" class="ace" /  ng-disabled="desactivar">
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Controla sus medicamentos</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.controlamedicamentos" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.controlamedicamentos" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.controlamedicamentos" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Maneja dinero</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.manejadinero" value="INDEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>
+                                      <input ng-model="ActividadesInstrumental.manejadinero" value="CON AYUDA" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="ActividadesInstrumental.manejadinero" value="DEPENDIENTE" type="radio" class="ace"   ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                    </table>
+                   </div>
+                  </div>
+            </div>      
+           
+               <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-sm-4">
+                       <h4 class="panel-title">CONGNITIVO</h4>
+                      </div>
+                      <div class="col-sm-8 row text-right">
+                        <h9><b>Deterioro: 14 - 19 = Ausente // Menos de 12 = Presente </b> </h9>  
+                      </div>
+                    </div>
+                 </div>
+
+                  <div class="panel-body">
+                    <div class="table table-responsive">
+                         
+                      <table class="table">
+                         
+                        <tr>
+                                <td></td> <th> <center>SCORE </center> </th> 
+                        <tr>
+                            <th><div>Sabe la fecha: Día , Mes, Año, Semana <br> (0 - 4 Puntos)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_sabfec" required min="0" max="4"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                            <tr>
+                            <th><div>Aprende el nombre de 3 objetos  <br> (0 - 3 Puntos)</div></th>
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_apnobj" required min="0" max="3"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                            <tr>
+                            <th><div>Repite números al revés:1,2,3,5,7,9 <br> (0 - 5 Puntos)</div></th>
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_renual" required min="0" max="5"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                            <tr>
+                            <th><div>Toma, dobla y coloca papel <br> (0 - 3 Puntos)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_tompap" required min="0" max="3"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                        
+                        <tr>
+                            <th><div>Repite serie de 3 palabras <br> (0 - 3 Puntos)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_repser" required min="0" max="3"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+
+                        <tr>
+                            <th><div>Copia dibuja de 2 circulos <br> (0 - 3 Puntos)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_copdib" required min="0" max="3"  ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+
+                        <tr>
+                            <th><div>TOTAL</div></th> 
+                            <td>
+                              <center><h4> {{datosAguardar.esg_copdib+
+                                             datosAguardar.esg_repser+
+                                             datosAguardar.esg_tompap+
+                                             datosAguardar.esg_renual+
+                                             datosAguardar.esg_apnobj+
+                                             datosAguardar.esg_sabfec
+                                            }}
+                              </h4></center>
+
+                            </td>  
+                        </tr>
+
+                      </table>
+                    </div>
+                  </div>
+               </div>     
+          
+                <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-sm-3">
+                       <h4 class="panel-title">RECURSO SOCIAL</h4>
+                      </div>
+                      <div class="col-sm-9 row text-right">
+                      <h9><b>Riesgo Social: 5 o Menos = Bajo // 6 - 9 = Aceptable // 10 - 15 = Alto</b></h9> 
+                      </div>
+                    </div>
+                 </div>
+
+                  <div class="panel-body">
+                    <div class="table table-responsive">
+                         
+                      <table class="table">
+                          
+                        <tr>
+                                <td></td> <th> <center>SCORE </center> </th> 
+                        <tr>
+                            <th><div>Situación familiar vive con <br> (5 Opciones)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_viveco" required min="0" max="5" ng-disabled="desactivar" >
+                            </td>  
+                        </tr>
+                            <tr>
+                            <th><div>Relaciones y contactos sociales <br>(5 Opciones)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_reconso" required min="0" max="5" ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                        <tr>
+                            <th><div>Apoyo de la red sociales <br>(5 Opciones)</div></th> 
+                            <td>
+                              <input type="number" class="form-control input-sm" ng-model="datosAguardar.esg_apreso" required min="0" max="5" ng-disabled="desactivar">
+                            </td>  
+                        </tr>
+                        
+                        <tr>
+                            <th><div>TOTAL</div></th>
+                            <th><center> <h4>{{datosAguardar.esg_viveco+
+                                               datosAguardar.esg_reconso+
+                                               datosAguardar.esg_apreso
+                                            }}
+                            </h4></center> </th>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+               </div>  
+    
+                                    
+              <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row"> 
+                      <div class="col-sm-3">
+                         <h4 class="panel-title">DEPRESIÓN</h4>
+                      </div>
+                      <div class="9">
+                       <h9><b>En la ultima semana: 0 - 5 = Normal // 6 - 10 = Moderada // 11 - 15 =Severa</b> </h9> 
+                      </div>
+                    </div>
+                 </div>
+
+                       <div class="panel-body">
+                         <div class="table table-responsive ">
+                         
+                          <table class="table ">
+                            <tr>
+                                <td></td> <th> SI </th> <th> NO </th>
+                            </tr>
+
+                            <tr>
+                               <th><div>Esta satisfecho con su vida</div></th>
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.estasatisfecho" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.estasatisfecho" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+
+                            <tr>
+                               <th><div>Ha dejado de hacer actividades de interés</div></th>
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.actividadesinteres" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.actividadesinteres" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+                            
+                            <tr>
+                               <th><div>Siente su vida vacía</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.vidavacia" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.vidavacia" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Se aburre con frecuencia</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.seaburre" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.seaburre" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+
+                            <tr>
+                               <th><div>Esta de buen animo la mayor parte del tiempo</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.buenanimo" value="SI" type="radio" class="ace" ng-disabled="desactivar" />
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.buenanimo" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+
+                            <tr>
+                               <th><div>Esta Preocupado porque algo malo va a sucederle</div></th>
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.preocupado" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.preocupado" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+
+                            <tr>
+                               <th><div>Se siente feliz la mayor parte del tiempo</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.sesientegeliz" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.sesientegeliz" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>   
+
+                            <tr>
+                               <th><div>Se siente a menudo desamparado</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.sesientedesamparado" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.sesientedesamparado" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Prefiere estar en casa a salir a actividades nuevas</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.prefierestarencasa" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.prefierestarencasa" value="NO" type="radio" class="ace" ng-disabled="desactivar" />
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Tiene mas problemas de memoria que los demás </div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.problemasmemoria" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.problemasmemoria" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Cree que es maravilloso estar vivo</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.creequesmaravilloso" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.creequesmaravilloso" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>  
+
+                            <tr>
+                               <th><div>Se siente inútil</div></th>
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.sienteinutil" value="SI" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.sienteinutil" value="NO" type="radio" class="ace"  ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>
+
+                            <tr>
+                               <th><div>Se siente lleno de energía</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.llenodeenergia" value="SI" type="radio" class="ace" ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.llenodeenergia" value="NO" type="radio" class="ace" ng-disabled="desactivar" />
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Se siente sin esperanza ante la situación actual</div></th> 
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.sienesperanza" value="SI" type="radio" class="ace" ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.sienesperanza" value="NO" type="radio" class="ace" ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr> 
+
+                            <tr>
+                               <th><div>Siente q la mayoría de la gente está mejor que usted</div></th>
+                                <div class="control-group">
+                                          <th class="bt_tab">
+                                          <label>
+                                                  <input ng-model="depresion.mejorqueusted" value="SI" type="radio" class="ace" ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                              </label>
+                                          </th>
+                                          <th class="bt_tab">
+                                                <label>
+                                                <input ng-model="depresion.mejorqueusted" value="NO" type="radio" class="ace" ng-disabled="desactivar"/>
+                                                  <span class="lbl"></span>
+                                                </label>
+                                          </th>
+                                </div>
+                            </tr>                
+                           </table>
+                       </div>
+                    </div>
+               </div>
+
+
+              <div class="panel panel-info">
+                 <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-sm-2">
+                       <h4 class="panel-title">NUTRICIONAL</h4>
+                      </div>
+                      <div class="col-sm-10 row text-right">
+                         <h9> <b>Riesgo de desnutrición: 12 o Mas = Ausente // Menos de 12 = Presente</b></h9> 
+                      </div>
+                    </div>
+                 </div>
+
+                  <div class="panel-body">
+                    <div class="table table-responsive">
+                         
+                      <table class="table">
+                        <tr>
+                          <TD colspan="4"><h9> <b>AU:</b>  Ausente <b>MO:</b> Moderada <b>SE:</b> Severa <b>VA:</b> Va afuera <b>SL:</b> Se levanta no sale <b>CS:</b>Cama-Silla</h9> </TD>
+                        </tr>
+
+                        <tr>
+                            <th><div>Disminución de ingesta en ultimo trimestre</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label> AU
+                                      <input ng-model="nutricional.disminucioningesta" value="AUSENTE" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label> MO
+                                      <input ng-model="nutricional.disminucioningesta" value="MODERADA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label> SE
+                                        <input ng-model="nutricional.disminucioningesta" value="SEVERA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Perdida de peso en ultimo trimestre <br> (4 Opciones)</div></th> 
+                            <th colspan="3"><input type="number" class="form-control input-sm" ng-model="nutricional.perdidadepeso" required min="0" max="4" ng-disabled="desactivar">
+                             </th>
+                        </tr>
+
+                        <tr>
+                            <th><div>Movilidad</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label> VA
+                                      <input ng-model="nutricional.movilidad" value="VA A FUERA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>SL
+                                      <input ng-model="nutricional.movilidad" value="SE LEVANTA NO SALE" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>CS
+                                        <input ng-model="nutricional.movilidad" value="CAMA-SILLA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Enfermedad aguada en ultimo trimestre</div></th> 
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label> SI
+                                      <input ng-model="nutricional.enfermedadaguda" value="SI" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label> NO
+                                      <input ng-model="nutricional.enfermedadaguda" value="NO" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Problemas neuro psicológico (Demencia o Depresión )</div></th>
+                              <div class="control-group">
+                                  <th class="bt_tab">
+                                    <label>AU
+                                      <input ng-model="nutricional.problemaspsicologico" value="AUSENTE" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                  
+                                  <th class="bt_tab">
+                                    <label>MO
+                                      <input ng-model="nutricional.problemaspsicologico" value="MODERADA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                      <span class="lbl"></span>
+                                    </label>
+                                  </th>
+                                    
+                                  <th class="bt_tab">
+                                      <label>SE
+                                        <input ng-model="nutricional.problemaspsicologico" value="SEVERA" type="radio" class="ace" ng-disabled="desactivar"/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                  </th>
+                              </div>
+                        </tr>
+
+                        <tr>
+                            <th><div>Índice de masa corporal <br>(4 Opciones)</div></th>
+                               <th colspan="3"><input type="number" class="form-control input-sm" ng-model="nutricional.masacorporal" required min="0" max="4" ng-disabled="desactivar">
+                             </th>
+                        </tr>
+
+                    </table>
+                  </div>
+               </div>
+              </div>
+
+                 <div class="row text-right">
+                    <button ng-disabled="actguarda" ng-show="gua" type="submit" class="btn btn-white btn-info btn-round" ng-click="guardar()">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button> 
+                  </div>     
+              </form>
+          
+          
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button  type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-click="nuevoesg()" ng-disabled="admi">Nuevo</button>
+            </div>
+            <div ng-show="false">
+              <button  id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal"></button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>RESPONSABLE</center></th>
+
+              <th class="width-20-pct, th"><center>ACCIÓN</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="esc in escala | filter:search | limitTo:item:(pagina * totalpaginas)">
+            	<td class="width-20-pct "><center>{{esc.esg_fecha | date:'dd/MM/yyyy'}}</center></td>
+                <td class="width-20-pct "><center>{{esc.per_nombres |uppercase}} {{esc.per_apellidopaterno |uppercase}} MSP:{{esc.pro_codigomsp}}</center></td>
+
+                <td class="width-20-pct">
+              <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="esg(esc.esg_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+              -
+                  <a ui-sref="repote({id:'{{esc.esg_id_pk}}',ruta:'src/sgh/escalageriatrica/php/reporte_escalageriatrica.php?c='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+                  <a ui-sref="repote({id:'{{esc.esg_id_pk}}',ruta:'src/sgh/escalageriatrica/php/reporte_prueba.php?c='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+              </center>
+              </td> 
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>

@@ -1,0 +1,96 @@
+<form >
+          <!--Contenido del formulario-->
+            <div class="table table-responsive">       
+               <table class=" table">  
+                  <tr>  
+                      <th> Solicitud de : </th>
+                      <td> BK </td>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_bk" checked class="ace"  disabled>   <span class="lbl"> </span></td>
+                      <td>CULTIVO</td>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_cultivo" checked  class="ace" disabled>   <span class="lbl"> </span></td>
+
+                      <td>ADA</td>
+                        <span class="lbl"> </span>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_ada" checked  class="ace" disabled>   <span class="lbl"> </span></td>
+                     
+                      <td>PSD:</td>
+                     
+                     
+                      <td>GENEXPERT<input type="radio" ng-model="datosAguardar.bac_psd" value="GENEXPERT"  class="ace"> <span class=" lbl">  </span></td>
+                     
+                      <td>GRIESS<input type="radio" ng-model="datosAguardar.bac_psd" value="GRIESS"  class="ace" disabled>  <span class="lbl"> </span></td>
+                     
+                      <td>1ra LINEA<input type="radio" ng-model="datosAguardar.bac_psd" value="1ra LINEA"  class="ace" disabled>   <span class="lbl"> </span></td>
+                     
+                      <td>2DA lINEA<input type="radio" ng-model="datosAguardar.bac_psd" value="2DA lINEA"  class="ace" disabled>  <span class="lbl"> </span></td>
+
+                  </tr>
+               </table> 
+
+               <table class="table">  
+                  <tr>  
+                      <th>EXÁMEN PARA:</th>
+                      <td>diag</td>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_diag" checked class="ace" disabled><span class="lbl"> </span></td>
+                      <td>Control</td>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_control" checked class="ace" disabled>   <span class="lbl"> </span></td>
+                      <td>Mes:</td>
+                      <td><input type="text" ng-model="datosAguardar.bac_mes" capitalize maxlength="10" class="input-sm" readonly="readonly"></td>
+                      <td>Esquema de tratamiento:</td>
+                      <td><input type="text" ng-model="datosAguardar.bac_esqtra"  capitalize maxlength="15"  class="form-control input-sm" disabled></td>
+                 
+                  </tr>
+               </table> 
+
+                <table class="table"> 
+                  <tr> 
+                      <th>TIPO DE MUESTRA: </th>
+                      <td>Esputo</td>
+                      <td><input type="checkbox" ng-model="datosAguardar.bac_esputo" checked class="ace" disabled><span class="lbl"> </span></td>
+                      <td>Otro (especifique):</td>
+                      <td><input type="text" ng-model="datosAguardar.bac_otrom"  capitalize maxlength="10"  class="formulario input-sm" size="40" readonly="readonly"></td>
+                  </tr>
+                </table>
+
+                <table class=" table"> 
+                    <tr>  
+                        <th>TIPO DE PACIENTE: </th>
+                      <fieldset>     
+                        <td>Abandonado</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_abando" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>Recuperado</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_recupe" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>Fracaso</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_fracas" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>Recaída</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_recaid" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>SR BK (-)</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_sr_bk" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>TB DR(tipo):</td>
+                        <td><input type="text" ng-model="datosAguardar.bac_tb_dr"  capitalize maxlength="20"  class=" input-sm" size="8" readonly="readonly"></td>
+                      </fieldset>  
+                    </tr>
+                </table>
+
+                <table class="table"> 
+                    <th>ENFERMEDADES ASOCIADA: </th>
+                    <td> PVV</td>
+                    <td><input type="checkbox" ng-model="datosAguardar.bac_pvv" checked class="ace" disabled><span class="lbl"> </span></td>
+                    <td>Diabetes</td>
+                    <td><input type="checkbox" ng-model="datosAguardar.bac_diabetes" checked class="ace" disabled><span class="lbl"> </span></td>
+                    <td>Otros:</td>
+                    <td><input type="text" ng-model="datosAguardar.bac_tb_otroe"  capitalize maxlength="20"  class=" input-sm" size="40" readonly="readonly"></td>
+                </table>
+                <table class="table">   
+                    <tr>  
+                        <th>FACTORES DE RIESGP: </th>
+                        <td>Empleado de salud</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_emdesa" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>PPL</td>
+                        <td><input type="checkbox" ng-model="datosAguardar.bac_ppl" checked class="ace" disabled><span class="lbl"> </span></td>
+                        <td>Contacto TBDR (Nombre de caso Índice):</td>
+                        <td><input type="text" ng-model="datosAguardar.bac_tbdr"  capitalize maxlength="20"  class=" input-sm" readonly="readonly"></td>
+                    </tr>  
+                </table>  
+            </div>       
+       </form>

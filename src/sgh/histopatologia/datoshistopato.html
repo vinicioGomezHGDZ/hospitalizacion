@@ -1,0 +1,222 @@
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">1 ESTUDIO SOLICITADO</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <label>PRIORIDAD : {{datoshisto.his_priori}} </label>
+                              
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <label><b>Histopatologico</b> </label>
+                        <input type="checkbox" ng-model="datoshisto.his_histop" class="ace" checked disabled> 
+                        <span class="lbl"></span>     
+                        <label><b>Citología</b> </label>
+                        <input type="checkbox" ng-model="datoshisto.his_citolo" class="ace" checked disabled> 
+                        <span class="lbl"></span>
+                        <label><b>DESCRIPCIÓN:</b> </label>
+                        <textarea type="text"  ng-model="datoshisto.his_descri " class = "form-control" capitalize required   maxlength="1000" disabled> </textarea>  
+                    </div>
+               </div> 
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">2 RESUMEN CLINICO</h4>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datoshisto.his_rescli" class = "form-control" capitalize required   maxlength="3000" disabled> </textarea>  
+                    </div>
+               </div>         
+
+              <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">3 DIAGNOSTICO</h3>
+                        </div>
+
+                          <div class="panel-body">
+                             <div class="table table-responsive">
+                                 <table class="table">  
+                                    <tr>
+                                      <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                                      <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                                      <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                                      <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                                   
+                                    </tr>
+                                    <tr ng-repeat="c10 in cie10">
+                                        <th class="width-30-pct">
+                                        <center>{{c10.c10_nombre}}</center>
+                                        </th>
+                                        <th class="width-20-pct">
+                                           <center>{{c10.c10_codigo}}</center>
+                                         
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" disabled/>
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" disabled/>
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        </div>  
+                                    </tr>
+                                 </table>
+                              
+                              </div>
+                          </div>
+                        </div>
+              
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">4 MUESTRA O PIEZA </h4>
+                          </div>
+                          <div class="col-sm-8 row  text-right">
+                              <h9> DESCRIBIR EL PROCEDIMIETO, ORIGEN, NUMERO Y ZONA</h9>    
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datoshisto.his_muestr" class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>  
+                    </div>
+               </div> 
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">5 TRATAMIENTO QUE RECIBE</h4>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datoshisto.his_trqrec" class = "form-control" capitalize required   maxlength="3000" disabled> </textarea>  
+                    </div>
+               </div> 
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                            <h4 class="panel-title">6 DATOS BÁSICOS PARA CITOLOGÍA VAGINAL</h4>
+                    </div>
+                    <div class="panel-body">
+                       <div class="table table-responsive">
+
+                        <table class="table "> 
+                          <tr>
+                            <th colspan="12" class="th">
+                              <center>MATERIAL</center>
+                            </th>
+                            
+                          </tr>
+                          <tr>
+                            <td>Endocervix</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_endoce" checked class="ace" disabled><span class="lbl"></span></td>
+                            <td>Exocervix</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_exocer" checked class="ace" disabled><span class="lbl"></span></td>
+                            <td>Pared vaginal</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_parvag" checked class="ace" disabled><span class="lbl"></span></td>
+                            <td>Unión escamo columnar</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_unesco" checked class="ace" disabled><span class="lbl"></span></td>
+                            <td>Muñón cervical</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_muncer" checked class="ace" disabled><span class="lbl"></span></td>
+                            <td>Otro</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_otrmat" checked class="ace" disabled><span class="lbl"></span></td>
+
+                          </tr>
+                        </table>  
+                        <table class="table">
+                         <tr>
+                          <th colspan="10" class="th">
+                              <center>ANTICONCEPCIÓN</center>
+                          </th>
+                         </tr>
+                          <tr>
+                           <td>Oral o inyectable</td>
+                            <td><input type="checkbox" ng-model="datoshisto.his_orainy" checked class="ace" disabled><span class="lbl"></span></td>
+                           <td>DIU</td>
+                            <td><input type="checkbox" ng-model="datoshisto.his_diu" checked class="ace" disabled><span class="lbl"></span></td>
+                           <td>Ligadura</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_ligadu" checked class="ace" disabled><span class="lbl"></span></td>
+                           <td>Otro</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_otrant" checked class="ace" disabled><span class="lbl"></span></td>
+                           <td>Terapia hormonal</td>
+                              <td><input type="checkbox" ng-model="datoshisto.his_terhor" checked class="ace" disabled><span class="lbl"></span></td>
+                               
+                         </tr>
+                         </table>
+                         <table class="table">   
+                             <tr>
+                                <th colspan="6" class="th">
+                                 <center> EDADES DE:</center>
+                                </th>
+                                
+                            </tr>
+                            <tr>
+                              <td>Menarquía</td>
+                              <td><input type="number" ng-model="datoshisto.his_menarq" min="0" max="150" disabled></td>
+                              <td>Menopausia</td>
+                              <td><input type="number" ng-model="datoshisto.his_menopa" min="0" max="150" disabled></td>  
+                              <td>Inicio de relaciones sexuales</td>
+                              <td><input type="number" ng-model="datoshisto.his_inrese" min="0" max="150" disabled></td>  
+                             
+                            </tr>
+                          </table>
+                        <table class="table">
+                            <tr>
+                              <th colspan="8" class="th">
+                                 <center> PARIDAD</center>
+                                </th>
+                            </tr>
+                            <tr>
+                              <td>Gestaciones</td>
+                              <td><input type="number" ng-model="datoshisto.his_gestac" min="0" max="50" disabled></td>  
+                              <td>Partos</td>
+                              <td><input type="number" ng-model="datoshisto.his_partos" min="0" max="50" disabled></td>  
+                              <td>Abortos</td>
+                              <td><input type="number" ng-model="datoshisto.his_aborto" min="0" max="20" disabled></td>  
+                              <td>Cesáreas</td>
+                              <td><input type="number" ng-model="datoshisto.his_cesare" min="0" max="150" disabled></td>  
+                            </tr>
+                        </table>                     
+
+
+                          <table class="table">
+                            <tr>
+                              <th colspan="6" class="th">
+                                <center>FECHAS</center>
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>Última mestruación</td>
+                              <td>
+                                    {{datoshisto.his_ultmes}}
+                              </td>
+  
+                              <td>Última parto</td>
+                              <td>
+                                  {{datoshisto.his_ultpar}}
+                              </td>
+                              <td>Última Citología</td>
+                              <td>
+                                  {{datoshisto.his_ultcit}}
+                              </td>
+
+                            </tr>  
+                          </table>
+                        </div>
+                    </div>
+               </div> 

@@ -1,0 +1,91 @@
+<script type="text/javascript">
+
+      jQuery(function($) {
+
+  
+        $('#id-input-file-3').ace_file_input({
+          style:'well',
+          btn_choose:'Haga clic para elegir',
+          btn_change:null,
+          no_icon:'ace-icon fa fa-cloud-upload',
+          droppable:true,
+          thumbnail:'small'//large | fit
+          
+          ,
+      
+        }).on('change', function(){
+          //console.log($(this).data('ace_input_files'));
+          //console.log($(this).data('ace_input_method'));
+        });
+    });
+    </script>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+   <H6>SNS-MSP / HCU-form.024 / 2008</H6>
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">ADMISIÓN DE PACIENTE</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+</div>
+<hr>
+
+</center>
+
+
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-12" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar" ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+   </div>
+    <br>
+
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+            <tr>      
+              <th class="bt_tab, th"><center>N°</center></th>
+              <th class="width-20-pct, th"><center>FECHA DE ADMISIÓN</center></th>
+              <th class="width-20-pct, th"><center>FECHA DE ALTA</center></th>
+              <th class="th"></th>
+
+            </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="con in admision | filter:search | limitTo:item:(pagina * totalpaginas)">
+            	<td class="bt_tab "><CENTER>{{con.Num}}</CENTER></td>
+            	<td class="width-20-pct "><CENTER>{{con.adm_fechaingreso}}</CENTER></td>
+                <td class="width-20-pct "><CENTER>{{con.adm_fechadealta}}</CENTER></td>
+                <td class="bt_tab">
+                    <a ui-sref="repote({id:'{{con.adm_id_pk}}',ruta:'src/sgh/admision/php/reporte_admision.php?c='})">
+                        <buttton class="btn btn-white btn-default btn-round btn-xs">
+                            <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                        </buttton>
+                    </a>
+                </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+
+
+</div>

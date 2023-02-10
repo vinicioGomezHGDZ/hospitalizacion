@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="181.196.107.91" id="fe958b34-5b5e-4cb7-b5b1-e2bfe8be23f7" port="2223" customName="hgsd_wan" nameFormat="CUSTOM">
+        <option name="customName" value="hgsd_wan" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="181.196.107.91" id="865a2494-884e-46a3-9c7e-0b7be6fed1f8" port="2223" customName="hgsd_wan" nameFormat="CUSTOM">
+        <option name="customName" value="hgsd_wan" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="181.196.107.91" id="3bedc158-9179-4fc6-9a5c-ff91325e12cb" port="2223" customName="hgsd_wan" nameFormat="CUSTOM">
+        <option name="customName" value="hgsd_wan" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="his.hgdz.gob.ec" id="7bbe3f1b-a141-4c4d-a706-3477023d75dd" port="22" nameFormat="DESCRIPTIVE" username="vinicio-gomez" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

@@ -1,0 +1,42 @@
+<div ng-show="opciones">
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-6">
+
+			<center><h1>SERVICIOS</h1>
+			</center>
+			<table>
+				<tr ng-repeat="ser in menu_servicios">
+					<td>
+						<center>
+							<button type="button" class=" btn btn-info " ng-click="seleccionarServicio(ser.esp_id_pk,ser.esp_descripcion)">
+								<div class="row">
+									<div class="col-sm-3 text-left">
+										<img src="img/hospi.png" width="60%"  height="60%" class="img-rounded">
+									</div>
+									<div class="col-sm-5 ">
+										<h1>{{ser.esp_descripcion}}</h1>
+									</div>
+								</div>
+							</button><br><br>
+						</center>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+</div>
+
+<div ng-show="lis_pasien" class="row" >
+	<div style="width: 96%" ng-include='"src/sgh/listapacientes/lista_grupo.html"'></div>
+</div>
+
+<div  ng-show="edita_pas" class="row">
+	<div class="col-xs-10" ng-include='"src/sgh/listapacientes/edita_paciente.html"'></div>
+</div>
+
+<div ng-show="menu">
+	<div ng-include='"src/sgh/encabezado/datospaciente.html"'></div>
+</div>
+

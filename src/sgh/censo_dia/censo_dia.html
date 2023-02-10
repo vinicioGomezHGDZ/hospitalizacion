@@ -1,0 +1,107 @@
+<script type="text/javascript">
+    jQuery(function($) {
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('.input-mask-date').mask('9999/99/99');
+
+    });
+
+    $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    startDate: '-3d'
+});
+
+</script>
+<!--CONTROLADOR-->
+<h5>Reporte de censo diario</h5>
+
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+       
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Reporte de censo</h4>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <div ng-include='"src/sgh/censo_dia/reportes.php"'></div>
+        </div>
+      </div>
+     </div>
+</div>
+  </div>
+<div>
+Tipo de reporte:
+<br>
+
+<select  ng-click="op_report()" ng-model="op_reporte" class="form-control">
+    <option value="0">SERVICIOS</option>
+    <option value="1">PISOS</option>
+</select >
+</div>
+<div ng-show="o_piso">
+        <!--TABLA DE REGISTRO -->
+        <hr>
+        <label>Servicio:  </label>
+        <br>
+
+        <select  ng-click="selec_servicio(0)" required ng-model="datosAguardar.tca_serv_fk" class="form-control">
+            <option value="0">Seleccione</option>
+            <option ng-click="selec_servicio(0)" ng-repeat="ser in servicio" value="{{ser.tca_id_pk}}"> {{ser.servicio}} </option>
+        </select >
+
+        <label>Piso: </label>
+        <br>
+
+        <select  required ng-model="datosAguardar.tca_piso_fk" class="form-control">
+            <option value="0">Seleccione</option>
+            <option  ng-repeat="p in piso" value="{{p.tca_id_pk}}"> {{p.tca_descripcion}} </option>
+        </select >
+        <label>Fecha: </label>
+
+    <div class="input-group">
+        <input class="form-control input-mask-date" placeholder="YYYY/mm/dd" type="text" ng-model="datosAguardar.fecha" />
+
+        <span class="input-group-btn">
+                <button class="btn btn-white btn-info btn-round" type="button" data-toggle="modal" data-target="#myModal"  ng-click="reporte()">
+                 <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/> Generar pdf
+                </button>
+        </span>
+    </div>
+</div>
+
+<div ng-show="o_servicio">
+    <!--TABLA DE REGISTRO -->
+
+    <hr>
+    <label>Servicio:  </label>
+    <br>
+
+    <select  required ng-model="datosAguardar.tca_serv_fk" class="form-control">
+        <option value="0">Seleccione</option>
+        <option  ng-repeat="ser in servicio" value="{{ser.tca_id_pk}}"> {{ser.servicio}} </option>
+    </select >
+
+    <label>Fecha: </label>
+
+    <div class="input-group">
+        <input class="form-control input-mask-date" placeholder="YYYY/mm/dd" type="text" ng-model="datosAguardar.fecha" />
+        <span class="input-group-btn">
+
+                <button class="btn btn-white btn-info btn-round" type="button" data-toggle="modal" data-target="#myModal"  ng-click="reporte_g()">
+                 <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/> Generar pdf
+                </button>
+            </span>
+    </div>
+</div>
+
+
+ 

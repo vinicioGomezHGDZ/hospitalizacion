@@ -1,0 +1,313 @@
+<!--CONTROLADOR-->
+<h5>Ingreso de Paciente a hospitalización</h5>
+
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog   modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{titulo}} </h4>
+            </div>
+
+            <div class="modal-body">
+                <input ng-show="busca" type="text" class="form-control" placeholder="Buscar" ng-model="search"
+                       capitalize>
+                <div class="table-responsive">
+                    <table ng-show="ver_pacientes" class="table">
+                        <thead>
+                        <tr>
+                            <th class="width-20-pct, th">
+                                <center>C.I / Pasaporte</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Paciente</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>N° historia clinica</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Seleccionar</center>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="pa in paciente | filter:search | limitTo:item:(pagina * totalpaginas)">
+                            <td class="width-20-pct ">
+                                <center>{{pa.per_numeroidentificacion}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{pa.persona}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{pa.per_numeroidentificacion}}</center>
+                            </td>
+                            <td class="width-20-pct">
+                                <center>
+                                    <button class="btn btn-white btn-default btn-round btn-xs"
+                                            ng-click="seleccion_paciente(pa)"><i
+                                            class="ace-icon glyphicon glyphicon-ok"/></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table ng-show="ver_camas" class="table">
+                        <thead>
+                        <tr>
+                            <th class="width-20-pct, th">
+                                <center>N° cama</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Servicio</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Habitación</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Piso</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Estado</center>
+                            </th>
+                            <th class="width-20-pct, th">
+                                <center>Seleccionar</center>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="ca in cama | filter:search | limitTo:item:(pagina * totalpaginas)">
+                            <td class="width-20-pct ">
+                                <center>{{ca.cam_codigo}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{ca.servicio}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{ca.habitacion}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{ca.piso}}</center>
+                            </td>
+                            <td class="width-20-pct ">
+                                <center>{{ca.ces_descripcion}}</center>
+                            </td>
+                            <td class="width-20-pct">
+                                <center>
+                                    <button ng-disabled="activa_seleccion(ca.ces_descripcion)"
+                                            class="btn btn-white btn-default btn-round btn-xs"
+                                            ng-click="seleccion_cama(ca.cam_id_pk)"><i
+                                            class="ace-icon glyphicon glyphicon-ok"/></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <th class="th" colspan="6">
+                            <center>
+                                <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                                        ng-click="pagina=1"><<
+                                </button>
+                                <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                                        ng-click="paginas(0)"><
+                                </button>
+                                | Page {{pagina}} de {{posicion}} |
+                                <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                                        ng-click="paginas(1)">>
+                                </button>
+                                <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                                        ng-click="pagina = posicion">>>
+                                </button>
+                            </center>
+                        </th>
+                    </table>
+                </div>
+
+                <div ng-show="agre_paciente">
+                    <form ng-submit="guardahistoria()">
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Tipo identificación:</label><br>
+                                <ui-select ng-model="datosAguardar.tid_id_fk" theme="selectize"
+                                           on-select="cambiarTipoIdentificacion()" search-enabled="false">
+                                    <ui-select-match>
+                                        <span ng-bind="$select.selected.tid_descripcion"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item.tid_id_pk as item in tipoIdentificaciones">
+                                        <span ng-bind-html="item.tid_descripcion"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Número de identificación:</label><label ng-show="datosAguardar.provisional">{{
+                                datosAguardar.per_numeroidentificacion.length}} / 17</label>
+                                <input type="text" ng-model="datosAguardar.per_numeroidentificacion"
+                                       class="form-control"
+                                       capitalize maxlength="10"
+                                       ng-disabled="datosAguardar.provisional"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                                <label>Nombre:</label>
+                                <!--<input type="text" ng-model="datosAguardar.per_nombres" class="form-control" capitalize-->
+                                <!--required maxlength="30" ng-change="generarCodProv(datosAguardar.per_nombres,'per_nombres')">-->
+                                <div class="input-group" style="width:100%;">
+                                    <input type="text" class="form-control" ng-model="datosAguardar.per_nombres"
+                                           ng-change="generarCodProv(datosAguardar.per_nombres,'per_nombres')"
+                                           capitalize required maxlength="30">
+                                    <!--<span ng-show="datosAguardar.provisional" class="input-group-btn"><input type="number" style="width: 40px;" ng-model="objProv.num_hijo" ng-change="generarCodProv(datosAguardar.per_nombres,'per_nombres')" ></span>-->
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label>Apellido Paterno:</label>
+                                <input type="text" ng-model="datosAguardar.per_apellidopaterno" class="form-control"
+                                       capitalize
+                                       required maxlength="30"
+                                       ng-change="generarCodProv(datosAguardar.per_apellidopaterno,'per_apellidopaterno')">
+                            </div>
+                            <div class="col-sm-4">
+                                <label>Apellido Materno:</label>
+                                <input type="text" ng-model="datosAguardar.per_apellidomaterno" class="form-control"
+                                       capitalize
+                                       maxlength="30"
+                                       ng-change="generarCodProv(datosAguardar.per_apellidomaterno,'per_apellidomaterno')">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Sexo:</label>
+                                <ui-select ng-model="datosAguardar.sex_id_fk" theme="selectize"
+                                           search-enabled="false" required>
+                                    <ui-select-match>
+                                        <span ng-bind="$select.selected.sex_descripcion"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item.sex_id_pk as item in sexo">
+                                        <span ng-bind-html="item.sex_descripcion"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label> Fecha de nacimiento:</label>
+                                <input type="date" ng-model="datosAguardar.per_fechanacimiento" class="form-control"
+                                       ng-change="generarCodProv(datosAguardar.per_fechanacimiento,'per_fechanacimiento')"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>País:</label>
+                                <ui-select ng-model="datosAguardar.pai_id_fk" theme="selectize"
+                                           on-select="cargarProvincia($item)">
+                                    <ui-select-match>
+                                        <span ng-bind="$select.selected.pai_descripcion"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item.pai_id_pk as item in paises | filter: $select.search">
+                                        <span ng-bind-html="item.pai_descripcion | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="col-sm-6" ng-show="datosAguardar.pai_id_fk === 57">
+                                <label>Provincia:</label>
+                                <ui-select ng-model="datosAguardar.prv_id_fk" theme="selectize"
+                                           on-select="selectProvincia($item)">
+                                    <ui-select-match>
+                                        <span ng-bind="$select.selected.prv_descripcion"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item.prv_id_pk as item in provincias | filter: $select.search">
+                                        <span ng-bind-html="item.prv_descripcion | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="animate fadeInDown" ng-show="mensaje">
+                            <center><H4 class="alert alert-{{type}}"><strong>{{text}}</strong></H4></center>
+                        </div>
+                        <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            Guardar
+                        </button>
+
+                    </form>
+
+                </div>
+                <div ng-show="confirmapaciente">
+                    <center>
+                        <h4> Ya Existe un paciente con el nombre {{datos_paciente}} con C.I {{datos_paciente_ci}} <br>
+                            Estas seguro de guardar? </h4>
+                        <br>
+
+                        <button class="btn btn-white btn-info btn-round" ng-click=guardahistoria()>
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            SI
+                        </button>
+                        <!---->
+                        <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                            <i class="ace-icon fa fa-times red2"></i>
+                            NO
+                        </button>
+                    </center>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TABLA DE REGISTRO -->
+<hr>
+<div ng-show="mensaje">
+    <center><H4 class="bg-info animated fadeInDown">{{text}}</H4></center>
+</div>
+<center>
+    <!--<a href="/sgh/#!/agenda/historiaclinica/form/editar/" target="_blank">-->
+    <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal"
+            ng-click="agrepaciente()">Agregar nuevo paciente
+    </button>
+    <!--</a>-->
+    <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal"
+            ng-click="busca_paciente()">buscar paciente
+    </button>
+
+    <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal"
+            ng-click="cama_paciente()">Asignar Cama
+    </button>
+
+</center>
+<br>
+<div>
+    <!-- DATOS GENERALES DE PACIENTE-->
+    PACIENTE : <input type="text" class="form-control" ng-model="datos_paciente.persona" disabled><br>
+    SEXO:<input type="text" class="form-control" ng-model="datos_paciente.per_sexo" disabled><br>
+    EDAD (AÑOS) : <input type="text" class="form-control" ng-model="datos_paciente.edad" disabled><br>
+    N° HISTORIA CLÍNICA: <input type="text" class="form-control" ng-model="datos_paciente.per_numeroidentificacion" disabled><br>
+</div>
+HABITACIÓN ASIGNADA :
+<input type="text" class="form-control" ng-model="datos_cama" disabled>
+<br>
+<div class="row">
+    <div class="center">
+        <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round" ng-click="guardar()">
+            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+            Guardar
+        </button>
+        <button class="btn btn-white btn-default btn-round" ng-click="salir()">
+            <i class="ace-icon fa fa-times red2"></i>
+            Cancelar
+        </button>
+    </div>
+</div>
+
+
+ 

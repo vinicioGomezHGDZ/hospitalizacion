@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-xs-2">
+        <select ng-click="ver_daots_sv_gra(opciones)" ng-model="opciones">
+            <option value="0">Signos vitales generales</option>
+            <option value="1">Signos vitales </option>
+        </select>
+
+
+    </div>
+    <div class="col-xs-10"><!-- -->
+        <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </div>
+</div>
+<br>
+<div class="table-responsive">
+    <table id="tabla" class="table">
+        <thead>
+            <tr>
+                <th class="width-10-pct, th">
+                    <center>FECHA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>PULSO</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>TEMPERATURA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>F. RESPIRATORIA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>P. SISTÓLICA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>P. DIASTÓLICA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>SPO2</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>PESO</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>TALLA</center>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="sgv in graf | filter:search  | limitTo:item:(pagina * totalpaginas)">
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_fecha | date:'dd/MM/yyyy'}} {{sgv.svd_hora.substr(0,8)}}</center>
+                </td>
+
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_pulso}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_tempe}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_freres}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_presis}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_predia}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_satoxi | uppercase}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_peso}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_talla}}</center>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+    <center>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas1=1">
+            <<< /button>
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas1(0)">
+                    << /button>
+                        | Page {{pagina1}} de {{posicion1}} |
+                        <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                            ng-click="paginas1(1)">></button>
+                        <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                            ng-click="pagina1 = posicion1">>></button>
+
+    </center>
+
+</div>

@@ -1,0 +1,252 @@
+<!--CONTROLADOR-->
+<h5> CAMAS </h5>
+
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog   modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div ng-model="datosAguardar" ng-show="ver_nuevo">
+                    <form ng-submit="accion()">
+
+                        <label>Servicio: </label>
+                        <br>
+
+                        <select ng-click="selec_servicio(0)" required ng-model="datosAguardar.tca_serv_fk"
+                                class="form-control">
+                            <option value="0">Seleccione</option>
+                            <option ng-click="selec_servicio(0)" ng-repeat="ser in servicio" value="{{ser.tca_id_pk}}">
+                                {{ser.servicio}}
+                            </option>
+                        </select>
+
+
+                        <label>Piso: </label>
+                        <br>
+
+                        <select ng-click="selec_piso(0)" required ng-model="datosAguardar.tca_piso_fk"
+                                class="form-control">
+                            <option value="0">Seleccione</option>
+                            <option ng-click="selec_piso(0)" ng-repeat="p in piso" value="{{p.tca_id_pk}}">
+                                {{p.tca_descripcion}}
+                            </option>
+                        </select>
+
+
+                        <label>Habitación: </label>
+                        <br>
+
+                        <select required ng-model="datosAguardar.tca_habi_fk" class="form-control" size="5">
+                            <option value="0">Seleccione</option>
+                            <option ng-repeat="ha in habitacion" value="{{ha.tca_id_pk}}"> {{ha.tca_descripcion}}
+                            </option>
+                        </select>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>N° Cama :</label>
+                                <br>
+                                <input type="text" ng-model="datosAguardar.cam_codigo " class="form-control" required
+                                       maxlength="10">
+                                </input>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>Descripción :</label>
+                                <br>
+                                <textarea type="text" ng-model="datosAguardar.cam_descripcion " class="form-control"
+                                          capitalize required maxlength="60">
+                    </textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <label>Estado de cama: </label>
+                                <br>
+
+                                <select required ng-model="datosAguardar.ces_id_fk" class="form-control">
+                                    <option value="">Seleccione</option>
+                                    <option ng-repeat="caes in camas_estados" value="{{caes.ces_id_pk}}">
+                                        {{caes.ces_descripcion}}
+                                    </option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-white btn-info btn-round">
+                                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                    Guardar
+                                </button>
+                                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                    <i class="ace-icon fa fa-times red2"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="animate fadeInDown" ng-show="mensaje">
+                            <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-show="ver_elimina">
+                    <center><b>NOTA:</b> ESTA ACCIÓN AFECTA AL CENSO DIARIO Y A LA ASIGNACIÓN DE CAMAS</center>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-white btn-info btn-round"
+                                ng-click="visible(cama_codigo,camas_estados)">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            Si
+                        </button>
+                        <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                            <i class="ace-icon fa fa-times red2"></i>
+                            No
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+<!--TABLA DE REGISTRO -->
+<hr>
+<div class="row">
+    <div class="col-sm-11"><!-- -->
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="search.$" capitalize>
+    </div>
+    <div class="col-sm-1">
+        <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal">
+            Nuevo
+        </button>
+    </div>
+
+</div>
+<br>
+<div ng-show="editado">
+    <center><H4 class="bg-info animated fadeInDown">{{edita}}</H4></center>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <select ng-click="selec_servicio(0)" required ng-model="search.servisio" class="form-control">
+            <option value="">Servicio</option>
+            <option ng-click="selec_servicio(0)" ng-repeat="ser in servicio" value="{{ser.servicio}}">
+                {{ser.servicio}}
+            </option>
+        </select>
+    </div>
+    <div class="col-lg-6">
+        <select ng-click="selec_servicio(0)" required ng-model="search.ces_id_pk" class="form-control">
+            <option value="">ESTADO:</option>
+            <option value="1">OCUPADAS</option>
+            <option value="2">DESOCUPADAS</option>
+        </select>
+    </div>
+</div>
+<div class="table-responsive">
+    <table id="tabla" class="table">
+        <thead>
+        <tr>
+
+            <th class="width-10-pct, th">
+                <center>SERVICIO</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>PISO</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>HABITACIÓN</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>CAMA</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>DESCRIPCIÓN</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>ESTADO</center>
+            </th>
+            <th class="width-30-pct, th">
+                <center>PACIENTE</center>
+            </th>
+            <th class="bt_tab, th ">ACTIVA / DESACTIVA</th>
+            <th class="bt_tab, th ">EDITAR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--| limitTo: posicion | limitTo: item -->
+        <tr ng-repeat="cama in Camas  | filter:search | limitTo:8:(pagina * totalpaginas)">
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.servisio}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.piso}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.habitacion}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.cama}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.cam_descripcion}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>{{cama.estado}}</center>
+            </td>
+            <td ng-style="estado_colores(cama.estado)">
+                <center>
+                    <button ng-show="acrtiva(cama.estado)" ng-click="pasiente(cama.cam_id_pk)">Paciente</button>
+                </center>
+            </td>
+
+            <td ng-style="estado_colores(cama.estado)" class="bt_tab">
+                <input ng-model="cama.cam_visible" class="ace ace-switch ace-switch-2" data-toggle="modal"
+                       data-target="#myModal" type="checkbox" checked
+                       ng-click="eliminar(cama.cam_id_pk,cama.cam_visible)"/>
+                <span class="lbl"></span><font size="1"></font>
+
+            </td>
+            <td ng-style="estado_colores(cama.estado)" class="bt_tab">
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs "
+                        ng-click="edita(cama.cam_id_pk)" data-toggle="modal" data-target="#myModal" title="Editar">
+                    <img src="img/edit.png" height="20" width="20">
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<th class="th">
+    <center>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina=1"><<</button>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(0)"><</button>
+        | Page {{pagina}} de {{posicion}} |
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>>
+        </button>
+
+    </center>
+</th>
+</div>
+ 

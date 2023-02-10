@@ -1,0 +1,407 @@
+  <br>  
+     <label> TURNO DE LA MAÑANA:  </label>
+            <div ng-show="edi_ma_tur">
+              <b> TURNO :</b>
+                <select required ng-model="datosAguardar.cie_turno">
+                    <option value="" >Seleccione</option>
+                    <option value="MAÑANA" >MAÑANA</option>
+                    <option value="TARDE" >TARDE</option>
+                    <option value="NOCHE" >NOCHE</option>
+                </select>
+            </div>
+            
+        <div  class="table-responsive">                
+         <table  class="table" > 
+          <tr>
+            <th colspan="6" class="th"><center>INGESTA</center></th>
+            <th colspan="4" class="th"><center>ELIMINACIÓN</center></th>
+            
+          </tr>
+
+           <tr>
+              <td colspan="3"><center>ORAL</center><br> 
+                
+                <table class="table ">
+                  <tr>  
+                    <th class="th"><center>Hora</center></th>
+                    <th class="th"><center>Clase</center></th>
+                    <th class="th"><center>Cantidad c.c</center></th>
+                  </tr>
+                    
+                  <tr ng-show="edi_ma_or">
+                    <th class="th"><input ng-model="datosAguardar.cie_hora" type="text" size="4" placeholder="00:00"><center></center></th>  
+                    <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                    <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                      <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                      </button>
+                    </center> 
+                    </th>
+                  </tr>
+                  
+                  <tr ng-repeat="or in oral" ng-click="editar(or.cie_id_pk,'mo')" title="Edtar">
+                    <td class="puntero"><center>{{or.cie_hora}} </center></td>
+                    <td class="puntero"><center>{{or.cie_clase | uppercase}}</center></td>
+                    <td class="puntero"><center>{{or.cie_cantcc}}</center></td>
+                  </tr>
+                    <tr>  
+                        <th><b>SUB-TOTAL</b></th>
+                        <th></th>
+                        <th><center><b>{{totaloral}}</b></center></th>
+                     </tr>
+                </table>
+              </td>
+              <td colspan="3"> <center>PARENTAL</center> <br> 
+                <table class="table"> 
+                    <tr>  
+                      <th class="th"><center>Clase</center></th>
+                      <th class="th"><center>Cantidad c.c</center></th>
+                      <th class="th"><center>Cantidad Absorbida</center></th>
+                    </tr>
+                    <tr ng-show="edi_ma_pa">
+                        <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                        <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3"></center></th>
+                        <th class="th"><center><input type="number" ng-model="datosAguardar.cie_canabs" min="0" max="9999" step="1" size="3">
+                         <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                      </button> 
+                        </center></th>
+                    </tr>
+
+                     <tr ng-repeat="par in parental" ng-click="editar(par.cie_id_pk,'mp')" class="puntero" title="Edtar"> 
+                      <td><center>{{par.cie_clase | uppercase}}</center></td>
+                      <td><center>{{par.cie_cantcc}}</center></td>
+                      <td><center>{{par.cie_canabs}}</center></td>
+                    </tr>
+                    <tr>  
+                        <th></th><th> </th>
+                        <!--<th><center><b>{{totalparental}}</b></center></th>-->
+                        <th><center><b>{{totalparecanab}}</b></center></th>
+                    </tr>
+                </table>
+              </td>
+              <td colspan="2"> <center>ORINA</center> <br> 
+                <table class="table"> 
+                    <tr>  
+                      <th class="th"><center>Como obtuvo</center></th>
+                      <th class="th"><center>Cantidad c.c</center></th>
+                    </tr>
+                    <tr ng-show="edi_ma_ori">
+                        <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                        <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                      <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                      </button>
+                        </center></th>
+                    </tr>
+                    <tr ng-repeat="or in orina" ng-click="editar(or.cie_id_pk,'mor')" class="puntero" title="Edtar">
+                      <td><center>{{or.cie_clase | uppercase}}</center></td>
+                      <td><center>{{or.cie_cantcc}}</center></td>
+                    </tr>
+                    <tr>  
+                        <th></th>
+                        <th><center><b>{{totalorina}}<b></center></th>
+                    </tr>
+                </table>
+              </td>
+              <td colspan="2"> <center>OTROS</center> <br>  
+                    <table class="table"> 
+                    <tr>  
+                       <th class="th"><center>Origen</center></th>
+                       <th class="th"><center>Cantidad c.c</center></th>
+                    </tr>
+                    <tr ng-show="edi_ma_otr">
+                      <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                      <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                       <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                          <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        </button>   
+                      </center></th>
+                  </tr>
+                    <tr ng-repeat="ot in otros" ng-click="editar(ot.cie_id_pk,'motr')" class="puntero" title="Edtar">
+                      <td><center>{{ot.cie_clase | uppercase}}</center></td>
+                      <td><center>{{ot.cie_cantcc}}</center></td>
+                    </tr>
+                    <tr>  
+                        <th></th>
+                        <th><center><b>{{totalotros}}</b></center></th>
+                    </tr>
+                    </table>
+              </td>
+          </tr>
+         </table> <!--/tabla de mañna-->  
+
+       <label> TURNO DE LA TARDE: </label>
+        <div ng-show="edi_ta_tur">
+              <b> TURNO :</b>
+                <select required ng-model="datosAguardar.cie_turno">
+                    <option value="" >Seleccione</option>
+                    <option value="MAÑANA" >MAÑANA</option>
+                    <option value="TARDE" >TARDE</option>
+                    <option value="NOCHE" >NOCHE</option>
+                </select>
+            </div>             
+         <table  class="table" > 
+               
+               <tr>
+                  <td colspan="3"> 
+                    <table class="table ">
+                        <tr>  
+                        <th class="th"><center>Hora</center></th>
+                        <th class="th"><center>Clase</center></th>
+                        <th class="th"><center>Cantidad c.c</center></th>
+                        </tr>
+                        <tr ng-show="edi_ta_or">
+                        <th class="th"><input ng-model="datosAguardar.cie_hora" type="text" size="4" placeholder="00:00"><center></center></th>  
+                        <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                        <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                          <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                          </button>
+                        </center> 
+                        </th>
+                       </tr>
+                         <tr ng-repeat="or in oralT" ng-click="editar(or.cie_id_pk,'to')" class="puntero" title="Edtar">
+                           <td><center>{{or.cie_hora}} </center></td>
+                           <td><center>{{or.cie_clase | uppercase}}</center></td>
+                           <td><center>{{or.cie_cantcc}}</center></td>
+                        </tr>
+                        <tr>  
+                            <th><b>SUB-TOTAL</b></th>
+                            <th></th>
+                            <th><center><b>{{totaloralt}}</b></center></th>
+                        </tr>
+                    </table>
+                  </td>
+                  <td colspan="3"> 
+                    <table class="table"> 
+                          <tr>  
+                            <th class="th"><center>Clase</center></th>
+                            <th class="th"><center>Cantidad c.c</center></th>
+                            <th class="th"><center>Cantidad Absorbida</center></th>
+                          </tr>
+                          <tr ng-show="edi_ta_pa">
+                              <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                              <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3"></center></th>
+                              <th class="th"><center><input type="number" ng-model="datosAguardar.cie_canabs" min="0" max="9999" step="1" size="3">
+                               <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                              <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            </button> 
+                              </center></th>
+                          </tr>
+                          <tr ng-repeat="par in parentalT" ng-click="editar(par.cie_id_pk,'tp')" class="puntero" title="Edtar">
+                            <td><center>{{par.cie_clase | uppercase}}</center></td>
+                            <td><center>{{par.cie_cantcc}}</center></td>
+                            <td><center>{{par.cie_canabs}}</center></td>
+                          </tr>
+                          <tr>  
+                              <th></th><th></th>
+                              <!--<th><center><b>{{totalparentalt}}</b></center></th>-->
+                              <th><center><b>{{totalparecanabt}}</b></center></th>
+                          </tr>
+                    </table>
+                  </td>
+                   <td colspan="2">
+                    <table class="table"> 
+                        <tr>  
+                          <th class="th"><center>Como obtuvo</center></th>
+                          <th class="th"><center>Cantidad c.c</center></th>
+                        </tr>
+                        <tr ng-show="edi_ta_ori">
+                            <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                            <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                          <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                          </button>
+                            </center></th>
+                        </tr>
+                         <tr ng-repeat="or in orinaT" ng-click="editar(or.cie_id_pk,'tor')" class="puntero" title="Edtar">
+                          <td><center>{{or.cie_clase | uppercase}}</center></td>
+                          <td><center>{{or.cie_cantcc}}</center></td>
+                        </tr>
+                        <tr>  
+                            <th></th>
+                            <th><center><b>{{totalorinat}}</b></center></th>
+                        </tr>
+                    </table>
+                  </td>
+                  <td colspan="2"> 
+                    <table class="table"> 
+                        <tr>  
+                             <th class="th"><center>Origen</center></th>
+                             <th class="th"><center>Cantidad c.c</center></th>
+                        </tr>
+                        <tr ng-show="edi_ta_otr">
+                            <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                            <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                             <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                              </button>   
+                            </center></th>
+                        </tr>
+                         <tr ng-repeat="ot in otrosT" ng-click="editar(ot.cie_id_pk,'totr')" class="puntero">
+                            <th><center>{{ot.cie_clase | uppercase}}</center></th>
+                            <th><center>{{ot.cie_cantcc}}</center></th>
+                          </tr>
+                          
+                          <tr>  
+                              <th></th>
+                              <th><center><b>{{totalotrost}}</b></center></th>
+                          </tr>
+                    </table>
+                  </td>
+          </tr>
+         </table> <!--/tabla de TARDE-->  
+       <label> TURNO DE LA NOCHE: </label>
+       <div ng-show="edi_na_tur">
+              <b> TURNO :</b>
+                <select required ng-model="datosAguardar.cie_turno">
+                    <option value="" >Seleccione</option>
+                    <option value="MAÑANA" >MAÑANA</option>
+                    <option value="TARDE" >TARDE</option>
+                    <option value="NOCHE" >NOCHE</option>
+                </select>
+        </div>           
+         <table  class="table" > 
+           <tr>
+                  <td colspan="3">
+                    <table class="table ">
+                          <tr>  
+                          <th class="th"><center>Hora</center></th>
+                          <th class="th"><center>Clase</center></th>
+                          <th class="th"><center>Cantidad c.c</center></th>
+                          </tr>
+                          <tr ng-show="edi_na_or">
+                            <th class="th"><input ng-model="datosAguardar.cie_hora" type="text" size="4" placeholder="00:00"><center></center></th>  
+                            <th class="th"><input ng-model="datosAguardar.cie_hora" type="text" size="4" placeholder="00:00"><center></center></th>
+                            <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                            <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                              <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                              </button>
+                            </center> 
+                            </th>
+                          </tr>
+                          <tr ng-repeat="or in oralN" ng-click="editar(or.cie_id_pk,'no')" class="puntero" title="Edtar">
+                             <td><center>{{or.cie_hora}} </center></td>
+                             <td><center>{{or.cie_clase | uppercase}}</center></td>
+                             <td><center>{{or.cie_cantcc}}</center></td>
+                          </tr>
+                          <tr>  
+                              <th><b>SUB-TOTAL</b></th>
+                              <th></th>
+                              <th><center><b>{{totaloralN}}</b></center></th>
+                          </tr>
+                          <th><b>TOTAL 24 H.</b></th>
+                        <th></th>
+                        <th><center><b>{{to=totaloral+totaloralt+totaloralN}}</b></center></th>
+                    </table>
+                    <!---->
+                  </td>
+                  <td colspan="3">
+                    <table class="table"> 
+                          <tr>  
+                            <th class="th"><center>Clase</center></th>
+                            <th class="th"><center>Cantidad c.c</center></th>
+                            <th class="th"><center>Cantidad Absorbida</center></th>
+                          </tr>
+                          <tr ng-show="edi_na_pa">
+                              <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                              <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3"></center></th>
+                              <th class="th"><center><input type="number" ng-model="datosAguardar.cie_canabs" min="0" max="9999" step="1" size="3">
+                               <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                              <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            </button> 
+                              </center></th>
+                          </tr>
+                          <tr ng-repeat="par in parentalN" ng-click="editar(par.cie_id_pk,'np')" class="puntero" title="Edtar"  > 
+                            <td><center>{{par.cie_clase | uppercase}}</center></td>
+                            <td><center>{{par.cie_cantcc}}</center></td>
+                            <td><center>{{par.cie_canabs}}</center></td>
+                          </tr>
+                          <tr>  
+                              <th></th>
+                              <th></th>
+                              <!--<th><center><b>{{totalparentalN}}</b></center></th>-->
+                              <th><center><b>{{totalparecanabN}}</b></center></th>
+                          </tr>
+                          <tr>  
+                              <th></th>
+                              <th></th>
+                              <th><center><b>{{tp=totalparecanab+totalparecanabt+totalparecanabN}}</b></center></th>
+                          </tr>
+                    </table>
+                  </td>
+                   <td colspan="2"> 
+                    <table class="table"> 
+                        <tr>  
+                          <th class="th"><center>Como obtuvo</center></th>
+                          <th class="th"><center>Cantidad c.c</center></th>
+                        </tr>
+                        <tr ng-show="edi_na_ori">
+                            <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                            <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                          <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                          </button>
+                            </center></th>
+                        </tr>
+
+                        <tr ng-repeat="or in orinaN" ng-click="editar(or.cie_id_pk,'nor')" class="puntero" title="Edtar">
+                          <td><center>{{or.cie_clase | uppercase}}</center></td>
+                          <td><center>{{or.cie_cantcc}}</center></td>
+                        </tr>
+                        <tr>  
+                            <th></th>
+                            <th><center><b>{{totalorinaN}}</b></center></th>
+                        </tr>
+                         <tr>  
+                            <th></th>
+                            <th><center><b> {{tor=totalorina+totalorinat+totalorinaN}}</b></center></th>
+                        </tr>
+                    </table>
+                  </td>
+                  <td colspan="2"> 
+                    <table class="table"> 
+                        <tr>  
+                           <th class="th"><center>Origen</center></th>
+                           <th class="th"><center>Cantidad c.c</center></th>
+                        </tr>
+                        <tr ng-show="edi_na_otr">
+                            <th class="th"><center><input capitalize type="text" ng-model="datosAguardar.cie_clase" maxlength="75" size="5"></center></th>
+                            <th class="th"><center><input type="number" ng-model="datosAguardar.cie_cantcc" min="0" max="9999" step="1" size="3">
+                             <button class="btn btn-white btn-info btn-round" ng-click="actualizar()">
+                                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                              </button>   
+                            </center></th>
+                        </tr>
+                        <tr ng-repeat="ot in otrosN" ng-click="editar(ot.cie_id_pk,'notr')" class="puntero" title="Edtar">
+                          <td><center>{{ot.cie_clase | uppercase}}</center></td>
+                          <td><center>{{ot.cie_cantcc}}</center></td>
+                        </tr>
+                        <tr>  
+                            <th></th>
+                            <th><center><b>{{totalotrosN}}</b></center></th>
+                        </tr>
+                        <tr>  
+                            <th></th>
+                            <th><center><b>{{tot=totalotros+totalotrost+totalotrosN}}</b></center></th>
+                        </tr>  
+                    </table><!--/tabla de NOCHE-->
+                  </td>
+          </tr>
+         </table>
+         <table width="100%"> 
+          <tr>  
+                  <th>
+                      TOTAL DE INGRESO 
+                  </th>
+                  <th>{{to+tp}}</th>
+                  <th>  
+                      TOTAL ELIMINACIÓN
+                  </th>
+                  <th>{{tor+tot}}</th>
+                  <th></th>
+          </tr>
+         </table> 
+         </div>

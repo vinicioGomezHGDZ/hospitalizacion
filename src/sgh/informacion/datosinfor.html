@@ -1,0 +1,30 @@
+<div ng-show="cabesera" class="row">
+      <div class="col-xs-4"><img src="img/msp.jpg" width="250" height="90"></div>
+      <div class="col-xs-8"><br><h4 class="text-right"><b>HOSPITAL GENERAL SANTODOMINGO</b></h4></div> 
+</div>
+<div ng-show="cabesera"> <center><h4>FORMATO DE INFORMACIÓN AL PACIENTE</h4></center></div>
+              <label><b>Nombre del informante : {{datosAguardar.per_apellidopaterno}} {{datosAguardar.per_apellidomaterno}} {{datosAguardar.per_nombres}}</b></label>
+              <br>
+              <label><b>Nombre del paciente :  {{encabezado[0].per_apellidopaterno}} {{encabezado[0].per_apellidomaterno}} {{encabezado[0].per_nombres}} </b></label><br>
+
+              <label><b>CUIDADOS ESPECIALES : </b></label><br>
+              {{datosAguardar.inp_cuides  | lowercase}} <br><br>
+              <label><b>ASEO:</b></label><br>
+              {{datosAguardar.inp_aseo  | lowercase}} <br><br>    
+              <label><b>REPOSO : </b></label><br>
+              {{datosAguardar.inp_reposo | lowercase}}<br> <br>  
+              <label><b>ALIMENTACIÓN :</b></label><br>
+              {{datosAguardar.inp_alimen  | lowercase}}<br><br>  
+              <label><b>LO QUE DEBE HACER :</b></label><br>
+              {{datosAguardar.inp_ldhace  | lowercase}}<br><br>    
+              <label><b>COMO DEBEN TOMAR SUS MEDICAMENTOS  :</label><br>
+              {{datosAguardar.inp_indica  | lowercase}}<br><br>    
+              <label><b>FECHA DE CITA MÉDICA :</b></label>
+              {{datosAguardar.inp_fpcita | date : 'dd/MM/yyyy'}}<br><br>  
+              <label><b>A QUIÉN LLAMAR EN CASO DE NECESIDAD : </b></label>
+              911
+
+       <div>
+          
+
+       </div>           

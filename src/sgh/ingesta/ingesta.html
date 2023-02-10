@@ -1,0 +1,248 @@
+<br>
+<script type="text/javascript">
+
+            $('#timepicker1').timepicker(
+              {
+                showMeridian:false,
+                template: false,
+                showInputs: false,
+                minuteStep: 1
+              }
+              );
+</script>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-8">
+  <H6>HOSPITAL GENERAL SANTO DOMINGO</H6>
+  </div>
+  <div class="col-xs-4">
+  <h6 class="text-right">CONTROL DE INGESTA Y ELIMINACIÓN</h6>
+  </div>
+</div>
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <h4 class="modal-title" id="myModalLabel">Nuevo Registro / {{Fecha|date:'dd/MM/yyyy'}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+        <div  class="table-responsive">
+            <tr>
+                fecha : <input type="date" class="form-control" ng-model="datosAguardar.cie_fecha"  required>
+            </tr>
+            <tr>
+                Turno :
+                <select required ng-model="datosAguardar.cie_turno" class="form-control">
+                    <option value="" >Seleccione</option>
+                    <option value="MAÑANA" >MAÑANA</option>
+                    <option value="TARDE" >TARDE</option>
+                    <option value="NOCHE" >NOCHE</option>
+                </select>
+            </tr>
+            <br>
+            
+            <table  class="table table-bordered" >
+          <tr>
+            <th colspan="6" class="th"><center> <img class="puntero" src="img/nuevo.png" height="25" width="25" ng-click="addingesta()"></center></th>
+            <th colspan="4" class="th"><center><img class="puntero" src="img/cancel.png" height="25" width="25" ng-click="limpiar()"></center></th>
+          </tr>
+           <tr>
+            <th colspan="6" class="th"><center>INGESTA</center></th>
+            <th colspan="4" class="th"><center>ELIMINACIÓN</center></th>
+          </tr>
+          <tr>
+            <th colspan="3" class="th"><center>ORAL</center></th>
+            <th colspan="3" class="th"><center>PARENTAL</center></th>
+            <th colspan="2" class="th"><center>ORINA</center></th>
+            <th colspan="2" class="th"><center>OTROS</center></th>
+          </tr>
+          <tr>
+              <th class="th"> <center>Hora</center></th>
+              <th class="th"><center>Clase</center></th>
+              <th class="th"><center>Cantidad c.c</center></th>
+              <th class="th"><center>Clase</center></th>
+              <th class="th"><center>Cantidad c.c</center></th>
+              <th class="th"><center>Cantidad Absorbida</center></th>
+              <th class="th"><center>Como obtuvo</center></th>
+              <th class="th"><center>Cantidad c.c</center></th>
+              <th class="th"><center>Origen</center></th>
+              <th class="th"><center>Cantidad c.c</center></th>
+
+          </tr>
+          
+          <tr>
+             
+              <th class="width-20-pct">
+                <div class="bootstrap-timepicker">
+                <div ng-show=false>
+                </div>
+                <center>
+                 <div class="input-group bootstrap-timepicker timepicker">
+                  <input id="timepicker1" ng-model="datosAguardar.cie_hora" type="text" class="form-control input-small" size="4" placeholder="00:00">
+                  </div> 
+                </div>
+              </th>
+              <th class="width-20-pct"><center><input type="text" class="form-control input-sm"  ng-model="datosAguardar.cie_clase" capitalize  maxlength="75" ></center></th>
+
+              <th class="width-20-pct"><center><input type="number" class="form-control input-sm"  ng-model="datosAguardar.cie_cantcc"   min="0" max="9999" step="1" size="3"></center></th>
+
+
+              <th class="width-20-pct"><center><input type="text" class="form-control input-sm"  ng-model="datosAguardar.cie_clasep" capitalize  maxlength="75" size="7"></center></th>
+
+              <th class="width-20-pct"><center><input type="number" class="form-control input-sm"  ng-model="datosAguardar.cie_cantccp"   min="0" max="9999" step="1" size="3"></center></th>
+
+              <th class="width-20-pct"><center><input type="number" class="form-control input-sm"  ng-model="datosAguardar.cie_canabs"   min="0" max="9999" step="1" size="3"></center></th>
+              
+              <th class="width-20-pct"><center><input type="text" class="form-control input-sm"  ng-model="datosAguardar.cie_comoobtuvo" capitalize  maxlength="75" size="7"></center></th>
+              
+              <th class="width-20-pct"><center><input type="number" class="form-control input-sm"  ng-model="datosAguardar.cie_cantcco"   min="0" max="9999" step="1" size="3"></center></th>
+              
+              <th class="width-20-pct"><center><input type="text" class="form-control input-sm"  ng-model="datosAguardar.cie_origen" capitalize  maxlength="75" size="7"></th>
+              
+              <th class="width-20-pct"><center><input type="number" class="form-control input-sm"  ng-model="datosAguardar.cie_cantccot"   min="0" max="9999" step="1" size="3"></center></th>
+
+          </tr>
+           <tr>
+               <td colspan="10">
+                    Lista de datos a guardar:
+               </td>
+           </tr>
+          <tr ng-repeat="ing in inges">
+              <th class=""><center>{{ing.cie_hora}}</center></th>
+              <th class=""><center>{{ing.cie_clase}}</center></th>
+              <th class=""><center>{{ing.cie_cantcc}}</center></th>
+              <th class=""><center>{{ing.cie_clasep}}</center></th>
+              <th class=""><center>{{ing.cie_cantccp}} </center></th>
+              <th class=""><center>{{ing.cie_canabs}} </center></th>
+              <th class=""><center>{{ing.cie_comoobtuvo}}</center></th>
+              <th class=""><center>{{ing.cie_cantcco}} </center></th>
+              <th class=""><center>{{ing.cie_origen}}</center></th>
+              <th class=""><center>{{ing.cie_cantccot}}</center></th>
+              
+          </tr>
+          </table> <!--/tabla de ingesta--> 
+           </div>
+  
+              <div class="roow">
+                <label>
+                <b>CLAVE:</b><br> 
+                Orina___________________ O.<br>  
+                Sonda Nasogástrica______ SNG.<br> 
+                Cateterismo_____________ C.<br>
+                Sonda Foley_____________ SF.<br>
+                Vómito__________________ Vom.<br>
+                Deposición______________ Dpl.<br>
+                </label>
+                 <div class="row text-right">
+                    <button ng-disabled="actguarda" id="nuevo"  class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                     <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button> 
+        </div>
+       </div> 
+       </form>
+          
+                     
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<div ng-show="formp"> 
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="">Nuevo</button>
+               
+
+            </div>
+   </div>
+    <br>
+   <div class="table-responsive">
+       <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-30-pct, th"><center>CUARTO DE CAMA</center></th>
+              <th class="width-20-pct, th"><center>RESPONSABLE</center></th>
+              <th class="width-20-pct, th"><center>VER</center></th>
+                         
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="ing in ingesta | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{ing.cie_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td class="width-30-pct "><center>{{ing.tca_descripcion| uppercase}} cama {{ing.cam_codigo}}</center></td>
+              <td class="width-20-pct ">{{ing.prf_descripcion}} {{ing.per_nombres |uppercase}} {{ing.per_apellidopaterno |uppercase}}</td>
+              <td class="width-20-pct">
+              <center>
+              <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="cargar(ing.cie_fecha)">
+                <i class="ace-icon fa  fa-exchange red2"></i>
+                </button>
+                  -
+                  <a ui-sref="repote({id:'{{ing.cie_fecha}}',ruta:'src/sgh/ingesta/php/reporte_ingesta.php?fe='})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+                </center>
+               </td> 
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+</div><!-- dov de ocultar tabla principal -->
+
+<div ng-show="forms" class="animated fadeInUp"> 
+<button class="form-control" ng-click="atras()">Retroceder</button>
+    <div ng-include='"src/sgh/ingesta/datosingesta.html"'></div>
+</div>
+
+          
+</div>
+</div>

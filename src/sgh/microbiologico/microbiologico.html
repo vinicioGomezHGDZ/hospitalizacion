@@ -1,0 +1,179 @@
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6></H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> ORDEN DE PEDIDO PEDIDO ESPECIAL PARA EXAMEN MICROBIOLÓGICO</h6>
+  </div>
+</div>
+<div class="">
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">Nueva Solicitud Microbiológica</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+          <form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+        
+                <label><b>* CULTIVO DE : </b></label>
+                <input type="text" ng-model="datosAguardar.mic_cultde " maxlength="100" capitalize class="form-control" required>
+              <br>
+                <label><b>* SOSPECHA DIAGNÓSTICO : </b></label>
+                <input type="text" ng-model="datosAguardar.mic_sosdia" maxlength="100" capitalize class="form-control" required>
+              <br>
+                <label><b>* ANTECEDENTES CLÍNICOS : </b></label>
+                 <textarea type="text"  ng-model="datosAguardar.mic_antcli " class = "form-control" capitalize required   maxlength="2000"> </textarea>
+              <br>
+                <label><b>* DATOS EPIDEMIOLÓGICOS RELEVANTES</b> (viaje o excursión, si vive en área endémica de algún enfermedad infecciosa como malaria, cólera,etc. ; Enfermedad ocupacional, por ejemplo contacto animales ; accidentes-mordida, trauma picadura de garrapatas, chinche, etc infección hospitalaria, etc.) </label>
+                <textarea type="text" ng-model="datosAguardar.mic_daepre" maxlength="800" capitalize class="form-control" required> </textarea>
+              <br>
+                <label><b>* OTROS DATOS DE LABORATORIO IMPORTANTES </b> (Datos de laboratorio que evidencien el sitio del proceso infeccioso: RX, tomografía, EMO hemograma, etc)</label>
+                <textarea type="text" ng-model="datosAguardar.mic_otrlab" maxlength="800" capitalize class="form-control" required> </textarea>
+              <br>
+                <label><b>* ES RELACIONADO A PROCEDIMIENTO INVASIVO ¿ CUAL ?</b> (Sonda vesical, catéter, traqueaostomía, diálisis, alimentación, parental, cirugía, etc) *</label>
+                <input type="text" ng-model="datosAguardar.mic_proinv" maxlength="100" capitalize class="form-control" required>
+              <br>
+                <label><b>* EXISTE INFECCIÓN EN OTRA REGIÓN ¿ CUALES ? </b></label>
+                <input type="text" ng-model="datosAguardar.mic_infecc" maxlength="100" capitalize class="form-control" required>
+              <br>
+                <label><b>* SE USÓ ANTIBIÓTICOS EN LOS ÚLTIMOS 2 DÍAS ¿ CUALES ?</b></label>
+                <input type="text" ng-model="datosAguardar.mic_antibi" maxlength="100" capitalize class="form-control" required>
+              <br>
+                <label><b>HA INICIADO TRATAMIENTO ANTIBIÓTICO STAT O LUEGO DE TOMAR LA MUESTRA ? </b></label>
+                
+                 <b>SI</b> <input type="radio" ng-model="datosAguardar.mic_intran" class="ace" value="true" ng-click="activa('0')">
+                  <span class="lbl"></span>
+                
+                 <b>NO</b> <input type="radio" ng-model="datosAguardar.mic_intran" class="ace" value="false" ng-click="activa('1')">
+                  <span class="lbl"></span>
+
+                 <input type="text" ng-show="otros" ng-model="datosAguardar.mic_cuales" maxlength="100" capitalize class="form-control">
+              <br>
+                <label><b>EXISTE COMPROMISO INMUNOLÓGICO ? </b></label>
+                  <b>SI</b> <input type="radio" ng-model="datosAguardar.mic_comimu" class="ace" value="true" ng-click="activa2('0')">
+                  <span class="lbl"></span>
+                
+                 <b>NO</b> <input type="radio" ng-model="datosAguardar.mic_comimu" class="ace" value="false" ng-click="activa2('1')">
+                  <span class="lbl"></span>
+
+                 <input type="text" ng-show="otro" ng-model="datosAguardar.mic_caul" maxlength="100" capitalize class="form-control">
+              <br>
+                 <label><b>PARA UROCULTIVO INDICAR:</b></label>
+                   <label>Sintomática  : </label>  <input type="radio" ng-model="datosAguardar.mic_urocul" class="ace" value="SINTOMÁTICO" >
+                  <span class="lbl"></span>
+                
+                   <label>Asintomática  : </label>  <input type="radio" ng-model="datosAguardar.mic_urocul" class="ace" value="ASINTOMÁTICA" >
+                  <span class="lbl"></span>
+              <br>  <br>
+                 <label><b>* OBSERVACIONES  </b></label>
+                  <textarea type="text" ng-model="datosAguardar.mic_obcerb" maxlength="800" capitalize class="form-control" required> </textarea>
+
+              <br>
+             <div class="row text-right">
+                <button ng-disabled="actguarda"  type="submit" class="btn btn-white btn-info btn-round" >
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue" ></i>Guardar
+                      </button>
+
+                 <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                 <i class="ace-icon fa fa-times red2"></i>Cancelar
+                   </button>
+                </div>
+       </form>
+        
+         <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>CÓDIGO</center></th>
+              <th class="width-20-pct, th"><center>F. TOMA MUESTRA</center></th>
+              <th class="width-20-pct, th"><center>CULTIVO DE:</center></th>
+              <th class="width-20-pct, th"><center>OBCERVACIONES</center></th>
+              <th class="bt_tab, th"><center>VER</center></th>
+              <th class="bt_tab, th"><center>RESPONSABLE</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="mic in microbiologico | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                <th class="bt_tab"><center>{{mic.mic_if_pk}}</center></th>
+            	<td class="width-20-pct "><center>{{mic.mic_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{mic.mic_cultde | date:'dd/MM/yyyy'}} </center></td>
+
+              <td class="width-20-pct "><center>{{mic.mic_obcerb}} </center></td>
+              <td class="bt_tab">
+               <button title="Ver" class="btn btn-white btn-default btn-round btn-xs" ng-click="datos(mic.mic_if_pk)"><i class="ace-icon fa  fa-eye red2"></i></button>
+              </td>
+              <td class="bt_tab">
+              <center>
+               <a href="/archivos/sgh/microbiologico/{{mic.mic_result}}" target="_blank"> <button ng-disabled="activa_desactiva(mic.mic_result)" class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa fa-folder-open red2"/></button></a>
+              </center>
+              </td>  
+            
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+       <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+</div>
+
+<!--inicio de anamnesis mostrar datos-->
+<div ng-show="anadatos">
+  <button class="form-control" ng-click="regresar()">Retroceder</button> <br>
+  <div ng-include='"src/sgh/microbiologico/datosmicrobio.html"'></div>
+</div><!--fin de mostrar anamnesis -->                   

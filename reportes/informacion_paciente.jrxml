@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="infromacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5cfbd70f-4427-4745-b08f-54985d4949da">
+	<property name="ireport.zoom" value="1.2100000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="454"/>
+	<parameter name="ind_id_pk" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT (pe.per_nombres ||' '||pe.per_apellidopaterno || ' ' ||pe.per_apellidomaterno) AS informante,
+  (peh.per_nombres ||' '||peh.per_apellidopaterno || ' ' ||peh.per_apellidomaterno) AS paciente
+  , inp_id_pk,inp_cuides,inp_aseo,inp_reposo,inp_alimen,inp_ldhace,inp_indica,
+to_char(inp_fpcita,'dd-MM-YYYY') as inp_fpcita,inp_llamar,inp_fecha    FROM
+  sgh_mei_inforalpaci inf
+      join sga_adm_historiaclinica as his on inf.hce_id_fk=his.hce_id_pk
+      JOIN sga_adm_paciente as pas  on his.pac_id_fk= pas.pac_id_pk
+      JOIN sga_adm_persona as peh  on pas.per_id_fk= peh.per_id_pk
+      JOIN sgu_usu_usuario as us on inf.usu_id_fk = us.usu_id_pk
+			JOIN sga_adm_profesional as pr on us.pro_id_fk = pr.pro_id_pk
+			JOIN sga_adm_persona as pe  on pr.per_id_fk= pe.per_id_pk
+			JOIN sga_adm_profesion as pro on pr.prf_id_fk = pro.prf_id_pk
+    WHERE inp_id_pk=$P{ind_id_pk};]]>
+	</queryString>
+	<field name="informante" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="inp_id_pk" class="java.lang.Integer"/>
+	<field name="inp_cuides" class="java.lang.String">
+		<fieldDescription><![CDATA[CUIDADOS ESPECIALES]]></fieldDescription>
+	</field>
+	<field name="inp_aseo" class="java.lang.String"/>
+	<field name="inp_reposo" class="java.lang.String"/>
+	<field name="inp_alimen" class="java.lang.String">
+		<fieldDescription><![CDATA[ALIMENTACI�N]]></fieldDescription>
+	</field>
+	<field name="inp_ldhace" class="java.lang.String">
+		<fieldDescription><![CDATA[LO QUE DEBE HACER]]></fieldDescription>
+	</field>
+	<field name="inp_indica" class="java.lang.String">
+		<fieldDescription><![CDATA[COMO DEBE TOMAR SUS MEDICAMENTOS]]></fieldDescription>
+	</field>
+	<field name="inp_fpcita" class="java.lang.String">
+		<fieldDescription><![CDATA[FECHA DE CITA M�DICA]]></fieldDescription>
+	</field>
+	<field name="inp_llamar" class="java.lang.String">
+		<fieldDescription><![CDATA[A QUI�N LLAMAR EN CASO NECESIDAD]]></fieldDescription>
+	</field>
+	<field name="inp_fecha" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="265" y="28" width="289" height="20" uuid="b0dd3e57-e6d8-4f54-8b2d-c4800fb7241e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HOSPITAL GENEREAL SANTODOMINGO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="678" splitType="Stretch">
+			<staticText>
+				<reportElement x="114" y="3" width="299" height="20" uuid="a747b477-f8f6-41c1-8835-992a143b8008"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMATO DE INFORMACIÓN AL PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="33" width="135" height="20" uuid="2e0cde3c-2dac-43a3-80a3-7c7986915d82"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre del informante :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="33" width="419" height="20" uuid="c7bf62db-ea6e-4fc7-bb77-58f68ccd552f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{informante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="59" width="134" height="20" uuid="292bcbb0-cf1c-4c83-8126-82d3e25d3701"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre del paciente :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="59" width="407" height="20" uuid="4804520f-acd1-426c-9e18-b9712959c39a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="84" width="197" height="20" uuid="4a89b6af-33cc-42e0-9e61-fd180b967fbe"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUIDADOS ESPECIALES :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="104" width="553" height="55" uuid="d2a51dc9-9bc6-47b8-b4eb-cf126dbcf104"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_cuides}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="165" width="156" height="20" uuid="45a161f8-435a-47dd-86e7-376eb33bc0cc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASEO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="185" width="553" height="55" uuid="d577d535-70b3-4178-b3fc-b342134c1f44"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_aseo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="244" width="156" height="20" uuid="56c343ee-2d06-44df-b3c9-87eecffa8f79"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPOSO :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="264" width="553" height="55" uuid="fb0dcd23-1ae3-48c8-8533-21d71c46ab5d"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_reposo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="347" width="553" height="55" uuid="092fef2b-2b83-4f0b-9094-e52fba45d684"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_alimen}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="326" width="156" height="20" uuid="81844955-6e73-4026-96d2-b9facd6713b4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALIMENTACIÓN :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="408" width="156" height="20" uuid="c2136e88-c1f6-4d13-820d-3c3de96c69bf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LO QUE DEBE HACER :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="428" width="553" height="55" uuid="6fe062db-9148-488a-80ff-73c2b90b7caa"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_ldhace}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="511" width="553" height="55" uuid="dbaf1b94-50ca-4442-a0f4-1e4f835db200"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{inp_indica}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="490" width="281" height="20" uuid="7f6bf1b3-5bae-41de-b797-a3003fbb23fc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMO DEBEN TOMAR SUS MEDICAMENTOS :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="159" y="578" width="256" height="20" uuid="86372d63-244d-46c9-bf86-55a0248eff53"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{inp_fpcita}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="578" width="156" height="20" uuid="b87b5825-06eb-4152-a634-f3404af80c60"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE CITA MÉDICA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="268" y="608" width="189" height="20" uuid="a2f41949-9962-4247-8584-e100deeb2719"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{inp_llamar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="608" width="266" height="20" uuid="afce943b-3189-4cc0-8e3a-159b26cfc0b7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A QUIÉN LLAMAR EN CASO DE NECESIDAD :  ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="50"/>
+	</lastPageFooter>
+</jasperReport>

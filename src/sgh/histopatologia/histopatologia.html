@@ -1,0 +1,403 @@
+
+<br>
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>SNS-MSP/HCU-FORM.013A/2008</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> HISTOPATOLOGÍA - SOLICITUD</h6>
+  </div>
+</div>
+
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">Nueva Solicitud</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+          <form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+            <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">1 ESTUDIO SOLICITADO *</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <label>* PRIORIDAD</label>
+                              <select required ng-model="datosAguardar.his_priori">
+                                <option value="">SELECCIONE</option>
+                                <option value="URGENTE">URGENTE</option>
+                                <option value="RUTINA">RUTINA</option>
+                                <option value="CONTROL">CONTROL</option>
+                              </select>  
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <label><b>Histopatológico</b> </label>
+                        <input type="checkbox" ng-model="datosAguardar.his_histop" class="ace" checked> 
+                        <span class="lbl"></span>     
+                        <label><b>Citología</b> </label>
+                        <input type="checkbox" ng-model="datosAguardar.his_citolo" class="ace" checked> 
+                        <span class="lbl"></span>
+                        <label><b>Descripción:</b> </label>
+                        <textarea type="text"  ng-model="datosAguardar.his_descri " class = "form-control" capitalize required   maxlength="1000"> </textarea> <br>  
+                    </div>
+               </div> 
+
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">2 RESUMEN CLÍNICO *</h4>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datosAguardar.his_rescli" class = "form-control" capitalize required   maxlength="3000"> </textarea> <br>  
+                    </div>
+               </div>         
+
+              <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">3 DIAGNOSTICO</h3>
+                        </div>
+
+                          <div class="panel-body">
+                              <div ng-show="bc10" class="table-responsive">
+                                  <table  class="table" >
+                                      <thead>
+                                      <tr>
+                                          <input type="text" class="form-control" placeholder="Buscar" ng-model="search2" capitalize >
+                                      </tr>
+                                      <tr>
+
+                                          <th class="width-10-pct, th"><center>Cie10</center></th>
+                                          <th class="width-30-pct, th"><center>Descripción</center></th>
+                                          <th colspan="3" class="width-20-pct, th "></th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <!--| limitTo: posicion | limitTo: item -->
+                                      <tr class="puntero" ng-repeat="cie in datosc10  | filter:search2 | limitTo:item:(pagina * totalpaginas)" ng-click="agregac10(cie.c10_codigo)">
+                                          <td class="width-10-pct"><center>{{cie.c10_codigo}}</center></td>
+                                          <td class="width-30-pct, td">{{cie.c10_nombre | uppercase}} </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                                  </div>
+                              <button ng-show="b_buscar" type="button" class="form-control" ng-click="buscac10()">Buscar</button>
+                                  <div class="table table-responsive">
+                                  <table class="table">
+                                      <tr>
+                                          <th colspan="4" class="width-20-pct"><center>Codigo Cie10 </center></th>
+                                          <th class="bt_tab">Agregar</th>
+                                          <th class="bt_tab" ng-show="c10nuevo">Eliminar</th>
+                                      </tr>
+                                      <tr>
+                                          <th colspan="4" class="width-20-pct">
+                                              <center> <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5"></center>
+                                          </th>
+                                          <th class="bt_tab">
+                                              <center><img ng-show="c10nuevo" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="c10_accion()"></center>
+                                              <center><img ng-show="c10editar" class="puntero" src="img/aceptar.png" height="25" width="25" ng-click="ec10_accion()"></center>
+                                          </th>
+                                          <th class="bt_tab" ng-show="c10nuevo">
+                                              <center><img  class="puntero" src="img/cancel.png" height="20" width="20" title="Eliminar" ng-click="delec10()"></center>
+                                          </th>
+                                      </tr>
+                                  </table>
+
+                                  <table class="table">
+                                      <tr>
+                                          <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                                          <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                                          <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                                          <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                                          <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                                          <th class="bt_tab, th"><center><h9>EDITAR</h9></center></th>
+                                      </tr>
+                                      <tr ng-repeat="c10 in cie10">
+                                          <th>{{c10.c10_id + 1}}</th>
+                                          <th class="width-30-pct"><b>{{c10.c10_nombre}}</b></th>
+                                          <th class="width-30-pct"><b><center>{{c10.c10_codigo}}</center></b></th>
+                                          <div class="control-group">
+                                              <th class="bt_tab">
+                                                  <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                                                  <span class="lbl"></span>
+                                              </th>
+                                              <th class="bt_tab">
+                                                  <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                                                  <span class="lbl"></span>
+                                              </th>
+                                          </div>
+                                          <td class="bt_tab" >
+                                              <center><img ng-show="c10nuevo" class="puntero" src="img/edit.png" height="20" width="20" ng-click="edic10(c10.c10_id)">
+                                                  <img ng-show="c10editar" class="puntero" src="img/edit.png" height="20" width="20" ng-click="eedic10(c10.c10_id,c10.dia_id_pk)"></center>
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </div>
+                          </div>
+                        </div>
+              
+               <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">4 MUESTRA O PIEZA *</h4>
+                          </div>
+                          <div class="col-sm-8 row  text-right">
+                              <h9> DESCRIBIR EL PROCEDIMIENTO, ORIGEN, NUMERO Y ZONA</h9>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datosAguardar.his_muestr" class = "form-control" capitalize required   maxlength="2000"> </textarea> <br>  
+                    </div>
+               </div> 
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">5 TRATAMIENTO QUE RECIBE *</h4>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        <textarea type="text"  ng-model="datosAguardar.his_trqrec" class = "form-control" capitalize required   maxlength="3000"> </textarea> <br>  
+                    </div>
+               </div> 
+
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                            <h4 class="panel-title">6 DATOS BÁSICOS PARA CITOLOGÍA VAGINAL</h4>
+                    </div>
+                    <div class="panel-body">
+                       <div class="table table-responsive">
+
+                        <table class="table "> 
+                          <tr>
+                            <th colspan="12" class="th">
+                              <center>MATERIAL</center>
+                            </th>
+                            
+                          </tr>
+                          <tr>
+                            <td>Endocervix</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_endoce" checked class="ace"><span class="lbl"></span></td>
+                            <td>Exocervix</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_exocer" checked class="ace"><span class="lbl"></span></td>
+                            <td>Pared vaginal</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_parvag" checked class="ace"><span class="lbl"></span></td>
+                            <td>Unión escamo columnar</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_unesco" checked class="ace"><span class="lbl"></span></td>
+                            <td>Muñón cervical</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_muncer" checked class="ace"><span class="lbl"></span></td>
+                            <td>Otro</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_otrmat" checked class="ace"><span class="lbl"></span></td>
+
+                          </tr>
+                        </table>  
+                        <table class="table">
+                         <tr>
+                          <th colspan="10" class="th">
+                              <center>ANTICONCEPCIÓN</center>
+                          </th>
+                         </tr>
+                          <tr>
+                           <td>Oral o inyectable</td>
+                            <td><input type="checkbox" ng-model="datosAguardar.his_orainy" checked class="ace"><span class="lbl"></span></td>
+                           <td>DIU</td>
+                            <td><input type="checkbox" ng-model="datosAguardar.his_diu" checked class="ace"><span class="lbl"></span></td>
+                           <td>Ligadura</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_ligadu" checked class="ace"><span class="lbl"></span></td>
+                           <td>Otro</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_otrant" checked class="ace"><span class="lbl"></span></td>
+                           <td>Terapia hormonal</td>
+                              <td><input type="checkbox" ng-model="datosAguardar.his_terhor" checked class="ace"><span class="lbl"></span></td>
+                               
+                         </tr>
+                         </table>
+                         <table class="table">   
+                             <tr>
+                                <th colspan="6" class="th">
+                                 <center> EDADES DE:</center>
+                                </th>
+                                
+                            </tr>
+                            <tr>
+                              <td>Menarquía</td>
+                              <td><input type="number" ng-model="datosAguardar.his_menarq" min="0" max="150"></td>
+                              <td>Menopausia</td>
+                              <td><input type="number" ng-model="datosAguardar.his_menopa" min="0" max="150"></td>  
+                              <td>Inicio de relaciones sexuales</td>
+                              <td><input type="number" ng-model="datosAguardar.his_inrese" min="0" max="150"></td>  
+                             
+                            </tr>
+                          </table>
+                        <table class="table">
+                            <tr>
+                              <th colspan="8" class="th">
+                                 <center> PARIDAD</center>
+                                </th>
+                            </tr>
+                            <tr>
+                               <td>Gestaciones</td>
+                              <td><input type="number" ng-model="datosAguardar.his_gestac" min="0" max="50"></td>  
+                              <td>Partos</td>
+                              <td><input type="number" ng-model="datosAguardar.his_partos" min="0" max="50"></td>  
+                              <td>Abortos</td>
+                              <td><input type="number" ng-model="datosAguardar.his_aborto" min="0" max="20"></td>  
+                              <td>Cesáreas</td>
+                              <td><input type="number" ng-model="datosAguardar.his_cesare" min="0" max="150"></td>  
+                            </tr>
+                        </table>                     
+
+
+                          <table class="table">
+                            <tr>
+                              <th colspan="6" class="th">
+                                <center>FECHAS</center>
+                              </th>
+                            </tr>
+                            <tr>
+                              <td>Última menstruación</td>
+                              <td>
+                                  <input type="date" ng-model="datosAguardar.his_ultmes" class="form-control">
+                              </td>
+
+                              <td>Última parto</td>
+                              <td>
+                                  <input type="date" ng-model="datosAguardar.his_ultpar" class="form-control">
+                              </td>
+                              <td>Última Citología</td>
+                              <td>
+                                  <input type="date" ng-model="datosAguardar.his_ultcit" class="form-control">
+                              </td>
+
+                            </tr>  
+                          </table>
+                        </div>
+                    </div>
+               </div> 
+
+              <br>
+             <div class="row text-right">
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round" >
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue" ></i>Guardar
+                      </button>
+
+                 <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                 <i class="ace-icon fa fa-times red2"></i>Cancelar
+                   </button>
+                </div>
+       </form>
+        
+         <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>CÓDIGO</center></th>
+              <th class="width-20-pct, th"><center>F. TOMA MUESTRA</center></th>
+              <th class="width-20-pct, th"><center>PRIORIDAD</center></th>
+              <th class="width-20-pct, th"><center>RESUMEN CLÍNICO</center></th>
+              <th class="width-20-pct, th"><center>TRATAMIENTO QUE RECIBE</center></th>
+              <th class="bt_tab, th">VER</th>
+              <th class="bt_tab, th">RESULTADO</th>
+                      
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="his in histopatologia | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                <th class="bt_tab"><center>{{his.his_id_pk}}</center></th>
+            	<td class="width-20-pct "><center>{{his.his_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{his.his_priori }}</center></td>
+              <td class="width-20-pct "><center>{{his.his_rescli}} </center></td>
+              <td class="width-20-pct "><center>{{his.his_trqrec}} </center></td>
+
+              <td class="bt_tab">
+                <button class="btn btn-white btn-default btn-round btn-xs" ng-click="hist(his.his_id_pk)">
+                 <i class="ace-icon fa  fa-eye red2"/>
+                </button>
+              </td>
+               <td class="bt_tab">
+              <center>
+               <a href="/archivos/sgh/histopatologia/{{his.his_resul}}" target="_blank"> <button ng-disabled="activa_desactiva(his.his_resul)" class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa fa-folder-open red2"/></button></a>
+              </center>
+              </td> 
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>
+
+<!--inicio  mostrar datos-->
+<div ng-show="datos">
+  <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+
+  <div ng-include='"src/sgh/histopatologia/datoshistopato.html"'></div>
+
+</div>

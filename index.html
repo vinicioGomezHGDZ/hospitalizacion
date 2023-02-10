@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app' >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Common Buttons &amp; Icons"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <link rel="shortcut icon" href="img/MSP2.png"/>
+    <title>Sistema de Gestión Hospitalaria módulo Hospitalización</title>
+
+
+    <!-- Incluye stilo de color y tamaño de las tablas -->
+    <div ng-include='"css/style.html"'></div>
+    <!-- ace styles -->
+    <script src="js/lib/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="assets/fonts/fonts.googleapis.com.css"/>
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="assets/css/datepicker.min.css"/>
+    <script src="js/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css"/>
+    <link rel="stylesheet" href="js/lib/bootstrap-datepicker/css/bootstrap-datepicker.min.css"/>
+    <link rel="stylesheet" href="js/lib/sweetalert/dist/sweetalert.css"/>
+    <link rel="stylesheet" href="js/lib/ngProgress.css"/>
+    <link rel="stylesheet" href="js/lib/select.css"/>
+    <link rel="stylesheet" href="js/lib/selectize.css"/>
+
+    <!-- SISTEMA-->
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-cookies.js"></script>
+    <script src="js/lib/angular-resource.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+    <script src="js/lib/angular-filter.min.js"></script>
+    <script src="js/lib/angular-sanitize.min.js"></script>
+
+    <script type="text/javascript" src="js/lib/ui-bootstrap-tpls.js"></script>
+    <!--<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>-->
+    <script type="text/javascript" src="js/lib/angular-ui-router.js"></script>
+    <script type="text/javascript" src="js/lib/ocLazyLoad.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/animate.css"/>
+
+    <!-- controladores principales-->
+
+    <script src="js/app.js"></script>
+    <script src="js/main.js"></script>
+
+
+</head>
+
+<body class="no-skin" ng-controller="mainCrtl">
+
+<!-- encabezado-->
+<div id="navbar" class="navbar navbar-default">
+    <div class="navbar-container" id="navbar-container">
+        <!--Inclute encabezado-->
+        <div ng-include='"templates/profile.html"'></div>
+    </div>
+</div>
+<!-- /encabezado-->
+
+<!-- Contenido -->
+<div class="main-container" id="main-container">
+    <div ng-show="menu" id="sidebar" class="sidebar responsive" ng-class="{'menu-min' : !menu}">
+        <!-- Incluye Menu-->
+        <div ng-include='"templates/header.html"'></div>
+
+        <div>
+            <!--opcion de hacer menu mas pequeño o grande -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
+                   data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!--contenido-->
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content" id="contained">
+                <!--Incluye los contenidos-->
+                <div>
+                    <ui-view></ui-view>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pie de pagina-->
+    <div class="footer">
+        <div class="footer-inner">
+            <!--<div class="footer-content">-->
+            <!--Incluye footer.html-->
+<!--            <div ng-include='"templates/footer.html"'></div>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+</div><!--fin de contenido -->
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-ui.custom.min.js"></script>
+<script src="assets/js/chosen.jquery.min.js"></script>
+<script src="assets/js/jquery.autosize.min.js"></script>
+<script src="assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="assets/js/jquery.maskedinput.min.js"></script>
+<script src="assets/js/bootstrap-tag.min.js"></script>
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/bootstrap-timepicker.min.js"></script>
+
+<script src="assets/js/ace.min.js"></script>
+<script src="assets/js/angular-table.min.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<script src="js/lib/sweetalert/dist/sweetalert.min.js"></script>
+<script src="js/lib/angular-sweetalert/SweetAlert.js"></script>
+<script src="js/lib/ngprogress.min.js"></script>
+<script src="js/lib/select.min.js"></script>
+<script src="js/lib/moment-with-locales.min.js"></script>
+</body>
+</html>

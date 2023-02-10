@@ -1,0 +1,316 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+  <!-- <H6>HOSPITAL GENERAL SANTODOMINGO</H6> -->
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">FORMATO DE NOTIFICACIÓN DE INCIDENTES Y EVENTOS ADVERSOS</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+            <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h9 class="panel-title"></h9>
+
+                     <h9><center>(Uso exclusivo Unidad de calidad y Seguridad del Paciente)</center></h9>
+                  </div>
+
+                  <div class="panel-body">
+                      <div ng-show="ver_fecha">
+                      Fecha del evento*
+                      <input type="date" class="form-control" ng-model="datosAguardar.fed_fecha"  required>
+                       <br>
+                      </div>
+                      <label><b>Relato de lo acontecido: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.fed_relacon" class = "form-control" capitalize required maxlength="500"></textarea>
+                     <div class="row">
+                         <div class="col-xs-4"> 
+                           <table class="table ">
+                             <th>Provoca daño o lesión:</th>
+                             <td> 
+                              <input ng-model="datosAguardar.fed_prodale" class="ace ace-switch ace-switch-2" type="checkbox" checked /> <span class="lbl"></span>
+                             </td>
+                           </table>               
+                          </div> 
+                      </div>
+                      
+                      <label><b>Ocasionado a :</b></label>
+                      <table class="table table-border">
+                        <fieldset> 
+                          <tr>
+                            <th>Paciente</th>
+                            <td><input type="radio" value="PACIENTE"  ng-model="datosAguardar.fed_ocasio" class="ace"> <span class="lbl"></span></td>
+
+                            <th>Familia</th>
+                            <td><input type="radio" value="FAMILIA" ng-model="datosAguardar.fed_ocasio" class="ace"> <span class="lbl"></span></td>
+
+                            <th>Visitante</th>
+                            <td><input type="radio" value="VISITANTE" ng-model="datosAguardar.fed_ocasio" class="ace"> <span class="lbl"></span></td>
+                            
+                            <th>Funcionario</th>
+                            <td><input type="radio" value="FUNCIONARIO" ng-model="datosAguardar.fed_ocasio" class="ace"> <span class="lbl"></span></td>
+                            
+                            <th>Equipo/insumo</th>
+                            <td><input type="radio" value="EQUIPO/INSUMO" ng-model="datosAguardar.fed_ocasio" class="ace"> <span class="lbl"></span></td>
+                          </tr>
+                        </fieldset>
+                      </table>  
+                       <label><b>Describa el daño o lesion: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.fed_desles" class = "form-control" capitalize required maxlength="400"></textarea>
+                      <br>
+                       <label><b>Medidas inmediatas adoptadas: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.fed_medado" class = "form-control" capitalize required maxlength="400"></textarea>
+                      <br>
+                      <label> <b>Tipo de clasificación: * </b></label>
+                      <select required ng-model="datosAguardar.fed_tipcla" class="form-control">
+                          <option value="">Seleccione</option>
+                          <option value="INCIDENTE">Incidente</option>
+                          <option value="EVENTO ADVERSO DE ALTO IMPACTO">Evento adverso de alto impacto</option>
+                          <option value="EVENTO ADVERSO DE MEDIANO IMPACTO">Evento adverso de mediano impacto</option>
+                          <option value="EVENTO ADVERSO DE BAJO IMPACTO">Evento adverso de bajo impacto</option>
+                      </select>    
+                  </div>
+             </div> 
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h9 class="panel-title"></h9>
+                     <h9><center>Solicitud de acción correctivo / Preventiva</center></h9>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                         <div class="col-xs-12"> 
+                           <table class="table">
+                            <tr>
+                               <th><center><h9>( Seleccione para indicar acción correctiva o acción preventiva )</h9></center></th>
+
+                               <th><center><h4><b>AC</b></h4></center></th>
+                               <td> 
+                                  <h4><center><input value="AC" ng-model="datosAguardar.acp_accion" class="ace" type="radio"/> <span class="lbl"></span></center></h4>
+                               </td>
+
+                               <th><center><h4><b>AP</b></h4></center></th>
+                               <td> 
+                                  <h4><center><input value="AP" ng-model="datosAguardar.acp_accion" class="ace" type="radio"/> <span class="lbl"></span></center></h4>
+                               </td>
+                             </tr>
+                           </table>               
+                          </div> 
+                      </div>
+                       
+                           <table class="table ">
+                             <th><center>Acción Correctiva N°</center></th>
+                             <td> 
+                              <center> 
+                                 <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="datosAguardar.acp_ncorre" class = "form-control"  maxlength="20">
+                              </center>
+                             </td>
+                             <th><center>Acción Preventiva N°</center></th>
+                             <td> 
+                              <center>
+                                 <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="datosAguardar.acp_npreve" class = "form-control"  maxlength="20">
+                              </center>
+                             </td>
+                           </table>               
+                      <table class="table">
+                        <tr>
+                          <th></th>
+                          <th><center>Fecha limite *</center></th>
+                          <th><center>Por / Asignada a  *</center></th>
+                          <th><center>Fecha de realización *</center></th>
+                        </tr> 
+                        <tr>
+                            <td>
+                              <select ng-model="datosAguardar.acp_acp_tipo" required >
+                                  <option value="">Selecciona</option>
+                                  <option value="INVESTIGACIÓN">Investigación</option>
+                                  <option value="IMPLEMENTACIÓN">Implementación</option>
+                                  <option value="AUDITORÍA">Auditoría</option>
+                                  <option value="SAC CERRADA">SAC cerrada</option>
+
+                              </select>
+                            </td>
+                            <td>
+                                   <input type="date" ng-model="datosAguardar.acp_felim" class = "form-control" required>
+                      
+                            </td>
+                            <td>
+                                 <input type="text" ng-model="datosAguardar.acp_por" class = "form-control" capitalize maxlength="20" required>
+                      
+                            </td>
+                            <td>
+                                 <input type="text" ng-model="datosAguardar.acp_fefire" class = "form-control" capitalize maxlength="20" required>
+                      
+                            </td>
+                        </tr> 
+                      </table> 
+
+                       <label><b>Descripción del asunto: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.acp_descrip" class = "form-control" capitalize required maxlength="1000"></textarea>
+                        
+                        <label><b>Hallazgo de investigación / causa Fundamental: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.acp_hallas" class = "form-control" capitalize required maxlength="1000"></textarea>
+                        
+
+                        <label><b>Acción Correctiva / Preventiva: *</b></label>
+                        <textarea type="text" ng-model="datosAguardar.acp_accorr" class = "form-control" capitalize required maxlength="1000"></textarea>
+                        
+                        <label><b>Acordada por: *</b></label>
+                        <input type="text" ng-model="datosAguardar.acp_medica" class = "form-control" capitalize required maxlength="20">
+
+                        <label><b>Fecha: *</b></label>
+                        <input type="date" ng-model="datosAguardar.acp_feacor" class = "form-control" required >
+                         
+                        <div class="row">
+                         <div class="col-xs-12"> 
+                           <table class="table ">
+                             <tr>
+                                <th colspan="4"><center><label><b>Comentarios del Auditor</b></label></center></th>
+                             </tr>
+
+                             <tr>
+                             <th><label><b>¿Acción tomada fue eficaz?:</b></label></th>
+                                 <td> 
+                                  <input ng-model="datosAguardar.acp_acfuef" class="ace ace-switch ace-switch-2" type="checkbox" checked /> <span class="lbl"></span>
+                                 </td>
+                                 <th>
+                                    Si no, número de nueva ACP/AP:
+                                 </th>
+                                 <td>
+                                   <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="datosAguardar.acp_nuacap" class = "form-control" maxlength="20">
+                                 </td>
+                             </tr>
+                           </table>               
+                          </div> 
+                      </div>                        
+
+                  </div>
+              </div>    
+
+            <br>
+             <div class="row text-right"  >
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+<div ng-show="tabla">
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+           <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>RELATO DE LO ACONTECIDO</center></th>
+              <th class="width-20-pct, th"><center>PROVOCO DAÑO O LESIÓN</center></th>
+              <th class="width-20-pct, th"><center>OCACIONADA A:</center></th>
+              <th class="width-20-pct, th"><center>DESCRIPCIÓN DEL DAÑO</center></th>
+              <th class="width-20-pct, th"><center>MEDIDA ADOPTADAS</center></th>
+              <th class="width-20-pct, th"><center>T. DE CLASIFICACIÓN</center></th>
+              <th class="width-20-pct,  th"><center>ACCIÓN</center></th>
+
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="eva in eventosadversos | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{eva.fed_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{eva.fed_relacon}}</center></td>
+            	<td class="width-20-pct "><center>
+              <input ng-model="eva.fed_prodale" class="ace ace-switch ace-switch-2" type="checkbox" checked disabled/> <span class="lbl"></span>
+              </center></td>
+              <td class="width-20-pct "><center>{{eva.fed_ocasio}}</center></td>
+              <td class="width-20-pct "><center>{{eva.fed_desles}}</center></td>
+              <td class="width-20-pct "><center>{{eva.fed_medado}}</center></td>
+              <td class="width-20-pct "><center>{{eva.fed_tipcla}}</center></td>
+              <td class="width-20-pct">
+                  <center>
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(eva.fed_id_pk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+                 -
+                <button class="btn btn-white btn-default btn-round btn-xs" ng-click="ver(eva.fed_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+                </button>
+                 -
+                 <a ui-sref="reventoadverso({id:'{{eva.fed_id_pk}}'})">
+                      <buttton class="btn btn-white btn-default btn-round btn-xs">
+                          <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                      </buttton>
+                  </a>
+                  </center>
+              </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+<div ng-show="datos">
+  <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+  <div ng-include='"src/sgh/eventosadversos/datoseventos.html"'></div>
+
+</div>

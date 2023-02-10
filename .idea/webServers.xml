@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="eb573186-8740-41f0-b874-e017fd8c826c" name="hgsd_wan" url="http://181.196.107.91">
+        <fileTransfer rootFolder="/opt/lampp/htdocs" accessType="SFTP" host="181.196.107.91" port="2223" sshConfigId="fe958b34-5b5e-4cb7-b5b1-e2bfe8be23f7" sshConfig="hgsd_wan">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="85582eee-351d-4646-b3dc-a0fcead65926" name="hgdz_lan" url="http://192.168.91.35">
+        <fileTransfer rootFolder="/opt/lampp/htdocs" accessType="SFTP" host="his.hgdz.gob.ec" port="22" sshConfigId="7bbe3f1b-a141-4c4d-a706-3477023d75dd" sshConfig="vinicio-gomez@his.hgdz.gob.ec:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,102 @@
+      
+       <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+      
+          <span class="sr-only">Toggle sidebar</span>
+
+          <span class="icon-bar"></span>
+
+          <span class="icon-bar"></span>
+
+          <span class="icon-bar"></span>
+      
+        </button>
+
+       <div class="navbar-header pull-left" ng-click="mostrarServicios()">
+           <small>
+               <div class="puntero">
+                   <img src="img/MSP2.png" height="40" width="60" ng-click="cerrar(1)"/>
+               </div>
+           </small>
+       </div>
+
+        <div class="navbar-header pull-left">
+            <small>
+              <h4>
+                   <span ng-show="opcion_mensajeserivio" class="white"><b> {{op_cargar}} {{usu_perfil}}</b></span>
+              </h4>
+            </small>
+        </div>
+
+
+       <div ng-show="opcion_servicios" class="navbar-buttons navbar-header pull-left" role="navigation">
+           <nav class="navbar navbar-default" role="navigation" ng-init="cargarServicios()">
+               <ul class="nav navbar-nav navbar-right">
+                   <li class="dropdown">
+                       <a class="dropdown-toggle, puntero" data-toggle="dropdown">
+                           <span class="white"><b> {{op_cargar}} {{usu_perfil}}</b></span>
+                           <b class="caret"></b>
+                       </a>
+                       <ul class="dropdown-menu" >
+                           <li ng-repeat="ser in menu_servicios">
+                               <a ng-click=" seleccionarServicio(ser.esp_id_pk,ser.esp_descripcion)" target="_blank" class="puntero">
+                                   <div class="row">
+                                       <div class="col-sm-3">
+                                           <img src="img/hospi.png" width="25"  height="25" class="img-rounded">
+                                       </div>
+                                       <div class="col-sm-6">
+                                           <b>{{ser.esp_descripcion}}</b>
+                                       </div>
+                                   </div>
+                               </a>
+                           </li>
+                       </ul>
+                   </li>
+               </ul>
+
+           </nav>
+       </div>
+
+
+       <div class="navbar-buttons navbar-header pull-right" role="navigation">
+           <nav class="navbar navbar-default" role="navigation">
+               <ul class="nav navbar-nav navbar-right">
+                   <li class="dropdown">
+                       <a class="dropdown-toggle, puntero" data-toggle="dropdown">
+                           BIENVENIDO
+                           {{nombre_perfil}}
+
+                         <b class="caret"></b>
+                       </a>
+                       <ul class="dropdown-menu">
+                           <li>
+                               <a href="/sgh_archivos/sgh/Manual_de_usuario_SGH.pdf" target="_blank">
+                                   <i class="ace-icon fa  fa-book"></i>
+                                   Manual de usuario
+                               </a>
+                           </li>
+                           <li> <a class="puntero" ng-click="changePassword()">
+                               <i class="ace-icon fa fa-power-off" ></i>
+                               Cambiar contraseña
+                           </a></li>
+                           <li> <a class="puntero" ng-click="cerrarsesion()">
+                               <i class="ace-icon fa fa-power-off" ></i>
+                               Cerrar sesión
+                           </a></li>
+                       </ul>
+                   </li>
+               </ul>
+
+           </nav>
+       </div>
+
+       <div class="navbar-buttons navbar-header pull-right" role="navigation">
+           <ul class="nav ace-nav">
+               <li ui-sref-active="active" class="green" >
+                   <a ui-sref="sinterconsulta">
+                           <!-- <img class="nav-user-photo" src="img/rafa.jpg" alt="Rafael Real"/>-->
+                        <span class="puntero">Solicitudes de Interconsultas</span>
+                   </a>
+               </li>
+           </ul>
+       </div>
+

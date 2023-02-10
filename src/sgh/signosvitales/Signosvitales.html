@@ -1,0 +1,533 @@
+<!-- Div de encabesado -->
+<div class="row">
+    <div class="col-xs-8">
+        <H6>SNS-MSP / HCU-form.020/2008</H6>
+    </div>
+    <div class="col-xs-4">
+        <h6 class="text-right">SIGNOS VITALES</h6>
+    </div>
+</div>
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<hr>
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- <span aria-hidden="true">&times;</span>-->
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{Fecha | date:'dd/MM/yyyy'}} / dia N° : {{diases}} </h4>
+            </div>
+
+            <div class="modal-body ">
+
+
+                <div ng-model="datosAguardar">
+
+
+                    <div class="row" ng-show="tiposignos">
+                        <center>
+                            <button type="button" class="btn btn-white btn-default btn-round"
+                                    ng-click="signosvitales()">
+                                <i class="ace-icon fa  fa-headphones bigger-120 blue"></i>
+                                Signos vitales generales
+                            </button>
+                            <button type="button" class="btn btn-white btn-default btn-round" ng-click="temperatura()">
+                                <i class="ace-icon glyphicon glyphicon-plus bigger-120 blue"></i>Signos vitales
+                            </button>
+                        </center>
+                    </div>
+
+                    <form ng-show="actisvt" ng-submit="accion()">
+                        <div ng-show="condi">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">* FECHA</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <input type="date" class="form-control" ng-model="datosAguardar.svd_fcha" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">1 SIGNOS VITALES</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-4">
+                                        Pulso:<br> <input type="number" class="form-control input-sm"
+                                                          ng-model="datosAguardar.svd_pulos" min="0" max="999"
+                                                          step="any">
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        temperatura:<br> <input type="number" class="form-control input-sm"
+                                                                ng-model="datosAguardar.svd_temper" min="0" max="99"
+                                                                step="any">
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        F. Respiratoria x min :<br> <input type="number" class="form-control input-sm"
+                                                                           ng-model="datosAguardar.svd_freres" min="0"
+                                                                           max="9999" step="any">
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        Presión sistólica: <input type="number" class="form-control input-sm"
+                                                                  ng-model="datosAguardar.svd_presis" min="0" max="9999"
+                                                                  step="any">
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        Presión Diastólica: <input type="number" class="form-control input-sm"
+                                                                   ng-model="datosAguardar.svd_predia" min="0"
+                                                                   max="9999" step="any">
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                        Saturación de O2: <input type="text" class="form-control input-sm"
+                                                                 ng-model="datosAguardar.svd_satoxi" maxlength="10">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- panel  2-->
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-center">2 BALANCE HÍDRICO
+                                        <img src="img/busca.png" height="30" width="30"
+                                             ng-click="balance(datosAguardar.svd_fcha)">  </center>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <!--panel de ingresos cc-->
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h2 class="panel-title">INGRESOS CC</h2>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-md-4">
+                                                    Parental: <br><input type="number" class="form-control input-sm"
+                                                                         ng-model="datosAguardar.svd_parent" required
+                                                                         min="0" max="9999" step="any">
+                                                </div>
+                                                <div class="col-xs-6 col-md-4">
+                                                    Vía Oral:<br> <input type="number" class="form-control input-sm"
+                                                                         ng-model="datosAguardar.svd_viaora" required
+                                                                         min="0" max="9999" step="any">
+                                                </div>
+                                                <div ng-show=false>
+                                                    {{datosAguardar.svd_toting = datosAguardar.svd_parent + datosAguardar.svd_viaora}}
+                                                </div>
+                                                <div class="col-xs-6 col-md-4">
+                                                    Total :<br><input id="total"
+                                                                      onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                                      class="form-control input-sm"
+                                                                      ng-model="datosAguardar.svd_toting"
+                                                                      readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Panel de eliminación cc-->
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h2 class="panel-title">ELIMINACIÓN CC</h2>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-md-4">
+                                                    Orina:<br><input type="number" class="form-control input-sm"
+                                                                     ng-model="datosAguardar.svd_orina" required min="0"
+                                                                     max="9999" step="any">
+                                                </div>
+                                                <div class="col-xs-6 col-md-4">
+                                                    Drenaje:<br> <input type="number" class="form-control input-sm"
+                                                                        ng-model="datosAguardar.svd_drenaj" required
+                                                                        min="0" max="9999" step="any">
+                                                </div>
+                                                <div class="col-xs-6 col-md-4">
+                                                    Otros: <br><input type="number" class="form-control input-sm"
+                                                                      ng-model="datosAguardar.svd_otros" required
+                                                                      min="0" max="9999" step="any">
+                                                </div>
+                                                <div ng-show=false>
+                                                    {{datosAguardar.svd_toteli = datosAguardar.svd_orina + datosAguardar.svd_drenaj + datosAguardar.svd_otros}}
+                                                </div>
+                                                <div class="col-xs-6 col-md-4">
+                                                    Total: <br><input
+                                                        onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+                                                        class="form-control input-sm"
+                                                        ng-model="datosAguardar.svd_toteli" required
+                                                        readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- panel 3-->
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">3 MEDICIONES Y ACTIVIDADES</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-4">
+                                            Aseo: <br>
+                                            <input type="checkbox" checked="checked" ng-model="datosAguardar.svd_aseo"
+                                                   class="ace"> <span class="lbl"></span>
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Baño: <br>
+                                            <input type="checkbox" checked="checked" ng-model="datosAguardar.svd_banio"
+                                                   class="ace"> <span class="lbl"></span>
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Peso Kg : <br><input type="number" class="form-control input-sm"
+                                                                 ng-model="datosAguardar.svd_peso" min="0" max="9999"
+                                                                 step="any">
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Talla: <input type="text" class="form-control input-sm"
+                                                          ng-model="datosAguardar.svd_talla" maxlength="10">
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Dieta administrada: <br>
+                                            <select class="form-control" ng-model="datosAguardar.svd_dieadm"
+                                                    style="height:30PX">
+                                                <option value="">Seleccione</option>
+                                                <option value="LÍQUIDAS - ESTRICTAS">LÍQUIDAS - ESTRICTAS</option>
+                                                <option value="LÍQUIDAS - AMPLIA">LÍQUIDAS - AMPLIA</option>
+                                                <option value="BLANDAS - HIPOGRASA">BLANDAS - HIPOGRASA</option>
+                                                <option value="BLANDAS - INTESTINAL">BLANDAS - INTESTINAL</option>
+                                                <option value="BLANDAS - GÁSTRICA">BLANDAS - GÁSTRICA</option>
+                                                <option value="RESTRINGIDAS - HIPOHIDROCARBO - NADA (DIABÉTICO)">
+                                                    RESTRINGIDAS - HIPOHIDROCARBO - NADA (DIABÉTICO)
+                                                </option>
+                                                <option value="RESTRINGIDAS - HIPOCALÓRICA">RESTRINGIDAS -
+                                                    HIPOCALÓRICA
+                                                </option>
+                                                <option value="RESTRINGIDAS - HIPERPROTÉICA">RESTRINGIDAS -
+                                                    HIPERPROTÉICA
+                                                </option>
+                                                <option value="RESTRINGIDAS - HIPOPROTÉICA">RESTRINGIDAS -
+                                                    HIPOPROTÉICA
+                                                </option>
+                                                <option value="RESTRINGIDAS - HIPOSÓDICA">RESTRINGIDAS - HIPOSÓDICA
+                                                </option>
+                                                <option value="RESTRINGIDAS - SONDA">RESTRINGIDAS - SONDA</option>
+                                                <option value="CONSISTENCIA - LICUADA">CONSISTENCIA - LICUADA</option>
+                                                <option value="CONSISTENCIA - PAPILLA">CONSISTENCIA - PAPILLA</option>
+                                                <option value="DIETA GENERAL">DIETA GENERAL</option>
+                                                <option value="DIETA PARA LA EDAD">DIETA PARA LA EDAD</option>
+                                                <option value="NPO">NPO</option>
+                                            </select required>
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            N° de Comidas: <br><input type="number" class="form-control input-sm"
+                                                                      ng-model="datosAguardar.svd_numcom" min="0"
+                                                                      max="10" step="1">
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            N° de micciones: <br><input type="number" class="form-control input-sm"
+                                                                        ng-model="datosAguardar.svd_numicc" min="0"
+                                                                        max="10" step="1">
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            N° de deposición: <br><input type="number" class="form-control input-sm"
+                                                                         ng-model="datosAguardar.svd_numdep" min="0"
+                                                                         max="10" step="1">
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Actividad Física: <br>
+                                            <select class="form-control" ng-model="datosAguardar.svd_actfis"
+                                                    style="height:30PX">
+                                                <option value="">Seleccione</option>
+                                                <option value="FOWLER">FOWLER</option>
+                                                <option value="SEMIFOWLER">SEMIFOWLER</option>
+                                                <option value="AMBULATORIO">AMBULATORIO</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-6 col-md-4">
+                                            Cambio de Sonda Vesical: <br>
+                                            <input type="checkbox" checked="checked" ng-model="datosAguardar.svd_camson"
+                                                   class="ace"/>
+                                            <span class="lbl"></span>
+                                        </div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Perímetro Abdominal: <br>
+                                            <input type="text" class="form-control input-sm"
+                                                   ng-model="datosAguardar.svd_perabdo" maxlength="10">
+                                            <br></div>
+                                        <div class="col-xs-6 col-md-4">
+                                            Recanalización de vía periférica: <br><input type="text"
+                                                                                         class="form-control input-sm"
+                                                                                         ng-model="datosAguardar.svd_recvia"
+                                                                                         style="text-transform:uppercase;"
+                                                                                         onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                                                         maxlength="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- panel 4-->
+
+                        </div>
+                        <div class="row">
+                            <div class="text-right">
+                                <button ng-disabled="actguarda" ng-show="guar" type="submit"
+                                        class="btn btn-white btn-info btn-round">
+                                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                    Guardar
+                                </button>
+                                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                    <i class="ace-icon fa fa-times red2"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="animate fadeInDown" ng-show="mensaje">
+                            <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                        </div>
+
+                    </form>
+                    <form ng-show="actitempe" ng-submit="guardar()">
+                        <div class="panel-body">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Signos Vitales</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <input type="date" class="form-control" ng-model="datosAguardar.svd_fcha" required>
+
+                                    <div class="row">
+
+                                        <center>
+                                            <div class="col-xs-6 col-md-4">
+                                                Pulso:<br> <input type="number" class="form-control input-sm"
+                                                                  ng-model="datosAguardar.svd_pulos" min="0" max="999"
+                                                                  step="any">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                temperatura:<br> <input type="number" class="form-control input-sm"
+                                                                        ng-model="datosAguardar.svd_temper" min="0"
+                                                                        max="99" step="any">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                F. Respiratoria x min :<br> <input type="number"
+                                                                                   class="form-control input-sm"
+                                                                                   ng-model="datosAguardar.svd_freres"
+                                                                                   min="0" max="9999" step="any">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Presión sistólica: <input type="number" class="form-control input-sm"
+                                                                          ng-model="datosAguardar.svd_presis" min="0"
+                                                                          max="9999" step="any">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Presión Diastólica: <input type="number" class="form-control input-sm"
+                                                                           ng-model="datosAguardar.svd_predia" min="0"
+                                                                           max="9999" step="any">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Saturación de O2: <input type="text" class="form-control input-sm"
+                                                                         ng-model="datosAguardar.svd_satoxi"
+                                                                         maxlength="10">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Peso: <input type="number" class="form-control input-sm"
+                                                             ng-model="datosAguardar.svd_peso" min="0" max="9999"
+                                                             step="any">
+                                            </div>
+
+                                            <div class="col-xs-6 col-md-4">
+                                                Talla: <input type="text" class="form-control input-sm"
+                                                              ng-model="datosAguardar.svd_talla" maxlength="10">
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="text-right">
+                                <button ng-disabled="actguarda" ng-show="guar" type="submit"
+                                        class="btn btn-white btn-info btn-round">
+                                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                    Guardar
+                                </button>
+                                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                    <i class="ace-icon fa fa-times red2"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                            <div class="animate fadeInDown" ng-show="mensaje">
+                                <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TABLA DE REGISTRO -->
+
+
+<div class="row" ng-show="svtotal">
+    <div class="col-sm-2">
+        <select ng-click="ver_daots_sv_gra(opciones)" ng-model="opciones">
+            <option value="0">Signos vitales generales</option>
+            <option value="1">Signos vitales</option>
+        </select>
+    </div>
+    <div class="col-sm-9"><!-- -->
+        <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+               style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </div>
+
+    <div class="col-sm-1">
+        <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal"
+                data-target="#myModal">Nuevo
+        </button>
+
+    </div>
+    <!--<div class="col-sm-2">-->
+    <!--<a ui-sref="condi">-->
+    <!--<button type="button" class="btn btn-white btn-default btn-round" ng-disabled="admi">Condición del paciente</button>-->
+    <!--</a>-->
+
+    <!--</div>-->
+</div>
+<br>
+<div ng-show="svtotal">
+    <div class="table-responsive">
+        <table id="tabla" class="table">
+            <thead>
+            <tr>
+                <th class="width-10-pct, th">
+                    <center>FECHA</center>
+                </th>
+
+                <th class="width-20-pct, th">
+                    <center>PULSO</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>TEMPERATURA</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>F. RESPIRATORIA</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>P. SISTÓLICA</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>P. DIASTÓLICA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>SPO2</center>
+                </th>
+                <th class="width-20-pct, th">
+                    <center>PESO</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>DIETA</center>
+                </th>
+                <th class="width-10-pct, th">
+                    <center>ACTIVIDAD FÍSICA</center>
+                </th>
+                <th class="th">ACCIÓN</th>
+                <th class="th">
+                    <a ui-sref="repote({id:'{{epi.aam_id_pk}}',ruta:'src/sgh/signosvitales/php/reporte_signosvitales.php?c='})">
+                        <buttton class="btn btn-white btn-default btn-round btn-xs">
+                            <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                        </buttton>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="sgv in sigvita | filter:search  | limitTo:item:(pagina * totalpaginas)">
+
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_fecha | date:'dd/MM/yyyy'}} {{sgv.svd_hora.substr(0, 8)}}</center>
+                </td>
+
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_pulso}}</center>
+                </td>
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_tempe}}</center>
+                </td>
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_freres}}</center>
+                </td>
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_presis}}</center>
+                </td>
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_predia}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_satoxi | uppercase}}</center>
+                </td>
+
+                <td class="width-20-pct ">
+                    <center>{{sgv.svd_peso | uppercase}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_dieadm | uppercase}}</center>
+                </td>
+                <td class="width-10-pct ">
+                    <center>{{sgv.svd_actfis | uppercase}}</center>
+                </td>
+                <td colspan="2" align="center">
+
+                    <button type="button" class="btn btn-white btn-default btn-round btn-xs "
+                            ng-click="edita(sgv.svd_id_pk)" data-toggle="modal">
+                        <img src="img/edit.png" height="20" width="20">
+                    </button>
+                    -
+                    <button type="button" class="btn btn-white btn-default btn-round btn-xs"
+                            ng-click="ver(sgv.svd_id_pk)" data-toggle="modal">
+                        <i class="ace-icon fa fa-eye red2" title="VER"/>
+                    </button>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <th class="th">
+
+        <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina=1"><<</button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(0)"><</button>
+            | Page {{pagina}} de {{posicion}} |
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>>
+            </button>
+
+        </center>
+    </th>
+</div>
+
+<div ng-show="svpultem">
+    <div ng-include='"src/sgh/signosvitales/grafico.html"'></div>
+</div>

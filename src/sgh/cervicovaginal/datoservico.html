@@ -1,0 +1,114 @@
+<form>
+          <!--Contenido del formulario-->
+                <div class="table table-responsive"> 
+                  <table class=" table"> 
+                      <tr>
+                        <th colspan="8" class="th">
+                        ANTECEDENTES
+                        </th>
+                      </tr>
+                      <tr>
+                    
+                         <td>
+                           Fecha de ultima menstruación
+                         </td>
+                         <td>
+                         {{datosAguardar.ccv_feulme | date:'dd/MM/yyyy'}}
+                         </td>
+                         <td>
+                           Embarazada
+                         </td>
+                         <td>
+                           <input type="checkbox"  ng-model="datosAguardar.ccv_embara"  class="ace"   disabled >
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           Lactancia 
+                         </td>
+                         <td>
+                           <input type="checkbox" ng-model="datosAguardar.ccv_lactan"   class="ace" disabled >
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           Planificación:
+                         </td>
+                         <td>
+                           <input type="text" ng-model="datosAguardar.ccv_planif" capitalize maxlength="20" class="input-sm" size="10" disabled>
+                         </td>
+                      </tr>
+                 </table>
+
+                 <table class="table">     
+                      <tr>
+                         <td>
+                           Número de partos:
+                         </td>
+                         <td>
+                           <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_numpar"   min="0" max="99" disabled>
+                         </td>
+                         <td>
+                           Número de abortos:
+                         </td>
+                         <td>
+                         <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_numabo" min="0" max="99" step="1" disabled>
+                         </td>
+                          <td>
+                          Edad inicio de relaciones sexuales:
+                          </td>
+                          <td>
+                         <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_inisex" min="0" max="99" step="1" disabled> 
+                         </td>
+                         <td></td><td></td>
+                         </tr>
+                 </table>
+                   
+                 <table class="table">      
+                     <tr>
+                        <td >
+                          Alguna vez le Practicaron: 
+                        </td>
+                        <td>
+                          a) Cauterización cuello uterino
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_cacute"  class="ace"   disabled>
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          b) Conización
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_coniza"  class="ace"  disabled >
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          c) Histerectomía
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_hister"  class="ace"  disabled >
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          d) Radioterapia
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_radiot"  class="ace" disabled  >
+                           <span class="lbl"></span>
+                        </td>
+                    </tr>
+                  </table>
+                  <table class="table">
+                      <tr>
+                          <td>Se ha hecho alguna vez una citología</td>
+                          <td><input type="checkbox" ng-model="datosAguardar.ccv_citolo" class="ace" disabled><span class="lbl" ></span>
+                          </td>
+                          <td>Cuantas:</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_cuatas"   min="0" max="99" disabled></td>
+                          <td>Hace cuanto tiempo la ultima</td>
+                          <td></td>
+                          <td>Año</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_anio"   min="0" max="9999" disabled></td>
+                          <td>Meses</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_meses"   min="0" max="12" disabled></td>
+                      </tr>
+                  </table>
+                
+                </div>
+
+               </form>

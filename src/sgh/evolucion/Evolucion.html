@@ -1,0 +1,173 @@
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-8">
+  <H6>SNS-MSP / HCU-form.005/2008</H6>  
+  </div>
+  <div class="col-xs-4">
+  <h6 class="text-right">EVOLUCIONES Y PRESCRIPCIONES</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}} </h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+           <div class="row">
+               <div class="col-md-6">
+                    <label><b>* Asunto:  </b></label><br>
+                    <select required ng-model="asunto.model" class="form-control">
+                    <option value="">Seleccione</option>
+                    <option ng-repeat="option in asunto.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                   </select>
+                </div>
+                <div class="col-md-6">
+                    <label><b>Fecha: </b></label><br>
+                    <label>{{Fecha | date:'dd-MMMM-yyyy hh:mm:ss'}}</label>
+                </div>
+           </div>
+
+                <label> <b> * Nota de evolución: </b></label>
+                  <br>
+                   <textarea type="text" ng-model="datosAguardar.eyp_evolucion" class = "form-control" capitalize required maxlength="30000">
+                   </textarea>
+
+                   <label> <b> Prescripciones: </b></label>
+                      <br>
+                      <textarea type="text" ng-model="datosAguardar.eyp_prescripciones " class = "form-control" capitalize maxlength="20000">
+                      </textarea>
+
+            <br>
+             <div class="row text-right"  >
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+        </div>
+
+     </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+   <div class="row">
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="" ng-click="nuevafechaa()" >Nuevo
+            </button>
+            </div>
+            <div ng-show="false">
+               <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ></button>
+            </div>
+   </div>
+    <br>
+   
+   <div class="table-responsive">
+      <table id ="tabla" class="table" > 
+          <thead>
+           <tr>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>ASUNTO</center></th>
+              <th class="width-30-pct, th"><center>NOTA DE EVOLUCIÓN</center></th>
+              <th class="width-30-pct, th"><center>PRESCRIPCIONES</center></th>
+              <th class="bt_tab, th">REVISADO</th>
+              <th class="bt_tab, th">APROBADO</th>
+              <th class="bt_tab, th"><center>EDITAR
+              </center></th>
+               <th  class="bt_tab, th"><center>
+                   <a ui-sref="repote({id:'{{evo.eyp_id_pk}}',ruta:'src/sgh/evolucion/php/reporte_evolucion.php?c='})">
+                       <buttton  class="btn btn-white btn-default btn-round btn-xs">
+                           <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                       </buttton>
+                   </a>
+
+               </center></th>
+
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="evo in evolucion | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td  ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="width-20-pct "><center>{{evo.eyp_fechas | date:'dd/MM/yyyy'}} <br> {{evo.eyp_hora.substr(0,8) }}</center></td>
+            	<td  ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="width-20-pct "><center>{{evo.eyp_asunto}}</center></td>
+                <td  ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="width-30-pct ">
+                    <textarea type="text"   ng-model="evo.eyp_nodevu" class = "form-control" capitalize disabled rows="20" style="resize: none; "></textarea>
+                </td>
+
+            	<td ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="width-30-pct ">
+                    <textarea type="text"   ng-model="evo.eyp_prescr " class = "form-control" capitalize disabled  rows="20" style="resize: none; "></textarea>
+                </td>
+
+
+                <td ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="bt_tab">
+                <input ng-model="evo.eyp_estado" ng-disabled="evo.eyp_estado" class="ace ace-switch ace-switch-2" type="checkbox" checked  ng-click="estados(evo.eyp_id_pk)"/>
+                <span class="lbl"></span><font size="1">{{evo.eyp_revisa}}</font>
+                </td>
+                <td ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="bt_tab">
+                    <input ng-model="evo.eyp_estares" ng-disabled="act_voalresidente(evo.eyp_estares)" class="ace ace-switch ace-switch-2" type="checkbox" checked  ng-click="esresident(evo.eyp_id_pk)"/>
+                    <span class="lbl"></span><font size="1">{{evo.eyp_revisaresidente}}</font>
+                </td>
+
+                <td ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="bt_tab">
+                <center>
+                <button type="button"  class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(evo.eyp_id_pk,evo.eyp_estares,evo.eyp_estado,evo.usu_id_fk)" data-toggle="modal">
+                <img src="img/edit.png" height="20" width="20">
+                </button></center>
+               </td>
+                <td ng-style="estado_colores(evo.eyp_estado,evo.eyp_fechas)" class="bt_tab">{{evo.per_nombres |uppercase}} {{evo.per_apellidopaterno |uppercase}} <br>{{evo.pro_codigomsp}}
+                </td>
+            </tr>
+          </tbody>
+  
+      </table>
+   </div>
+   <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   
+</div>
+</div>
+<!--<script>-->
+    <!--autosize(document.querySelectorAll('textarea'));-->
+<!--</script>-->

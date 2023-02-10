@@ -1,0 +1,277 @@
+<br>
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>SNS-MSP/HCU-FORM.010A/2008</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> LABORATORIO CLINICO</h6>
+  </div>
+</div>
+
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">{{titulo}}</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+          <form  >
+          <!--Contenido del formulario-->
+            <div ng-show="nusol">   
+                  <table class="table">
+                    <tr>
+                      <th>Prioridad</th>
+                      <td>
+                        <select ng-click="urgente()" required ng-model="datoslaboratorio.lab_priori" class="form-control">
+                          <option value="">SELECCIONE</option>
+                          <option value="URGENTE" >URGENTE</option>
+                          <option value="RUTINA" >RUTINA</option>
+                          <option value="CONTROL" >CONTROL</option>
+                        </select>  
+                      </td>
+                      <th>Fecha de toma</th>
+                      <td>
+                        <input type="date" required ng-model="datoslaboratorio.lab_fecmu" class="form-control input-sm">
+                      </td>
+                    </tr>
+                  </table>  
+                  <div ng-show="rutina">
+                      <table class=" table" > 
+                          <tr>
+
+                            <th colspan="3" class="th">
+                              <h5>1 HEMATOLOGÍA</h5>
+                            </th>
+                          </tr>
+
+                           <tr ng-repeat="he in hematologia"> 
+
+                                  <th class="bt_tab"></th>
+                                  <td>{{he.exa_descrip}} </td>
+                                  <th> <input type="radio" class="ace" ng-model="datosAguardar[he.exa_descrip]" ng-value="he.exa_id_pk"><span class="lbl"></span> 
+                                  </th>
+                            </tr>
+
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>2 UROANALISIS</h5>
+                            </th>
+                          </tr>
+                              <tr ng-repeat="ur in uroanalisis"> 
+                                  <td class="bt_tab"></td> 
+                                  <td>{{ur.exa_descrip}} </td>
+                                   <th> <input type="radio" class="ace" ng-model="datosAguardar[ur.exa_descrip]" ng-value="ur.exa_id_pk"><span class="lbl"></span>
+                                   </th>
+                              </tr>
+
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>3 COPROLÓGICO</h5>
+                            </th>
+                          </tr>
+                                <tr ng-repeat="co in coprologico"> 
+                                  <td class="bt_tab"></td> 
+                                  <td>{{co.exa_descrip}}</td>
+                                   <th> <input type="radio" class="ace" ng-model="datosAguardar[co.exa_descrip]" ng-value="co.exa_id_pk"><span class="lbl"></span>
+                                   </th>
+                              </tr>
+
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>4 QUÍMICA SANGUINEA</h5>
+                            </th>
+                          </tr>
+
+                                <tr ng-repeat="qs in quimica"> 
+                                  <td class="bt_tab"></td> 
+                                  <td>{{qs.exa_descrip}} </td>
+                                   <th> <input type="radio" class="ace" ng-model="datosAguardar[qs.exa_descrip]" ng-value="qs.exa_id_pk"><span class="lbl"></span>
+                                   </th>
+                              </tr>
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>5 SEROLOGÍA</h5>
+                            </th>
+                          </tr>
+
+                                <tr ng-repeat="se in serologia"> 
+                                  <td class="bt_tab"></td> 
+                                  <td>{{se.exa_descrip}} </td>
+                                  <th> <input type="radio" class="ace" ng-model="datosAguardar[se.exa_descrip]" ng-value="se.exa_id_pk"><span class="lbl"></span>
+                                  </th>
+                              </tr>
+                              
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>6 BACTERIOLOGÍA</h5>
+                            </th>
+                          </tr>
+
+                                <tr ng-repeat="bac in bacterio"> 
+                                  <td class="bt_tab"></td> 
+                                  <td>{{bac.exa_descrip}} </td>
+                                   <th> <input type="radio" class="ace" ng-model="datosAguardar[bac.exa_descrip]" ng-value="bac.exa_id_pk"><span class="lbl"></span>
+                                   </th>
+                              </tr>
+                      </table>
+                  </div>
+                  <div ng-show="urge">
+                      <table class="table" >
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>SANGRE :</h5>
+                            </th>
+                          </tr>
+                          <tr ng-repeat="sa in sangre"> 
+                              <th class="bt_tab"></th>
+                              <td>{{sa.exa_descrip}} </td>
+                              <th> <input type="radio" class="ace" ng-model="datosAguardar[sa.exa_descrip]" ng-value="sa.exa_id_pk"><span class="lbl"></span> 
+                              </th>
+                          </tr>
+                          <tr>
+                            <th colspan="3" class="th">
+                              <h5>ORINA :</h5>
+                            </th>
+                          </tr>
+                          <tr ng-repeat="ori in orina"> 
+                              <th class="bt_tab"></th>
+                              <td>{{ori.exa_descrip}} </td>
+                              <th> <input type="radio" class="ace" ng-model="datosAguardar[ori.exa_descrip]" ng-value="ori.exa_id_pk"><span class="lbl"></span> 
+                              </th>
+                          </tr>
+                          <th colspan="3" class="th">
+                              <h5>HECES :</h5>
+                            </th>
+                          </tr>
+                          <tr ng-repeat="ese in heces"> 
+                              <th class="bt_tab"></th>
+                              <td>{{ese.exa_descrip}} </td>
+                              <th> <input type="radio" class="ace" ng-model="datosAguardar[ese.exa_descrip]" ng-value="ese.exa_id_pk"><span class="lbl"></span> 
+                              </th>
+                          </tr>
+                          <th colspan="3" class="th">
+                              <h5>ESTUDIO LÍQUIDOS DE :</h5>
+                            </th>
+                          </tr>
+                          <tr ng-repeat="esli in estudioliquido"> 
+                              <th class="bt_tab"></th>
+                              <td>{{esli.exa_descrip}} </td>
+                              <th> <input type="radio" class="ace" ng-model="datosAguardar[esli.exa_descrip]" ng-value="esli.exa_id_pk"><span class="lbl"></span> 
+                              </th>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                              <b>NOTA:</b>
+                              No se considerará URGENTE si se solicitan más de SEIS determinaciones y en estos casos el pedido, pasará a rutina.
+                            </td>
+                          </tr>
+                      </table>
+                  </div>
+            </div>
+            <div ng-show="vsla" ng-include='"src/sgh/laboratorio/datoslabora.html"'></div>
+         
+
+             <div class="row text-right">
+                <button ng-disabled="actguarda"  ng-show="nusol" type="submit" class="btn btn-white btn-info btn-round" ng-click="guardar()">
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                      </button>
+                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                  <i class="ace-icon fa fa-times red2"></i>Cancelar
+                </button> 
+                </div>
+       </form>
+       <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>CÓDIGO</center></th>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>PRIORIDAD</center></th>
+              <th class="bt_tab, th"><center>VER</center></th>
+              <th class="bt_tab, th"><center>RESULTADO</center></th>
+                        
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="lab in laboratorio | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                <td class="bt_tab"><center>{{lab.lab_id_pk}}</center></td>
+            	<td class="width-20-pct "><center>{{lab.lab_fecmu | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{lab.lab_priori}}</center></td>
+              <td class="bt_tab">
+             <center>
+              <button class="btn btn-white btn-default btn-round btn-xs" ng-click="labodatos(lab.lab_id_pk)" data-toggle="modal" data-target="#myModal"><i class="ace-icon fa  fa-eye red2"/></button>
+                  </center>
+             </td>
+             <td class="bt_tab">
+             <center>
+              <a href="/archivos/sgh/laboratorio/{{lab.lab_resut}}" target="_blank">
+                  <button ng-disabled="activa_desactiva(lab.lab_resut)" class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa fa-folder-open red2"/></button>
+              </a>
+             </center>
+              </td>
+            </tr>
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+
+

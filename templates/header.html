@@ -1,0 +1,64 @@
+<ul class="nav nav-list">
+    <li class="">
+        <a href="../sgh/#!/modules/">
+            <i class="menu-icon fa fa-home"></i>
+            <span class="menu-text"> Menú principal </span>
+        </a>
+        <b class="arrow"></b>
+    </li>
+    <li ng-show="menuheader" class="">
+        <a ui-sref="inicio">
+            <i class="menu-icon glyphicon glyphicon-user"></i>
+            <span class="menu-text"> Inicio </span>
+        </a>
+        <b class="arrow"></b>
+    </li>
+
+    <li class="nav nav-list" ng-repeat="titu in menu_cargaras">
+        <a href="#" class="dropdown-toggle">
+            <i class="{{titu.mnu_logo}}"></i>
+            {{titu.mnu_descripcion}}
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li ng-repeat="subme in menu_sub | filter:{mnu_codigo:titu.mnu_id_pk}" ui-sref-active="active">
+                <a ui-sref="{{subme.mnu_state}}" ng-if="subme.mnu_tipo==='S'">
+                    {{subme.mnu_descripcion}}
+                </a>
+
+                <a href="{{subme.mnu_state}}" ng-if="subme.mnu_tipo==='H'" target="_blank">
+                     {{subme.mnu_descripcion}}
+                </a>
+
+            </li>
+        </ul>
+    </li>
+    <!--<li ng-show="menuheader" class="">-->
+        <!--<a href="#" class="dropdown-toggle">-->
+            <!--<i class="menu-icon glyphicon glyphicon-plus"></i>-->
+            <!--Farmacia-->
+            <!--<b class="arrow fa fa-angle-down"></b>-->
+        <!--</a>-->
+        <!--<b class="arrow"></b>-->
+
+        <!--<ul class="submenu">-->
+            <!--<li ui-sref-active="active">-->
+                <!--<a href="../bodega.farmacia/SBF/dashboard.html#/receta1dia"  target="_blank">-->
+                    <!--Recetas e insumos médicos-->
+                <!--</a>-->
+            <!--</li>-->
+
+            <!--<li ui-sref-active="active">-->
+                <!--<a href="../bodega.farmacia/SBF/dashboard.html#/receta2_5dias" target="_blank">-->
+                    <!--Alta-->
+                <!--</a>-->
+
+            <!--</li>            <li ui-sref-active="active">-->
+                <!--<a href="../bodega.farmacia/SBF/dashboard.html#/recetaedita" target="_blank">-->
+                    <!--Editar recetas-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</li>-->
+</ul>

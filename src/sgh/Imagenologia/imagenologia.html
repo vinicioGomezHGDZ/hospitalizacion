@@ -1,0 +1,498 @@
+
+<br>
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>SNS-MSP/HCU-FORM.012A/2008</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> IMAGENOLÓGIA - SOLICICTUS</h6>
+  </div>
+</div>
+
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">Nueva Solicitud Imagenologia</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+          <form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+            <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">1 ESTUDIO SOLICITADO</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <label>PRIORIDAD</label>
+                              <select required ng-model="datosAguardar.ima_priori">
+                                <option value="">SELECCIONE</option>
+                                <option value="URGENTE">URGENTE</option>
+                                <option value="RUTINA">RUTINA</option>
+                                <option value="CONTROL">CONTROL</option>
+                              </select>
+                           
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                        
+                              <label>FECHA DE TOMA : 
+                               <input type="date" required ng-model="datosAguardar.ima_fecmu" class="form-control input-sm"></label>
+                          <br>
+                      <div class="table table-responsive">  
+                           
+                        <table class="table">
+                          <tr>
+                            <td>
+                              <label><b>Rapidografía</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_radior" class="ace" checked> 
+                              <span class="lbl"></span>     
+                            </td>
+                            <td>                      
+                              <label><b>Tomograía</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_tomogr" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td> 
+                              <label><b>Resonancia:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_resona" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                             <td>
+                              <label><b>Ecografia:</b> </label>
+                            </td> 
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_ecogra" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                          </tr>
+                          <tr> 
+                           
+                           
+                            <td>
+                              <label><b>Procedimiento:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_preced" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Mamografia:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_mamoga" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Otros:</b> </label>
+                            </td>
+                            <td> 
+                              <input type="checkbox" ng-model="datosAguardar.ima_otros" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+
+                        </table> 
+                      </div>    
+                        <label><b><DATA>DESCRIPCIÓN</DATA></b></label>
+                        <textarea type="text"  ng-model="datosAguardar.ima_descri" class = "form-control" capitalize required   maxlength="1000"> </textarea> 
+                        <br>
+                      <div class="table table-responsive">  
+                         <table class="table">
+                            <tr>
+                                <td>
+                                  <label> <b>Puede movilizarse</b></label>
+                                </td>
+                                <td> 
+                                  <input type="checkbox" ng-model="datosAguardar.ima_puemov" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td> 
+                                <td>
+                                  <label> <b>Puede retirase vendass, apósitos o yesos</b></label>
+                                </td>
+                                <td>  
+                                  <input type="checkbox" ng-model="datosAguardar.ima_pureve" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                                <td>
+                                  <label> <b>El medico estará presente en el examen</b></label>
+                                </td>
+                                <td>  
+                                  <input type="checkbox" ng-model="datosAguardar.ima_meprex" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                                <td>
+                                 <label> <b>Toma de radiografía en la cama </b></label>
+                                </td>
+                                <td>
+                                  <input type="checkbox" ng-model="datosAguardar.ima_toraca" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                            </tr> 
+                         </table>
+                      </div>    
+                    </div>
+               </div> 
+
+
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">2 MOTIVO DE SOLICITUD</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <h9 > Registra las razones para solicitar aclaración de diagnostico </h9>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <textarea type="text"  ng-model="datosAguardar.ima_motsol" class = "form-control" capitalize required   maxlength="3000"> </textarea> 
+                    </div>
+               </div>         
+
+               <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">3 RESUMEN CLÍNICO</h4>
+                          </div>
+                          
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <textarea type="text"  ng-model="datosAguardar.ima_rescli" class = "form-control" capitalize required   maxlength="3000"> </textarea> 
+                    </div>
+               </div>   
+
+              <div class="panel panel-info">
+                        <div class="panel-heading">
+                          <div class="row">  
+                            <div class="col-sm-3">
+                              <h3 class="panel-title">4 DIAGNOSTICO</h3>
+                            </div>
+                            <div class="col-sm-9 row text-right">
+                             <b> CIE:</b> Clasificación Internacional de enfermedades 
+                             <b> PRE:</b> Presuntivo
+                             <b> DEF:</b> Definitivo
+                            </div>
+                          </div>
+                        </div>
+
+                          <div class="panel-body">
+                             <div class="table table-responsive">
+                                 <table class="table">  
+                                    <tr>
+                                      <th class="bt_tab, th"><h9>#</h9></th>
+                                      <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                                      <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                                      <th class="bt_tab, th"></th>
+                                      <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                                      <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                                   
+                                    </tr>
+                                    <tr>
+                                        <th class="bt_tab">1</th>
+                                        <th class="width-30-pct">
+                                        <b>{{detalle[0].c10_nombre}}</b>
+                                        </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo" capitalize  maxlength="5" required>
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo,1)">
+                                           </div>                      
+                                           </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        </div>  
+                                    </tr>
+                                    <tr ng-show="cie102">
+                                        <th class="bt_tab">2</th>
+                                        <th class="width-30-pct">
+                                        <b>  {{detalle2[0].c10_nombre}}</b>
+                                       </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo2" capitalize   maxlength="5" >
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo2,2)">
+                                           </div>                      
+                                           </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef2" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef2" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+
+                                        
+                                        </div>  
+                                    </tr>
+                                    <tr ng-show="cie103">
+                                        <th class="bt_tab">3</th>
+                                        <th class="width-30-pct">
+                                        <b>  {{detalle3[0].c10_nombre}}</b>
+                                       </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo3" capitalize  maxlength="5" >
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo3,3)">
+                                           </div>                      
+                                           
+                                          </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef3" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef3" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        
+                                        </div>  
+                                    </tr>
+                                    <tr ng-show="cie104">
+                                        <th class="bt_tab">4</th>
+                                        <th class="width-30-pct">
+                                        <b>  {{detalle4[0].c10_nombre}}</b>
+                                       </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo4" capitalize onkeyup="javascript:this.value=this.value.toUpperCase();"  maxlength="5" >
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo4,4)">
+                                           </div>                      
+                                          
+                                          </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef4" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef4" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        
+                                        </div>  
+                                    </tr>
+                                    <tr ng-show="cie105">
+                                        <th class="bt_tab">5</th>
+                                        <th class="width-30-pct">
+                                        <b>  {{detalle5[0].c10_nombre}}</b>
+                                       </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo5" capitalize onkeyup="javascript:this.value=this.value.toUpperCase();"  maxlength="5" >
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo5,5)">
+                                           </div>                      
+                                           
+                                          </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef5" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef5" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        
+                                    </tr>
+                                    <tr ng-show="cie106">
+                                        <th class="bt_tab">6</th>
+                                        <th class="width-30-pct">
+                                        <b>  {{detalle6[0].c10_nombre}}</b>
+                                       </th>
+                                        <th class="width-20-pct">
+                                           <input type="text" class="form-control input-sm"  ng-model="codigo6" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"  maxlength="5" >
+                                           <th class="bt_tab">
+                                           <div>
+                                           <img class="puntero" src="img/busca.png" height="20" width="20" ng-click="cie10(codigo6,6)">
+                                           </div>                      
+                                          
+                                          </th>
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="diagnostico.predef6" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="diagnostico.predef6" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        
+                                        </div>  
+                                    </tr>
+                                 
+                                 </table>
+                              
+                              </div>
+                          </div>
+                        </div>
+
+              <br>
+             <div class="row text-right">
+                <button type="submit" class="btn btn-white btn-info btn-round" >
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue" ></i>Guardar
+                      </button>
+
+                 <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                 <i class="ace-icon fa fa-times red2"></i>Cancelar
+                   </button>
+                </div>
+       </form>
+        
+         <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="width-20-pct, th"><center>F. toma muestra</center></th>
+              <th class="width-20-pct, th"><center>Prioridad</center></th>
+              <th class="width-20-pct, th"><center>Motivo de solicitud</center></th>
+              <th class="width-20-pct, th"><center>Resumen Clicico</center></th>  
+              <th class="bt_tab, th">Ver</th> 
+              <th class="bt_tab, th">Resultado</th> 
+                      
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="imag in imagenologia | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+            	<td class="width-20-pct "><center>{{imag.ima_fecmu | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{imag.ima_priori }}</center></td>
+              <td class="width-20-pct "><center>{{imag.ima_motsol}} </center></td>
+              <td class="width-20-pct "><center>{{imag.ima_rescli}} </center></td>
+
+              <td class="bt_tab">
+                <button class="btn btn-white btn-default btn-round btn-xs" ng-click="image(imag.ima_id_pk)">
+                 <i class="ace-icon fa  fa-eye red2"/>
+                </button>
+              </td>
+               <td class="bt_tab">
+              <center>
+               <a href="src/sgh/imagenologia/Archivos/{{imag.ima_result}}" target="_blank"> <button  class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa fa-folder-open red2"/></button></a>
+              </center>
+              </td>  
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>
+
+<!--inicio  mostrar datos-->
+<div ng-show="datos">
+  <button class="form-control" ng-click="regreesar()">Retroceder</button><br> 
+
+  <div ng-include='"src/sgh/imagenologia/datosimagen.html"'></div>
+
+</div>

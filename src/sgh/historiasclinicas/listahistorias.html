@@ -1,0 +1,437 @@
+<script type="text/javascript">
+
+    jQuery(function($) {
+
+
+        $('#id-input-file-3').ace_file_input({
+            style:'well',
+            btn_choose:'Haga clic para elegir',
+            btn_change:null,
+            no_icon:'ace-icon fa fa-cloud-upload',
+            droppable:true,
+            thumbnail:'small'//large | fit
+
+            ,
+
+        }).on('change', function(){
+            //console.log($(this).data('ace_input_files'));
+            //console.log($(this).data('ace_input_method'));
+        });
+    });
+</script>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+       
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Reporte</h4>
+      </div>
+
+      <div class="modal-body">
+        <!--reporte-->
+		  <div ng-show="ver_reporte">
+          	<div ng-include='"src/sgh/censo_dia/reportes.php"'></div>
+          </div>
+		  <!--anexo adicional sube -->
+		<div ng-show="ver_anexo">
+			<form ng-submit="guardar()">
+				<input type="file" id="id-input-file-3" uploader-model="file" class="archivo" required />
+
+				<br>
+
+				<br>
+				<div class="row text-right"  >
+					<button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round"><i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+					</button>
+					<button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+						<i class="ace-icon fa fa-times red2"></i>Cancelar
+					</button>
+				</div>
+			</form>
+		</div>
+
+      </div>
+     </div>
+	</div>
+  </div>
+  </div>
+
+<!--listar historia clinicas-->
+<h4>Reportes de  Historias clínicas</h4>
+<div ng-show="lis_hist" class="panel panel-default ">
+    <div class="panel-heading">
+    	
+       	 <div><h3 class="panel-title"><center>PACIENTES</center></h3> </div>
+
+    </div>
+            
+      <div class="panel-body">
+         <div class="table-responsive">
+        	<table class="table ">
+				  <tr>
+						<input type="text" class="form-control" placeholder="Buscar " ng-model="search" CAPITALIZE>
+				  </tr>
+				  <tr>
+					  <th> <center> C.I / Pasaporte</center></th>
+					  <th> <center> PACIENTE </center> </th>
+					  <th> <center> UBICACIÓN </center> </th>
+					  <th> <center> SELECCION DE PACIENTE </center>  </th>
+					 </tr>
+
+				  <tr ng-repeat="pa in historia | filter:search| limitTo: (pagina4 * totalpaginas) | limitTo: item ">
+					<td><center> {{pa.per_numeroidentificacion}} </center></td>
+					<td><center> {{pa.persona}} </center></td>
+					<td><center> {{pa.hce_observacion}} </center></td>
+					<td><center> <button class="" ng-click="verhistoria(pa.hce_id_pk)"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+				  </tr>
+				  	<tr>
+
+				  		<th class="" colspan="4">
+  				 		 <center>
+			            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina4=1"><<</button>             
+			            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas4(0)"><</button>  
+			                       | Page {{pagina4}} de {{posicion4}} |      
+			            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas4(1)">></button>
+			            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina4 = posicion4">>></button>
+
+           			 </center>
+   					 </th>   
+				  </tr>
+
+		  </table>
+		 </div>
+      </div>
+</div>
+<!--listar périodos de hospitalizacion-->
+<div class="table-responsive" ng-show="periodo">
+	<button  class="form-control" ng-click="atras()">Cerrar</button> <hr>
+	<table class="table ">
+		<tr>
+			<input type="text" class="form-control" placeholder="Buscar " ng-model="search2" CAPITALIZE>
+		</tr>
+
+			<th colspan="5" style="text-align: center">
+				Reporte General =
+			<td><center> <button class="" ng-click="verlistareportes_general()"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+
+			</th>
+		</tr>
+		<tr>
+			<th class="bt_tab, th"><center>N#</center></th>
+			<th class="th" colspan="2"><center>Periodos de hospitalización</center></th>
+			<th class="th"><center>historia clínica</center></th>
+			<th class="th"><center>Anexos</center></th>
+			<th class="th"><center>Consentimiento Informado</center></th>
+		</tr>
+		<tr ng-repeat="adm in admision | filter:search2 | limitTo: (pagina * totalpaginas) | limitTo: item">
+
+			<td class="bt_tab"><center>{{adm.Num}}</center></td>
+			<td class=""><center>Fecha ingreso : {{adm.adm_fechaingreso }} </center></td>
+			<td class=""><center>fecha egreso : {{adm.adm_fechadealta}}</center></td>
+			<td><center> <button class="" ng-click="verlistareportes(adm.adm_fechaingreso,adm.adm_fechadealta)"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+			<td><center> <button class="" ng-click="veranexos(adm.adm_fechaingreso,adm.adm_fechadealta)"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+			<td><center> <button class="" ng-click="verconce(adm.adm_fechaingreso,adm.adm_fechadealta)"> <i class="ace-icon fa  fa-eye red2" title="VER"/> </button> </center> </td>
+		</tr>
+		<tr>
+			<th class="th" colspan="6">
+
+				<center>
+					<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+					<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>
+					| Page {{pagina}} de {{posicion}} |
+					<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+					<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+				</center>
+			</th>
+		</tr>
+	</table>
+
+
+
+
+</div>
+<!--visualizar reportes-->
+<div ng-show="lis_menu" class="panel panel-default ">
+    <button  class="form-control" ng-click="atras2()">Cerrar</button> <hr>
+	<div class="panel-heading">
+    	
+       	 <div><h3 class="panel-title"><center>HISTORIAS CLÍNICAS {{fe_ingreso}}  - {{fe_alta}}</center></h3> </div>
+    </div>
+            
+      <div class="panel-body">
+         <div class="table-responsive">
+        <table width="100%">
+			<tr>
+				<td>
+
+          <table class="table">
+			  <tr ng-show="general_general">
+				  <td align="center"><b>Historia Clínica General</b></td>
+				  <td align="center">
+					  <img class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_general.php?h=')">
+				  </td>
+			  </tr>
+			<tr>
+				<td align="center"><b>Formularios</b></td>
+				<td align="center"><b>Exportar</b></td>
+			</tr>
+			  <tr><td>Admisión 	de paciente</td><td align="center">
+				  <img class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_admision.php?h=')">
+			  </td></tr>
+
+			 <tr><td>Signos vitales </td><td align="center">
+					 <img class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_signosvitales.php?h=')">
+			 </td></tr>
+			 <tr><td>Evoluciones y prescripciones </td>
+				 <td align="center">
+					 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal"  ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_evolucion.php?h=')">
+			 	</td>
+			 </tr>
+			 <tr><td>Examen físico (anamnesis) </td>
+				 <td>
+					 <center>
+					 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_anamnesis.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Atención al adulto mayor</td>
+				 <td align="center">
+					 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_adulto.php?h=')">
+				 </td>
+			 </tr>
+			 <tr><td>Escala geriátrica</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_escalageriatrica.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Administración de medicamentos</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_kardex.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Control de ingesta y eliminación</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_ingesta.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Control de glicemia e insulina</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_glicemia.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Interconsultas</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_intercons.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			<!--<tr><td>Tratamiento de medicina física y rehabilitación </td><td></td></tr>	-->
+			 <tr><td>Epicrisis</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_epicrisis.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			 <tr><td>Formulario de referencia y contra referencias </td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_referencia.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+
+			 <tr><td>Información al paciente</td>
+				 <td>
+					 <center>
+						 <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/repor_informacion.php?h=')">
+					 </center>
+				 </td>
+			 </tr>
+			  </tr>
+			  <tr><td> Lista de problemas	</td>
+			  <td>
+				  <center>
+					  <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_listadeproblemas.php?h=')">
+				  </center>
+			  </td>
+		  </tr>
+			  <tr><td> Score Downes</td>
+			  <td>
+				  <center>
+					  <img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_scoredownes.php?h=')">
+				  </center>
+			  </td>
+		  </tr>
+		  </table>
+		  </td>
+		  		<td valign="top">
+		  		<table class="table">
+					<tr>
+						<td align="center"><b>Por</b></td>
+						<td align="center"><b>Exportar</b></td>
+					</tr>
+					<tr><td> Conciliación de medicamentos</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_reconciliacionmedicamento.php?h=')">
+							</center>
+						</td>
+					</tr>
+					<tr><td> Notificación de eventos adversos </td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/repor_eventos_Adversos.php?h=')">
+							</center>
+						</td>
+					</tr>
+					<tr><td> Transferencia de pacientes en puntos de transición</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_transferencia.php?h=')">
+							</center>
+						</td>
+					</tr>
+					<tr><td> Escala clínica de Wells</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_wells.php?h=')">
+							</center>
+						</td>
+					</tr>
+					<tr><td>Escala de braden</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_Brander.php?h=')">
+							</center>
+						</td>
+					</tr>
+					<tr><td> Escala de Downton	</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_dawton.php?h=')">
+							</center>
+						</td>
+
+					<tr>	<tr><td>Prevención de caídas	</td>
+						<td>
+							<center>
+								<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_prevencioncaidas.php?h=')">
+							</center>
+						</td>
+
+					<tr>
+						<td><b>Solicitudes</b></td>
+						<td align="center"><b><center>
+							<img  class="puntero" src="../../../hospitalizacion/img/pdfico.png" width="30" height="30" data-toggle="modal" data-target="#myModal" ng-click="accion_reporte('src/sgh/historiasclinicas/'+phpop+'/reporte_examenes.php?h=')">
+						</center></b></td>
+					</tr>
+				</table>
+			</td>
+		    </tr>
+		</table>
+		 </div>
+	  </div>
+</div>
+<!--listar reportes de anexos-->
+<div ng-show="anexo">
+	<button  class="form-control" ng-click="atras2()">Cerrar</button> <hr>
+	<div class="table-responsive">
+		<table id ="tabla" class="table" >
+			<thead>
+			<tr>
+				<td colspan="2">
+					<input type="text" class="form-control" placeholder="Buscar " ng-model="search3" CAPITALIZE>
+
+				</td>
+				<td>
+					<center>
+						<button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-click="nuevo()">Nuevo</button>
+					</center>
+					</td>
+
+			</tr>
+			<tr>
+				<th class="width-10-pct, th"><center>FECHA</center></th>
+				<th class="width-20-pct, th"><center>NOMBRE</center></th>
+				<th class="width-20-pct, th"><center>VER</center></th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr ng-repeat="con in Concentimiento | filter:search3 | limitTo:item:(pagina2 * totalpaginas)">
+				<td class="width-10-pct "><CENTER>{{con.fecha |date:'dd/MM/yyyy'}}</CENTER></td>
+				<td class="width-20-pct "><CENTER>{{con.archivo}}</CENTER></td>
+				<td class="width-20-pct" >
+					<center><a href="/sgh_archivos/sgh/anexos/{{con.archivo}}" target="_blank"> <i class="ace-icon fa  fa-eye red2"/></a></center>
+				</td>
+			</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<th class="th">
+		<center>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina2=1"><<</button>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas2(0)"><</button>
+			| Page {{pagina2}} de {{posicion2}} |
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas2(1)">></button>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina2 = posicion">>></button>
+
+		</center>
+	</th>
+</div>
+</div>
+<!--listar tabla de consentimientos informados-->
+<div ng-show="ver_conce">
+	<button  class="form-control" ng-click="atras2()">Cerrar</button> <hr>
+	<div class="table-responsive">
+		<table class="table" >
+			<thead>
+			<tr>
+			<tr>
+				<input type="text" class="form-control" placeholder="Buscar " ng-model="search4" CAPITALIZE>
+			</tr>
+				<th class="width-10-pct, th"><center>FECHA</center></th>
+				<th class="width-20-pct, th"><center>NOMBRE</center></th>
+				<TH class="width-20-pct, th"><center>VER</center></TH>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr ng-repeat="con in Concentimiento | filter:search4 | limitTo:item:(pagina3 * totalpaginas)">
+				<td class="width-10-pct "><CENTER>{{con.aer_fecha |date:'dd/MM/yyyy'}}</CENTER></td>
+				<td class="width-20-pct "><CENTER>{{con.aer_archi}}</CENTER></td>
+				<td class="width-20-pct" >
+					<center><a href="/archivos/sgh/concentimiento/{{con.aer_archi}}" target="_blank"> <i class="ace-icon fa  fa-eye red2"/></a></center>
+				</td>
+			</tr>
+			</tbody>
+
+		</table>
+	</div>
+	<th class="th">
+		<center>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas3(0)"><</button>
+			| Page {{pagina3}} de {{posicion3}} |
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas3(1)">></button>
+			<button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+		</center>
+	</th>
+</div>
+</div>

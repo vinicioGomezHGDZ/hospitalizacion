@@ -1,0 +1,155 @@
+<div class="row">
+    <div class="col-xs-8">
+        <H6>M.S.P - S.I Form. 554</H6>
+    </div>
+    <div class="col-xs-4">
+        <h6 class="text-right"> Parte diario de la condición del paciente</h6>
+    </div>
+</div>
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+<hr>
+<!--NUEVO REGISTRO -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Nuevo Registro
+            </div>
+
+            <div class="modal-body ">
+
+                <div ng-model="datosAguardar">
+                    <div class="row" ng-show="tiposignos">
+                        <center>
+                            <button  type="button" class="btn btn-white btn-default btn-round" ng-click="signosvitales()">
+                                <i class="ace-icon fa  fa-headphones bigger-120 blue"></i>
+                                Signos vitales General </button>
+                            <button  type="button" class="btn btn-white btn-default btn-round" ng-click="temperatura()">
+                                <i class="ace-icon glyphicon glyphicon-plus bigger-120 blue"></i>Signos vitales</button>
+                        </center>
+                    </div>
+
+                    <form  ng-submit="guardar()">
+
+                                 <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">CONDICIÓN DEL PACIENTE</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div>
+                                            <div class="col-xs-6 col-md-4">
+                                                *Condición del paciente: <br>
+                                                <select required ng-model="condicion.model" style="height:30PX" class="form-control">
+                                                    <option value="">Seleccione</option>
+                                                    <option ng-repeat="con in condicion.condi" value="{{con.id}}">{{con.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Fecha probable alta:
+                                                <br>
+                                                <input type="date" class="form-control input-sm" name="bday" ng-model="datosAguardar.cdp_fpalta"  max="{{Fecha | date:'yyyy-MM-dd'}}">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Fecha de operación:<br>
+                                                <input type="date" class="form-control input-sm"  ng-model="datosAguardar.cdp_fopera" max="{{Fecha | date:'yyyy-MM-dd'}}">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Fue operado el: <br><input type="date" class="form-control input-sm"  ng-model="datosAguardar.cdp_fuoper" max="{{Fecha | date:'yyyy-MM-dd'}}">
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                Médico tratante:<br>
+                                                <input type="text" class="form-control input-sm"  ng-model="datosAguardar.cdp_id_med" capitalize  maxlength="29">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                          <div class="row">
+                            <div class="text-right">
+                                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round">
+                                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                    Guardar
+                                </button>
+                                <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                                    <i class="ace-icon fa fa-times red2"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="animate fadeInDown"  ng-show="mensaje">
+                            <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                        </div>
+
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    <div class="panel-body">
+    <div class="row">
+       <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search">
+       </div>
+                <div class="col-sm-1">
+                    <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="">Nuevo</button>
+                </div>
+        </div>
+    </div><br>
+
+	<div class="table-responsive">
+      <table  id="tabla" class="table table-responsive" >
+          <thead>
+           <tr>
+              <th class="th"><center>SALA</center></th>
+              <th class="th"><center>CAMA</center></th>
+              <th class="th"><center>FECHA</center></th>
+              <th class="th"><center>CONDICIÓN</center></th>
+              <th class="th"><center>FECHA PROBABLE ALTA</center></th>
+              <th class="th"><center>FECHA DE OPERACIÓN</center></th>
+              <th class="th"><center>FUE OPERADO EL</center></th>
+              <th class="th"><center>MÉDICO TRATANTE</center></th>
+            </tr>
+           </thead>
+           <tbody>
+            <!--| limitTo: posicion | limitTo: item -->
+            <tr ng-repeat="con in condi | filter:search  | limitTo: (pagina * totalpaginas) | limitTo: item " >
+
+            	<td><center>{{con.tca_descripcion}}</center></td>
+            	<td><center>{{con.cam_codigo}}</center></td>
+            	<td><center>{{con.cdp_fecha | date:'dd/MM/yyyy'}}</center></td>
+            	<td><center>{{con.cdp_condic | uppercase}}</center></td>
+             	<td><center>{{con.cdp_fpalta}}</center></td>
+             	<td><center>{{con.cdp_fopera}}</center></td>
+             	<td><center>{{con.cdp_fuoper}}</center></td>
+             	<td><center>{{con.cdp_id_med | uppercase}}</center></td>
+            </tr>
+       </tbody>
+    </table>
+       <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+      </center>
+      <hr>  
+      <!--<center>  -->
+      <!--<a ui-sref="sigvit"><button class="form-control">Retroceder</button></a></center>-->
+</div>
+</div>
+
+ 

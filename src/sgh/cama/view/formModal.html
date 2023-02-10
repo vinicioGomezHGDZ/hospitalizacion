@@ -1,0 +1,83 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="userForm" ng-submit="submitForm()">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{tituloForm}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row" ng-hide="nuevo">
+                        <label class="col-xs-2 col-form-label">ID</label>
+                        <div class="col-xs-10">
+                            <input readonly="" class="form-control" type="text" ng-model="camaData.cam_id_pk">
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-init="cargarDatosTipoCamaServicio()">
+                        <label  class="col-xs-2 col-form-label">Servicio</label>
+                        <div class="col-xs-10">
+                            <select name="selectTipoServ" class="form-control"
+                                    ng-model="camaData.tca_piso_fk"
+                                    ng-options="tcServ.tca_id_pk as tcServ.tca_descripcion for tcServ in tipoCamaServ | filter:{tca_codigoprincipal:1}:true"
+                                    required>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-init="cargarDatosTipoCamaPiso()">
+                        <label  class="col-xs-2 col-form-label">Piso</label>
+                        <div class="col-xs-10">
+                            <select name="selectTipoServ" class="form-control"
+                                    ng-model="camaData.tca_habi_fk"
+                                    ng-options="tcServ.tca_id_pk as tcServ.tca_descripcion for tcServ in tipoCamaServ | filter:{tca_codigoprincipal:2}"
+                                    required>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-init="cargarDatosTipoCamaHabitacion()">
+                        <label  class="col-xs-2 col-form-label">Habitación</label>
+                        <div class="col-xs-10">
+                            <select name="selectTipoServ" class="form-control"
+                                    ng-model="camaData.tca_serv_fk"
+                                    ng-options="tcServ.tca_id_pk as tcServ.tca_descripcion for tcServ in tipoCamaServ | filter:{tca_codigoprincipal:3}"
+                                    required>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-xs-2 col-form-label">Código</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="number" placeholder="Ingrese código" ng-model="camaData.cam_codigo" required>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label class="col-xs-2 col-form-label">Descripción</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" id="desc" placeholder="Ingrese la descripcion" ng-model="camaData.cam_descripcion" capitalize>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-xs-2 col-form-label">Visible</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="checkbox" ng-model="camaData.cam_visible" ng-init="camaData.cam_visible=true">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="alert col-md-10 col-md-offset-1" role="alert" ng-class="tipoAlerta" ng-show="estadoAlertaModal">
+                        <span class="glyphicon" aria-hidden="true" ng-class="iconoAlerta"></span>
+                        <!--<span class="sr-only">Error:</span>-->
+                        {{mensajeAlerta}}
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" >Guardar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

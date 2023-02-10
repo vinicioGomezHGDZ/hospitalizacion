@@ -1,0 +1,226 @@
+                 <div class="panel panel-default ">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">1 RESUMEN DE CUADRO CLINICO</h3>
+                      </div>
+                      <div class="panel-body">
+                      {{datepi[0].epi_recucl}}
+                     
+                      </div>
+                    </div>
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">2 RESUMEN DE EVOLUCIÓN Y COMPLICACIONES</h3>
+                      </div>
+                      <div class="panel-body">
+                        {{datepi[0].epi_reevco}}
+                
+                      </div>
+                  </div>
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">3 HALLAZGOS RELEVANTEES DE EXÁMENES Y PROCEDIMIENOS DIAGNÓSTICOS</h3>
+                      </div>
+                      <div class="panel-body">
+                         {{datepi[0].epi_harexa}}
+                
+                     </div>
+                   </div>
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">4 RESUMEN DE TRATAMIENTO Y PROCEDIMIENTO TERAPEÚTICOS</h3>
+                      </div>
+                      <div class="panel-body">
+                       {{datepi[0].epi_rtrprt}}
+                     </div>
+                  </div>
+
+               <div class="row">  
+                 <div  class="col-xs-6">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">5 DIAGNOSTICO INGRESO</h3>
+                      </div>
+
+                      <div class="panel-body">
+                          <table class="table">  
+                            <tr>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                            </tr>
+                            <tr ng-repeat="c10i in c10ingreso">
+                                <td class="width-30-pct">
+                                {{c10i.c10_nombre}}
+                                </td>
+                                <td class="width-20-pct">
+                                  <center>{{c10i.c10_codigo}}</center>
+                                 
+                                </td>
+                                <div class="control-group">
+                                <td class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10i.dia_resp" value="true" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </td>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10i.dia_resp" value="false" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div>  
+                            </tr>
+                          </table>
+                     </div>
+                  </div>
+                 </div>
+                 <div class="col-xs-6"> 
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">6 DIAGNOSTICO EGRESO</h3>
+                      </div>
+                      <div class="panel-body">
+                          <table class="table">  
+                            <tr>
+                              <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                              <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                              <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                            </tr>
+                            <tr ng-repeat="c10e in c10egreso">
+                                <td class="width-30-pct">
+                                {{c10e.c10_nombre}}
+                                </td>
+                                <td class="width-20-pct">
+                                  <center>{{c10e.c10_codigo}}</center>
+                                 
+                                </td>
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10e.dia_resp" value="true" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10e.dia_resp" value="false" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div>  
+                            </tr>
+                          </table>
+                     </div>
+                  </div>
+                 </div>  
+                </div>  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">7 CONDICIONES DE EGRESO Y PRONÓSTICO</h3>
+                      </div>
+                      <div class="panel-body">
+                        {{datepi[0].epi_condic}}
+                
+                     </div>
+                    </div> 
+                   
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">8 MÉDICOS TRATANTES</h3>
+                      </div>
+                      <div class="panel-body">
+                            <table class="table ">
+                            <tr>
+                             <th class="bt_tab, th"> </th>
+                             <td class="width-30-pct, th"> </td>
+                             <th class="width-20-pct, th"><center><h9>ESPECIALIDAD</h9></center></th>
+                             <th class="width-20-pct, th"><center><h9>CÓDIGO</center></h9></th>
+                             <th class="width-10-pct, th"><center><h9>PER. DE RESPONSABILIDAD</h9></center></th> 
+                            </tr>
+                            <tr ng-repeat="med in datomedico">
+                                <td class="bt_tab">
+                                </td>
+                                <td class="width-30-pct" >
+                                    <center>
+                                    {{med.per_nombres | uppercase}} 
+                                    {{med.per_apellidopaterno | uppercase}} 
+                                    {{med.per_apellidomaterno | uppercase}}
+                                    </center>
+                                </td>
+                                <td class="width-20-pct"><center>{{med.esp_descripcion | uppercase}}</center></td>
+                                <td class="width-20-pct"><center>{{med.pro_codigomsp | uppercase}}</center></td>
+                                <td class="width-10-pct"><center>{{med.med_period | date:'dd/MM/yyyy'}}</center></td>
+                            </tr>
+                          </table>
+
+                     </div>
+                    </div> 
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">9 CONDICIONES DE EGRESO Y PRONÓSTICO</h3>
+                      </div>
+                      <div class="panel-body">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th class="th, text-right">Alta Definitiva</th>
+                          <th>
+                         <input  ng-model="datepi[0].epi_altdef" type="checkbox" checked="checked"  class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">Asintomático</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_asinto" type="checkbox" checked="checked" class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">Discapacidad moderado</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_dismod" type="checkbox" checked="checked" class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">Retiro autorizado</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_retaut" type="checkbox" checked="checked" class="ace"disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right ">Defunción Menos de 48H</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_dme48h" type="checkbox" checked="checked" class="ace"disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right ">Días de estada</th>
+                          <th class="widthtd">
+                            {{datepi[0].epi_diaest}}
+                          </th>
+                        </tr>
+                        <tr>
+                          <th class="th, text-right">Alta Transitoria</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_altran" checked="checked" type="checkbox" class="ace" disabled/> <span class="lbl"></span>
+                            </th>
+                          <th class="th, text-right">Discapacidad leve</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_dislev" checked="checked" type="checkbox" class="ace" disabled/> <span class="lbl"></span>
+                           </th>
+                          <th class="th, text-right">Discapacidad Grave</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_disgra" checked="checked" type="checkbox" class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">retiro no Autorizado</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_retnau" checked="checked" type="checkbox" class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">Defunción Más de 48H</th>
+                          <th>
+                            <input ng-model="datepi[0].epi_dma48h" checked="checked" type="checkbox" class="ace" disabled/> <span class="lbl"></span>
+                          </th>
+                          <th class="th, text-right">Días de incapacidad</th>
+                          <th class="widthtd">
+                             {{datepi[0].epi_diadin}}
+                          </th>
+                        </tr>  
+                      </table>
+               
+                      </div>
+                      </div> 

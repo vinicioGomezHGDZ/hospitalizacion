@@ -1,0 +1,202 @@
+         
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">1 ESTUDIO SOLICITADO</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <label>PRIORIDAD : {{datosAguardar.ima_priori}}</label>
+                              
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="panel-body">
+                        
+                    <label>FECHA DE TOMA : 
+                              {{datosAguardar.ima_fecmu }}
+                          <br>
+                      </label>    
+                      <div class="table table-responsive">  
+                           
+                        <table class="table">
+                          <tr>
+                            <td>
+                              <label><b>Rapidografía</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_radior" class="ace" checked> 
+                              <span class="lbl"></span>     
+                            </td>
+                            <td>                      
+                              <label><b>Tomograía</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_tomogr" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td> 
+                              <label><b>Resonancia:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_resona" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Ecografia:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_ecogra" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Procedimiento:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_preced" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Mamografia:</b> </label>
+                            </td>
+                            <td>  
+                              <input type="checkbox" ng-model="datosAguardar.ima_mamoga" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+                            <td>
+                              <label><b>Otros:</b> </label>
+                            </td>
+                            <td> 
+                              <input type="checkbox" ng-model="datosAguardar.ima_otros" class="ace" checked> 
+                              <span class="lbl"></span>
+                            </td>
+
+                        </table> 
+                      </div> 
+
+                        <label><b><DATA>DESCRIPCIÓN</DATA></b></label>
+                        <textarea type="text"  ng-model="datosAguardar.ima_descri" class = "form-control" capitalize required   maxlength="1000"> </textarea> 
+                        <br>
+
+                      <div class="table table-responsive">  
+                         <table class="table">
+                            <tr>
+                                <td>
+                                  <label> <b>Puede movilizarse</b></label>
+                                </td>
+                                <td> 
+                                  <input type="checkbox" ng-model="datosAguardar.ima_puemov" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td> 
+                                <td>
+                                  <label> <b>Puede retirase vendass, apósitos o yesos</b></label>
+                                </td>
+                                <td>  
+                                  <input type="checkbox" ng-model="datosAguardar.ima_pureve" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                                <td>
+                                  <label> <b>El medico estará presente en el examen</b></label>
+                                </td>
+                                <td>  
+                                  <input type="checkbox" ng-model="datosAguardar.ima_meprex" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                                <td>
+                                 <label> <b>Toma de radiografía en la cama </b></label>
+                                </td>
+                                <td>
+                                  <input type="checkbox" ng-model="datosAguardar.ima_toraca" class="ace" checked> 
+                                  <span class="lbl"></span>
+                                </td>
+                            </tr> 
+                         </table>
+                      </div>    
+                    </div>
+               </div> 
+
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">2 MOTIVO DE SOLICITUD</h4>
+                          </div>
+                          <div class="col-sm-8 row text-right">
+                              <h9 > Registra las razones para solicitar aclaración de diagnostico </h9>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <textarea type="text"  ng-model="datosAguardar.ima_motsol" class = "form-control" capitalize required   maxlength="3000"> </textarea> 
+                    </div>
+               </div>         
+
+               <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-4">
+                            <h4 class="panel-title">3 RESUMEN CLÍNICO</h4>
+                          </div>
+                          
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <textarea type="text"  ng-model="datosAguardar.ima_rescli" class = "form-control" capitalize required   maxlength="3000"> </textarea> 
+                    </div>
+               </div>   
+
+   <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="row">  
+                            <div class="col-sm-3">
+                              <h3 class="panel-title">4 DIAGNOSTICO</h3>
+                            </div>
+                            <div class="col-sm-9 row text-right">
+                             <b> CIE:</b> Clasificación Internacional de enfermedades 
+                             <b> PRE:</b> Presuntivo
+                             <b> DEF:</b> Definitivo
+                            </div>
+                          </div>
+                        </div>
+
+                          <div class="panel-body">
+                             <div class="table table-responsive">
+                                 <table class="table">  
+                                    <tr>
+                                      <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                                      <th class="width-20-pct, th"><center><h9>CIE</h9></center></th>
+                                      <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                                      <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                                   
+                                    </tr>
+                                    <tr ng-repeat="c10 in cie10">
+                                        <th class="width-30-pct">
+                                        <center>{{c10.c10_nombre}}</center>
+                                        </th>
+                                        <th class="width-20-pct">
+                                           <center>{{c10.c10_codigo}}</center>
+                                         
+                                        </th>
+                                        <div class="control-group">
+                                        <th class="bt_tab">
+                                              <label>
+                                                <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        <th class="bt_tab">
+                                              <label>
+                                              <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" />
+                                                <span class="lbl"></span>
+                                              </label>
+                                        </th>
+                                        </div>  
+                                    </tr>
+                                 
+                                 </table>
+                              
+                              </div>
+                          </div>
+                        </div>

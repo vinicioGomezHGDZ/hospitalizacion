@@ -1,0 +1,249 @@
+
+<br>
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>MSP/HCU-FORM.004</H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right"> SOLICITUD DE CITOLOGÍA CERVICO VAGINAL</h6>
+  </div>
+</div>
+
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">Nueva Solicitud</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+          <form >
+          <!--Contenido del formulario-->
+                <div class="table table-responsive"> 
+                  <table class=" table"> 
+                      <tr>
+                        <th colspan="8" class="th">
+                        ANTECEDENTES
+                        </th>
+                      </tr>
+                      <tr>
+                    
+                         <td>
+                           Fecha de última menstruación
+                         </td>
+                         <td>
+                            <input type="date" ng-model="datosAguardar.ccv_feulme" class="form-control"></td>
+                         </td>
+                         <td>
+                           Embarazada
+                         </td>
+                         <td>
+                           <input type="checkbox"  ng-model="datosAguardar.ccv_embara"  class="ace"   >
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           Lactancia 
+                         </td>
+                         <td>
+                           <input type="checkbox" ng-model="datosAguardar.ccv_lactan"   class="ace" >
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           Planificación:
+                         </td>
+                         <td>
+                           <input type="text" ng-model="datosAguardar.ccv_planif" capitalize maxlength="20" class="input-sm" size="10">
+                         </td>
+                      </tr>
+                 </table>
+
+                 <table class="table">     
+                      <tr>
+                         <td>
+                           Número de partos:
+                         </td>
+                         <td>
+                           <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_numpar"   min="0" max="99">
+                         </td>
+                         <td>
+                           Número de abortos:
+                         </td>
+                         <td>
+                         <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_numabo" min="0" max="99" step="1">
+                         </td>
+                          <td>
+                          Edad inicio de relaciones sexuales:
+                          </td>
+                          <td>
+                         <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_inisex" min="0" max="99" step="1"> 
+                         </td>
+                         <td></td><td></td>
+                         </tr>
+                 </table>
+                   
+                 <table class="table">      
+                     <tr>
+                        <td >
+                          Alguna vez le Practicaron: 
+                        </td>
+                        <td>
+                          a) Cauterización cuello uterino
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_cacute"  class="ace"   >
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          b) Conización
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_coniza"  class="ace"   >
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          c) Histerectomía
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_hister"  class="ace"   >
+                           <span class="lbl"></span>
+                        </td>
+                        <td>
+                          d) Radioterapia
+                        </td>  
+                        <td> <input type="checkbox"  ng-model="datosAguardar.ccv_radiot"  class="ace"   >
+                           <span class="lbl"></span>
+                        </td>
+                    </tr>
+                  </table>
+                  <table class="table">
+                      <tr>
+                          <td>Se ha hecho alguna vez una citología</td>
+                          <td><input type="checkbox" ng-model="datosAguardar.ccv_citolo" class="ace"><span class="lbl"></span>
+                          </td>
+                          <td>Cuantas:</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_cuatas"   min="0" max="99"></td>
+                          <td>Hace cuanto tiempo la ultima</td>
+                          <td></td>
+                          <td>Año</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_anio"   min="0" max="9999"></td>
+                          <td>Meses</td>
+                          <td>  <input type="number" class="form-control input-sm"  ng-model="datosAguardar.ccv_meses"   min="0" max="12"></td>
+                      </tr>
+                  </table>
+                
+                </div>
+
+             <div class="row text-right">
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round" ng-click="guardar()">
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                </button>
+
+                 <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                 <i class="ace-icon fa fa-times red2"></i>Cancelar
+                   </button>
+                </div>
+       </form>
+        
+         <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>CÓDIGO</center></th>
+              <th class="width-20-pct, th"><center>F. TOMA MUESTRA</center></th>
+              <th class="width-20-pct, th"><center>F. ÚLTIMA MENSTRUACIÓN </center></th>
+              <th class="width-20-pct, th"><center>PLANIFICACIÓN</center></th>
+              <th class="width-20-pct, th"><center>N° PARTOS</center></th>
+              <th class="width-20-pct, th"><center>N° ABORTOS</center></th>
+              <th class="width-20-pct, th"><center>EDAD INICIO DE RELACIONES SEXUALES</center></th>
+              <th class="width-20-pct, th" colspan="2"><center></center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="cev in cervicovaginal | filter:search | limitTo:item:(pagina * totalpaginas)">
+              <th class="bt_tab"><center>{{cev.ccv_id_pk}}</center></th>
+              <td class="width-20-pct "><center>{{cev.ccv_fetomu | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{cev.ccv_feulme | date:'dd/MM/yyyy'}} </center></td>
+              <td class="width-20-pct "><center>{{cev.ccv_planif}} </center></td>
+              <td class="width-20-pct "><center>{{cev.ccv_numpar}} </center></td>
+              <td class="width-20-pct "><center>{{cev.ccv_numabo}} </center></td>
+              <td class="width-20-pct "><center>{{cev.ccv_inisex}} </center></td>
+              <td class="bt_tab">
+                    <center>
+                        <button class="btn btn-white btn-default btn-round btn-xs" ng-click="dcerva(cev.ccv_id_pk)"><i class="ace-icon fa  fa-eye red2"/></button>
+                    </center>
+               </td>
+
+              <td class="bt_tab">
+              <center>
+               <a href="/archivos/sgh/cervicovaginal/{{cev.ccv_result}}" target="_blank">
+                   <button ng-disabled="activa_desactiva(cev.ccv_result)"  class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa fa-folder-open red2"/></button></a>
+              </center>
+              </td>
+
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>
+
+<!--inicio de anamnesis mostrar datos-->
+<div ng-show="anadatos">
+    <button class="form-control" ng-click="regreesar()">Retroceder</button><br>
+    <div ng-include='"src/sgh/cervicovaginal/datoservico.html"'></div>
+</div><!--fin de mostrar anamnesis -->

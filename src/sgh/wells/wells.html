@@ -1,0 +1,255 @@
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-xs-4">
+  <!-- <H6>HOSPITAL GENERAL SANTODOMINGO</H6> -->
+  </div>
+  <div class="col-xs-8">
+  <h6 class="text-right">ESCALA DE WELLS</h6>
+  </div>
+</div>
+<div class="">
+<!-- -->
+<div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body ">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+          <div class="table-responsive">
+            <div ng-show="ver_fecha">
+              Fecha *
+                  <input type="date" class="form-control" ng-model="datosAguardar.wel_fecha"  required="required">
+              <br>
+            </div>
+            <table class="table table-bordered">
+                <tr> 
+                    <td>Neoplasia activa:</td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_neopla" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr> 
+                    <td>Parálisis, paresia o reciente inmovilización con yeso de Extremidad Inferior:</td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_parali" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estancia en cama reciente por más de 3 días reciente o cirugía mayor en las últimas 4 semanas:</td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_estanc" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Molestias a lo largo del trayecto del sistema venoso profundo:</td>
+                     <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_molest" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Edema de toda la pierna:</td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_edepie" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                   <tr>
+                    <td>Aumento del perímetro de la pantorrilla de más de 3 cm respecto a la pierna contralateral:</td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_aument" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Edema con fóvea mayor en la pierna sintomática:</td>
+                     <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_edema" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Venas colaterales superficiales (no varicosas):</td>
+                     <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_venaco" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Otro diagnóstico alternativo tanto o más probable que la TVP: 
+                    </td>
+                    <td>
+                    <input type="checkbox" class="ace" checked ng-model="wel_otro" ng-click="valores()">
+                    <span class="lbl"></span>
+                    </td>
+                </tr>
+                </table>
+            
+            <div class="col-xs-8">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="width-30-pct" ><b>INTERPRETACIÓN PUNTAJE </b></td>
+                        <td class="width-30-pct"><b>{{wel_califi}} | {{interpre}}</b></td>
+                    </tr>
+                    <tr>
+                        <th class="width-30-pct" >Más de 3</th>  
+                        <th class="width-30-pct">Riesgo Alto</th>
+                    </tr>
+                    <tr>
+                        <th class="width-30-pct" >1 a 2</th>  
+                        <th class="width-30-pct">Riesgo Intermedio</th>
+                    </tr>
+                    <tr>
+                        <th class="width-30-pct" >0</th>  
+                        <th class="width-30-pct">Riesgo Bajo</th>
+                    </tr>
+                </table>
+            </div>
+          </div>                   
+            <br>
+             <div class="row text-right"  >
+                <button ng-disabled="actguarda" class="btn btn-white btn-info btn-round"  >
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+                </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div>    
+          </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+<!--TABLA DE REGISTRO -->
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+           <div class="col-sm-1">
+              <button id="n" type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo
+            </button>
+            </div>
+   </div>
+    <br>
+   
+<div class="table-responsive">
+
+<table class="table table-bordered">
+              <tr>
+                    <th class="width-30-pct th">
+                      <center>
+                          <h9>Más de 3 = Alto Riesgo | 1 a 2 = Mediado Riesgo | 0 =Bajo Riesgo </h9><br>
+                          <a ui-sref="repote({id:'{{dow.dow_id_pk}}',ruta:'src/sgh/wells/php/reporte_wells.php?c='})">
+                              <buttton class="btn btn-white btn-default btn-round btn-xs">
+                                  <i class="ace-icon  glyphicon glyphicon-print red2" title="pdf"/>
+                              </buttton>
+                          </a>
+                       </center>
+                    </th>
+                    <td class="widthtd, th" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_fecha | date:'dd/MM/yyyy'}} </b></center> </td>
+                </tr>
+                <tr>  
+                      <td>  
+                            Totales
+                      </td>  
+                      <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">  
+                        <center>  {{wel_califi = wel.wel_neopla + wel.wel_parali + wel.wel_estanc + wel.wel_molest + wel.wel_edepie +wel.wel_aument + wel.wel_edema + wel.wel_venaco + wel.wel_otro}}
+                        </center>  
+                      </td>
+                </tr>
+                <tr> 
+                    <td class="width-30-pct">Neoplasia activa:</td>
+                     <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_neopla}} </b></center> </td>
+                    
+                </tr>
+                <tr> 
+                    <td class="width-30-pct">Parálisis, paresia o reciente inmovilización con yeso de Extremidad Inferior:</td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_neopla}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td class="width-30-pct">Estancia en cama reciente por más de 3 días reciente o cirugía mayor en las últimas 4 semanas:</td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_estanc}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td class="width-30-pct">Molestias a lo largo del trayecto del sistema venoso profundo:</td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_molest}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td class="width-30-pct">Edema de toda la pierna:</td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_edepie}} </b></center> </td>
+                </tr>
+                   <tr>
+                    <td class="width-30-pct">Aumento del perímetro de la pantorrilla de más de 3 cm respecto a la pierna contralateral:</td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_aument}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td class="width-30-pct">Edema con fóvea mayor en la pierna sintomática:</td>
+                   <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_edema}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td  class="width-30-pct">Venas colaterales superficiales (no varicosas):</td>
+                   <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_venaco}} </b></center> </td>
+                </tr>
+                <tr>
+                    <td class="width-30-pct">Otro diagnóstico alternativo tanto o más probable que la TVP: 
+                    </td>
+                    <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item"><center><b>{{wel.wel_otro}} </b></center> </td>
+                </tr>
+
+                <tr>
+                   <td class="width-10-pct">Editar
+                   </td>
+
+                   <td class="widthtd" ng-repeat="wel in wells | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                    <center>
+                      <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="editando(wel.wel_id_pk)" data-toggle="modal">
+                        <img src="img/edit.png" height="20" width="20"></button>
+
+                   </td>
+
+                </tr>
+                </table>
+</div>       
+     <th class="th">
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>   

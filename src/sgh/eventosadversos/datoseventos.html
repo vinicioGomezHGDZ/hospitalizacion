@@ -1,0 +1,134 @@
+<div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h9 class="panel-title"></h9>
+                     <h9><center>(Uso exclusivo Unidad de calidad y Seguridad del Paciente)</center></h9>
+                  </div>
+
+                  <div class="panel-body">
+                      <label><b>Relato de lo acontecido:</b> {{datosAguardar.fed_relacon}}</label>
+                      <br> <br>
+                      <label><b> Provoca daño o lesión:</b> </label> <input ng-model="datosAguardar.fed_prodale" class="ace" type="checkbox" checked disabled/> <span class="lbl"></span>
+                                      <br> <br>
+                      <label><b>Ocasionado a :</b></label>
+                        {{datosAguardar.fed_ocasio}} <br>
+                      <br>
+                       <label><b>Describa el daño o lesion: </b></label>
+                        {{datosAguardar.fed_desles}} <br>
+                      <br>
+                       <label><b>Medidas inmediatas adoptadas: </b></label>
+                        {{datosAguardar.fed_medado}} <br>
+                      <br>
+                      <label> <b>Tipo de clasificación:  </b></label>
+                      {{datosAguardar.fed_tipcla}} <br>
+                      
+                  </div>
+ </div> 
+ 
+ <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h9 class="panel-title"></h9>
+                     <h9><center>Solicitud de acción correctivo / Preventiva</center></h9>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                         <div class="col-xs-12"> 
+                           <table class="table">
+                            <tr>
+                               <th><center><h9>( Seleccione para indicar acción correctiva o acción preventiva )</h9></center></th>
+
+                               <th><center><h4><b>AC</b></h4></center></th>
+                               <td> 
+                                  <h4><center><input value="AC" ng-model="datosAguardar.acp_accion" class="ace" type="radio" disabled/ > <span class="lbl"></span></center></h4>
+                               </td>
+
+                               <th><center><h4><b>AP</b></h4></center></th>
+                               <td> 
+                                  <h4><center><input value="AP" ng-model="datosAguardar.acp_accion" class="ace" type="radio" disabled/> <span class="lbl"></span></center></h4>
+                               </td>
+                             </tr>
+                           </table>               
+                          </div> 
+                      </div>
+                       
+                           <table class="table ">
+                             <th><center>Acción Correctiva N°</center></th>
+                             <td> 
+                              <center> 
+                                 {{datosAguardar.acp_ncorre}}
+                              </center>
+                             </td>
+                             <th><center>Acción Preventiva N°</center></th>
+                             <td> 
+                              <center>
+                                {{datosAguardar.acp_npreve}}
+                                
+                              </center>
+                             </td>
+                           </table>               
+                      <table class="table">
+                        <tr>
+                          <th></th>
+                          <th><center>Fecha limite </center></th>
+                          <th><center>Por / Asignada a </center></th>
+                          <th><center>Fecha de realización</center></th>
+                        </tr> 
+                        <tr>
+                            <td>
+                              <center>{{datosAguardar.acp_acp_tipo}}</center>
+                             
+                            </td>
+                            <td>
+                                  <center>{{datosAguardar.acp_felim | date: 'yyyy-MM-dd'}} </center>
+                      
+                            </td>
+                            <td>
+                                <center>{{datosAguardar.acp_por}}</center>
+                            </td>
+                            <td>
+                            <center>{{datosAguardar.acp_fefire}}</center>
+                            </td>
+                        </tr> 
+                      </table> 
+
+                       <label><b>Descripción del asunto: </b></label>
+                        {{datosAguardar.acp_descrip}} <br> <br>
+                        
+                        <label><b>Hallazgo de investigación / causa Fundamental: </b></label>
+                        {{datosAguardar.acp_hallas}} <br> <br>
+
+                        <label><b>Acción Correctiva / Preventiva: </b></label>
+                        {{datosAguardar.acp_accorr}} <br> <br>
+                        
+                        <label><b>Acordada por: </b></label>
+                        {{datosAguardar.acp_medica}} <br> <br>
+
+                        <label><b>Fecha: </b></label>
+
+                        {{datosAguardar.acp_feacor | date: 'yyyy-MM-dd'}} <br> <br>
+                         
+                        <div class="row">
+                         <div class="col-xs-12"> 
+                           <table class="table ">
+                             <tr>
+                                <th colspan="2"><center><label><b>Comentarios del Auditor</b></label></center></th>
+                             </tr>
+
+                             <tr>
+                             <th>
+                             <center>
+                             <label><b>¿Acción tomada fue eficaz?:</b> <input ng-model="datosAguardar.acp_acfuef" class="ace" type="checkbox" checked disabled/> <span class="lbl"></span>
+                                </label>
+                                </center>
+                             </th>
+                                 
+                                 <td>
+                                   <b> Si no, número de nueva ACP/AP: </b>{{datosAguardar.acp_nuacap}}
+                                 </td>
+                                
+                             </tr>
+                           </table>               
+                          </div> 
+                      </div>                        
+
+                  </div>
+</div>  

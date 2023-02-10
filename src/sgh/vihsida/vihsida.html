@@ -1,0 +1,212 @@
+<!--<script type="text/javascript">-->
+
+      <!--jQuery(function($) {-->
+
+  <!---->
+        <!--$('#id-input-file-3').ace_file_input({-->
+          <!--style:'well',-->
+          <!--btn_choose:'Haga clic para elegir',-->
+          <!--btn_change:null,-->
+          <!--no_icon:'ace-icon fa fa-cloud-upload',-->
+          <!--droppable:true,-->
+          <!--thumbnail:'small'//large | fit-->
+          <!--,-->
+      <!---->
+        <!--}).on('change', function(){-->
+          <!--//console.log($(this).data('ace_input_files'));-->
+          <!--//console.log($(this).data('ace_input_method'));-->
+        <!--});-->
+    <!--});-->
+    <!--</script>-->
+
+<!--<br>-->
+
+<!-- Div de encabesado -->
+<div class="row">
+  <div class="col-sm-4">
+  <H6>MINISTERIO DE SALUD PÚBLICA </H6>
+  </div>
+  <div class="col-sm-8">
+  <h6 class="text-right">PROGRAMA NACIONAL PARA LA PREVENCIÓN Y CONTROL DEL VIH/SIDA </h6>
+  </div>
+</div>
+
+<div ng-include='"src/sgh/encabezado/encabezadolaboratorio.html"'></div>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         <h5 class="modal-title" id="myModalLabel">Nueva Solicitud</h5>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+
+          <form ng-submit="guardar()">
+          <!--Contenido del formulario-->
+                <div class="table table-responsive">     
+                  <table class=" table"> 
+                      <tr>
+                        <th colspan="8" class="th">
+                          MOTIVO DE EXAMEN:
+                        </th>
+                      </tr>
+                      <tr>
+                    
+                         <td>
+                           1 Usuario con ITS 
+                         </td>
+                         <td>
+                            <input type="radio" ng-model="datosAguardar.vih_motivo" value="USUARIO CON ITS"  class="ace" ng-click="activa('1')"><span class="lbl" > </span></td>
+                           
+                         </td>
+                         <td>
+                           2 HSH 
+                         </td>
+                         <td>
+
+                           <input type="radio"  ng-model="datosAguardar.vih_motivo" value="HSH" class="ace"   ng-click="activa('1')">
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           3 Trabajadora / Sexual 
+                         </td>
+                         <td>
+                           <input type="radio" ng-model="datosAguardar.vih_motivo" value="TRABADORA SEXUAL"  class="ace" ng-click="activa('1')">
+                           <span class="lbl"></span>
+                         </td>
+                         <td>
+                           4 Usuario con Tb 
+                         </td>
+                         <td>
+                           <input type="radio"  ng-model="datosAguardar.vih_motivo" value="USUARIO CON TB" class="ace">
+                           <span class="lbl" ng-click="activa('1')"></span>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td>
+                           5 Demanda Espontánea 
+                         </td>
+                         <td>
+                           <input type="radio"  ng-model="datosAguardar.vih_motivo" value="DEMANDA ESPONTÁNEA" class="ace">
+                           <span class="lbl" ng-click="activa('1')"></span>
+                         </td>
+                         <td>
+                           6 Embarazada
+                         </td>
+                         <td>
+                           <input type="radio" ng-model="datosAguardar.vih_motivo" checked="EMBARAZADA" value="EMBARAZADA" class="ace" ng-click="activa('1')">
+                           <span class="lbl"></span>
+                         </td>
+                          <td>Otros especificar:</td>
+                          <td> <input type="radio" ng-model="datosAguardar.vih_motivo" value="" class="ace" ng-click="activa('0')">
+                           <span class="lbl"></span></td>
+                           <td colspan="2"><input ng-show="otros" type="text" ng-model="datosAguardar.vih_otros" capitalize maxlength="20" class="input-sm" size="35"></td>
+                         
+                      </tr>
+                  </table>
+                </div>
+              <center><label><b>CONSENTIMIENTO PARA LA REALIZACIÓN DE PRUEBA DE VIH</b></label> <br>
+                 <input type="file" id="id-input-file-3" uploader-model="file" class="archivo" required="required" />
+             </center>
+             <div class="row text-right">
+                <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round" >
+                 <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                      </button>
+
+                 <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                 <i class="ace-icon fa fa-times red2"></i>Cancelar
+                   </button>
+                </div>
+       </form>
+        
+         <!--div mensaje de guardado -->
+            <div class="animate fadeInDown"  ng-show="mensaje">            
+                     <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+            </div>  <!--/div mensaje de guardado -->
+    
+    </div><!--/div datos guardar-->
+
+  </div><!--dibo body modal-->
+</div><!--modal-content-->
+</div><!--modal-dialog modal-lg-->
+</div><!--div fin de modal-->
+
+<!--TABLA DE REGISTRO --> 
+<div ng-show="tabla">
+
+   <div class="row"> 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+          </div>
+           <div class="col-sm-1">             
+              <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo</button>
+            </div>
+   </div>
+    <br>
+     <div class="animate fadeInDown"  ng-show="mensaje2">            
+        <center><H4 class="alert alert-info"><strong>{{text2}}</strong></H4></center>
+    </div>  <!--/div mensaje de guardado -->
+      <div class="table-responsive">
+        <table id ="tabla" class="table" > 
+          <thead>
+          <tr>
+              <th class="bt_tab, th"><center>CÓDIGO</center></th>
+              <th class="width-20-pct, th"><center>FECHA</center></th>
+              <th class="width-20-pct, th"><center>MOTIVO</center></th>
+              <th class="width-20-pct, th"><center>CONCENTIMIENTO</center></th>
+              <th class="bt_tab, th"><center>RESULTADO</center></th>
+          </tr>
+          </thead>
+
+          <tbody>  
+            <tr ng-repeat="vih in vihsida | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                <th class="bt_tab"><center>{{vih.vih_id_pk}}</center></th>
+            	<td class="width-20-pct "><center>{{vih.vih_fecha | date:'dd/MM/yyyy'}}</center></td>
+              <td class="width-20-pct "><center>{{vih.vih_motivo}} {{vih.vih_otros}}</center></td>
+              <td class="width-20-pct">
+              <center><a href="/archivos/sgh/vihsida/consentimientos/{{vih.vih_conce}}" target="_blank">
+                  <button class="btn btn-white btn-default btn-round btn-xs" ><i class="ace-icon fa  fa-eye red2"/></button></a></center>
+              </td>
+               <td class="bt_tab">
+              <center>
+               <a href="/archivos/sgh/vihsida/resultados/{{vih.vih_result}}" target="_blank">
+                   <button ng-disabled="activa_desactiva(vih.vih_result)" class="btn btn-white btn-default btn-round btn-xs" ><i  class="ace-icon fa fa-folder-open red2"/></button></a>
+              </center>
+              </td>
+            </tr>
+          </tbody>
+      
+      </table>
+     </div>
+   <th class="th">
+  
+    <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+            </center>
+    </th>
+             
+</div>
+
+<!--inicio de anamnesis mostrar datos-->
+<div ng-show="anadatos">
+  STAMOS EN DESARROLLO
+
+</div><!--fin de mostrar anamnesis -->                   

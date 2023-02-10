@@ -1,0 +1,126 @@
+<script type="text/javascript">
+
+    jQuery(function($) {
+
+
+        $('#id-input-file-3').ace_file_input({
+            style:'well',
+            btn_choose:'Haga clic para elegir',
+            btn_change:null,
+            no_icon:'ace-icon fa fa-cloud-upload',
+            droppable:true,
+            thumbnail:'small'//large | fit
+
+            ,
+
+        }).on('change', function(){
+            //console.log($(this).data('ace_input_files'));
+            //console.log($(this).data('ace_input_method'));
+        });
+    });
+</script>
+<!-- Div de encabesado -->
+<div class="row">
+    <div class="col-xs-4">
+        <H6>HOSPITAL GENEREAL SANTO DOMINGO</H6>
+    </div>
+    <div class="col-xs-8">
+        <h6 class="text-right">Rayos X - DICOM</h6>
+    </div>
+</div>
+<div class="">
+    <!-- -->
+    <div ng-include='"src/sgh/encabezado/encabezado.html"'></div>
+</div>
+<hr>
+
+</center>
+
+<!--NUEVO REGISTRO -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Subir archivo</h4>
+            </div>
+
+            <div class="modal-body ">
+
+                <div ng-model="datosAguardar">
+
+                    <form ng-submit="guardar()">
+                        <input type="file" id="id-input-file-3" uploader-model="file" class="archivo" required />
+
+                        <br>
+
+                        <br>
+                        <div class="row text-right"  >
+                            <button ng-disabled="actguarda" type="submit" class="btn btn-white btn-info btn-round"><i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>Guardar
+                            </button>
+                            <button class="btn btn-white btn-info btn-round" ng-click="cancelar()">
+                                <i class="ace-icon fa fa-times red2"></i>Cancelar
+                            </button>
+                        </div>
+                    </form>
+                    <div class="animate fadeInDown"  ng-show="mensaje">
+                        <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--TABLA DE REGISTRO -->
+<div class="row" ng-init="cargarDatos()">
+    <div class="col-sm-11" ><!-- -->
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="search"
+               style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </div>
+    <div class="col-sm-1">
+        <!--<button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal" ng-disabled="admi">Nuevo-->
+        <!--</button>-->
+    </div>
+</div>
+<br>
+
+<div class="table-responsive">
+    <table id ="tabla" class="table" >
+        <thead>
+        <tr>
+            <th class="width-10-pct, th"><center>FECHA</center></th>
+            <th class="width-20-pct, th"><center>DESCRIPCIÓN</center></th>
+            <TH class="width-20-pct, th"><center>VER</center></TH>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="con in dicoms | filter:search | limitTo:item:(pagina * totalpaginas)">
+            <td class="width-10-pct "><CENTER>{{con.hca_fecha |date:'dd/MM/yyyy'}}</CENTER></td>
+            <td class="width-20-pct "><CENTER>{{con.hca_descripcion}}</CENTER></td>
+            <td class="width-20-pct" >
+                <!--<center><a href="/sgh_archivos/sgh/anexos/{{con.archivo}}" target="_blank"> <i class="ace-icon fa  fa-eye red2"/></a></center>-->
+                <center><a ng-click="visualizar(con)"> <i class="ace-icon fa  fa-eye red2"/></a></center>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<th class="th">
+    <center>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>
+        | Page {{pagina}} de {{posicion}} |
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+
+    </center>
+</th>
+</div>
+

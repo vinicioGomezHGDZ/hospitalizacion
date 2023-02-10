@@ -1,0 +1,126 @@
+<h5> EXÁMENES DE LABORATORIO</h5>
+<!--NUEVO REGISTRO -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">{{titulo}}</h4>
+      </div>
+
+      <div class="modal-body">
+        <div ng-model="datosAguardar">
+
+          <form ng-submit="accion()">
+
+            <div class="row">
+
+               <div class="col-sm-12">
+                 <label >Examen:</label>
+                    <br>
+                   <input type="text" ng-model="datosAguardar.exa_descrip" class = "form-control" capitalize required  maxlength="50"> 
+                </div>
+            </div>
+             <div class="row">
+                  <div class="col-sm-12">
+                   <label>Categoria:</label>
+                    <br>
+                    <select required  ng-model="micat" class="form-control" size="10">
+                      <option value="">Seleccione</option>
+                    <option ng-repeat="cat in catlb" value="{{cat.cat_id_pk}}">{{cat.cat_descrip}}</option>
+                  </select>
+
+                </div>
+                <!--  
+                <div class="col-sm-12">
+                 <label>Pertenece a:</label>
+                  <br>
+                   <select required ng-model="datosAguardar.exa_tipo" class="form-control">
+                      <option value="">Seleccione</option>
+                      <option value=true>Concentrado de laboratorio</option>
+                      <option value=false>Solicitud de laboratorio Clínico</option>                    
+                   </select> 
+                </div>
+                    -->
+                </div>
+            <br>
+           <div class="row">
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        Guardar
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+              </div>   
+            </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                 <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+              </div> 
+      
+      </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!--TABLA DE REGISTRO -->
+<hr>
+   <div class="row" > 
+         <div class="col-sm-11" ><!-- -->
+            <input type="text" class="form-control" placeholder="Buscar " ng-model="search"
+            style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </div>
+            <div class="col-sm-1">
+               <button type="button" class="btn btn-white btn-default btn-round" data-toggle="modal" data-target="#myModal">Nuevo</button>
+           </div>
+         
+   </div>
+    <br>
+     <div  ng-show="editado">            
+      <center><H4 class="bg-info animated fadeInDown">{{edita}}</H4></center>
+    </div>   
+     <div class="table-responsive">
+      <table id= "tabla" class="table table-responsive" > 
+          <thead>
+           <tr>
+              <th class="width-20-pct, th "><center>CATEGORIA</center></th>
+              <th class="width-30-pct, th"><center>DESCRIPCIÓN</center></th>
+           
+              <th colspan="3" class="width-20-pct, th "></th>           
+              </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="exa in exalb | filter:search  | limitTo:item:(pagina * totalpaginas)">
+            	<td class="width-20-pct"><center>{{exa.cat_descrip | uppercase}}</center></td>
+              <td class="width-30-pct"><center>{{exa.exa_descrip| uppercase}}</center></td>    
+              <td class="bt_tab">
+                <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="edita(exa.exa_id_pk,exa.cat_id_fk)" data-toggle="modal" data-target="#myModal" title="Editar">
+                <img src="img/edit.png" height="20" width="20">
+                </button>
+            </td>
+             <td class="bt_tab">
+              <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="iliminar(exa.exa_id_pk)" title="Eliminar"> <img src="img/cancel.png" height="20" width="20"></button>
+              </td>            
+            </tr>
+            </tbody>
+   </table>
+   </div>
+   <center>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs "  ng-click="pagina=1"><<</button>             
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs "  ng-click="paginas(0)"><</button>  
+                       | Page {{pagina}} de {{posicion}} |      
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="paginas(1)">></button>
+            <button type="button" class="btn btn-white btn-default btn-round btn-xs " ng-click="pagina = posicion">>></button>
+
+        </center>    
+
+
+</div>
+</div>

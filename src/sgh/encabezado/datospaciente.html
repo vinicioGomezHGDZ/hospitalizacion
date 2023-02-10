@@ -1,0 +1,214 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button id="closemodal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Alta del paciente</h4>
+      </div>
+
+      <div class="modal-body">
+
+      <div ng-model="datosAguardar">
+        <form ng-submit="acciong()">
+            
+            <div class="row">           
+                <div class="col-sm-12">
+                <table class=" table"> 
+                     <tr>  
+                           <th>Alta por defunción: </th>
+                           <th ng-show="verdef"><center>- 48h</center></th>
+                           <th ng-show="verdef"><center>+ 48h</center></th>
+                           <th><center>Estado de cama: </center></th>
+
+                     </tr>
+                     <tr>
+                        <td> 
+                           <input ng-model="defucion" class="ace ace-switch ace-switch-2" type="checkbox" checked ng-click="acdef(defucion)"/> <span class="lbl"></span>
+                        </td>
+                        <td ng-show="verdef">
+                            <center><input type="checkbox"  ng-model="datosAguardar.cen_def_48 " class = "ace"  checked> <span class="lbl"></span></center>
+
+                        </td>
+                        <td ng-show="verdef">  
+                           <center><input type="checkbox"  ng-model="datosAguardar.cen_def48 " class = "ace"  checked> <span class="lbl"></span></center>
+
+                        </td>
+                        <td> 
+                           <select  required ng-model="datosAguardar.ces_id_fk" class="form-control">
+                              <option value="">Seleccione: </option>
+                              <option ng-repeat="escam in estadocama" value="{{escam.ces_id_pk}}">  
+                              {{escam.ces_descripcion}}  </option>
+                           </select >
+                        </td>
+                     </tr>
+                </table>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <labe><b>Transferencia:</b></labe>
+                        </div>
+                        <div class="col-sm-2">
+                            <input ng-model="transferencia" class="ace ace-switch ace-switch-2" type="checkbox" checked ng-click="actra(transferencia)"/> <span class="lbl"></span>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <labe><b>Cambio de cama:</b></labe>
+                        </div>
+                        <div class="col-sm-2">
+                            <input ng-model="cambio" class="ace ace-switch ace-switch-2" type="checkbox" checked ng-click="accambio(cambio)"/> <span class="lbl"></span>
+                        </div>
+                    </div>
+
+                    <div ng-show="ver_camas">
+                        <input type="text" class="form-control" placeholder="Buscar " ng-model="search" capitalize>
+                        <table  class="table" >
+                            <thead>
+                            <tr>
+                                <th class="width-20-pct, th"><center>N° cama</center></th>
+                                <th class="width-20-pct, th"><center>Servicio</center></th>
+                                <th class="width-20-pct, th"><center>Habitación </center></th>
+                                <th class="width-20-pct, th"><center>Piso</center></th>
+                                <th class="width-20-pct, th"><center>Estado</center></th>
+                                <th class="width-20-pct, th"><center>Seleccionar</center></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="ca in cama_tabla | filter:search | limitTo: (pagina * totalpaginas) | limitTo: item">
+                                <td class="width-20-pct "><center>{{ca.cam_codigo}}</center></td>
+                                <td class="width-20-pct "><center>{{ca.servicio}}</center></td>
+                                <td class="width-20-pct "><center>{{ca.habitacion}}</center></td>
+                                <td class="width-20-pct "><center>{{ca.piso}}</center></td>
+                                <td class="width-20-pct "><center>{{ca.ces_descripcion}}</center></td>
+                                <td class="width-20-pct">
+                                    <center>
+                                     <span class="puntero"><i class="ace-icon glyphicon glyphicon-ok"  ng-click="seleccion_cama(ca.cam_id_pk)"/></span>
+                                    </center>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="th" colspan="6">
+                                    <center>
+                                        <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="pagina=1"><<</button>
+                                        <button type="button" class="btn btn-white btn-default btn-round btn-xs"  ng-click="paginas(0)"><</button>
+                                        | Page {{pagina}} de {{posicion}} |
+                                        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="paginas(1)">></button>
+                                        <button type="button" class="btn btn-white btn-default btn-round btn-xs" ng-click="pagina = posicion">>></button>
+                                    </center>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <label >
+                            El paciente va a ser transferido a: {{datos_cama}}
+
+                        </label>
+                    </div>
+
+                <label>
+                        <h3><b>Nota: </b></h3><h5>Antes de dar de alta o realizar una transferencia al paciente debe realiza la epicrisis</h5>
+                </label>
+               </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="text-right">
+                    <button type="submit" class="btn btn-white btn-info btn-round">
+                        <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                        {{nboton}}
+                      </button>
+                      <button class="btn btn-white btn-default btn-round" ng-click="cancelar()">
+                        <i class="ace-icon fa fa-times red2"></i>
+                        Cancelar
+                      </button>  
+              </div>  
+              </div>
+                <div class="animate fadeInDown"  ng-show="mensaje">            
+                  <center><H4 class="alert alert-info"><strong>{{text}}</strong></H4></center>
+                  
+              </div>          
+      </form>
+    </div>
+
+  </div>
+</div>
+  </div>
+  </div>
+
+
+   	<center> <h3>DATOS BASICOS DE PACIENTE</h3></center>
+      <br>
+   <table class="table">
+         
+         <tr>
+               <th class="width-30-pct row text-right">Servicio :  </th> 
+               <td class="width-30-pct">{{encabezado[0].tca_descripcion}}</td>
+         </tr>
+         <tr>
+               <th class="width-30-pct row text-right">Cama :  </th> 
+               <td class="width-30-pct">{{encabezado[0].cam_codigo}}</td>
+         </tr>
+           <tr>
+               <th class="width-30-pct row text-right">Sala :  </th>
+               <td class="width-30-pct">{{encabezado[0].piso}}</td>
+           </tr>
+         <tr>
+               <th class="width-30-pct row text-right">País :</th>
+               <td class="width-30-pct" ng-class="{'bg-warning fa fa-warning':encabezado[0].pai_descripcion === null }">{{encabezado[0].pai_descripcion}}</td>
+         </tr>
+         <tr>
+               <th class="width-30-pct row text-right">Cédula o pasaporte :</th>
+               <td class="width-30-pct">{{encabezado[0].per_numeroidentificacion}}</td>
+         </tr>
+         <tr>
+               <th class="width-30-pct row text-right">Nombre :</th>
+               <td class="width-30-pct">{{encabezado[0].per_apellidopaterno}} {{encabezado[0].per_apellidomaterno}} {{encabezado[0].per_nombres}}</td>
+         </tr>
+         <tr>
+               <th class="width-30-pct row text-right">Dirección :</th>
+               <td class="width-30-pct">{{encabezado[0].can_descripcion}} - {{encabezado[0].par_descripcion}} - {{encabezado[0].per_direccionprincipal}}</td>
+         </tr>
+         <tr>
+              
+               <th class="width-30-pct row text-right">Sexo :</th> 
+               <td class="width-30-pct">{{encabezado[0].per_sexo}} </td>
+         </tr>
+         <tr>
+               <th class="width-30-pct row text-right">Fecha de nacimiento : </th> 
+               <td class="width-30-pct" ng-class="{'bg-warning fa fa-warning':encabezado[0].per_fechanacimiento === null}">{{encabezado[0].per_fechanacimiento | date:'dd/MM/yyyy'}} </td>
+         </tr>
+       <tr>
+           <th class="width-30-pct row text-right">Edad : </th>
+           <td class="width-30-pct" ng-class="{'bg-warning fa fa-warning':encabezado[0].edad === null}">{{encabezado[0].edad}}</td>
+       </tr>
+         <tr>
+        
+         </tr>
+           <tr>
+               <th class="width-30-pct row text-right">Lugar de nacimiento :  </th> 
+               <td class="width-30-pct" ng-class="{'bg-warning fa fa-warning':encabezado[0].per_lugardenacimiento === null}">{{encabezado[0].per_lugardenacimiento}}</td>
+         </tr>
+        
+         <tr>
+               <th class="width-30-pct row text-right"> Teléfono:  </th> 
+               <td class="width-30-pct" ng-class="{'bg-warning fa fa-warning':encabezado[0].tel_numero === null}">{{encabezado[0].tel_numero}}</td>
+         </tr>
+
+
+
+         <tr>
+               <td >
+                <button ng-disabled="admi" type="button" class="form-control" data-toggle="modal" data-target="#myModal">Dar de alta
+                </button>
+                  
+               </td>
+               <td>
+                  <button ng-disabled="admi" class="form-control" ng-click="cerrar(1)">
+                     Cerrar
+                  </button>
+               </td>
+         </tr>
+   </table>
+ 

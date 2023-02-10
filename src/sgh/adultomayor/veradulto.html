@@ -1,0 +1,1613 @@
+                   <div class="panel panel-default ">
+                      <div class="panel-heading">
+                      <div class="row">
+                      <div class="col-sm-6">
+                        <h3 class="panel-title">1 MOTIVO DE CONSULTA</h3> 
+                      </div >
+                        <div class="col-sm-6 row text-right">  
+                        <H10>
+                        <fieldset> 
+                        INFORMANTE 
+
+                        <input type="tex" ng-model="datosAguardar.aam_inform " capitalize required   maxlength="30" size="10" disabled> 
+                        USUARIO 
+                         <input type="radio" value="USUARIO" ng-model="datosAguardar.aam_respon" class="ace" disabled> 
+                                 <span class="lbl"></span>
+                         CUIDADOR 
+                         <input type="radio" value="CUIDADOR" ng-model="datosAguardar.aam_respon"  class=" ace" disabled> 
+                         <span class="lbl"></span> 
+
+                         </fieldset>
+                        </H10>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="panel-body">
+                       <textarea type="text"  ng-model="datosAguardar.aam_motivo " class = "form-control" capitalize required   maxlength="80" disabled> </textarea>
+                      </div>
+                    </div>
+
+                   <div class="panel panel-default ">
+                      <div class="panel-heading">
+                      <div class="row">
+                      <div class="col-sm-4">
+                        <h3 class="panel-title">2 ENFERMEDAD O PROBLEMA ACTUAL</h3> 
+                      </div >
+                           <div class="col-sm-8 row text-right">  
+                               <H10>Cronología localización, Caracteristicas, Intensidad, Causas aparentes, Factores que agravan o mejoran sintomas asociados, Evolución, Resultados de examenes anteriores, Condición actual, Atípicas
+                               </H10>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="panel-body">
+                     
+                       <textarea type="text"  ng-model="datosAguardar.aam_enferm " class = "form-control" capitalize required   maxlength="80" disabled> </textarea> <br>  
+
+                       <label>MEDICAMENTOS QUE RECIBE </label>
+                       <textarea type="tex" ng-model="datosAguardar.aam_meqrec" capitalize required   maxlength="500" class="form-control" disabled> </textarea><br> 
+                          <fieldset>
+                           <table class="table">   
+                              <tr>  
+                                <td class="width-20-pct">  
+                                  <label>ESTADO GENERAL : </label>
+                                </td>     
+                                <td class="width-20-pct">  
+                                <label>   DEPENDIENTE </label> 
+                                <input type="radio" value="DEPENDIENTE" ng-model="datosAguardar.aam_esgene" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td class="width-20-pct">  
+                                 <label>   FRAGIL </label> 
+                                 <input type="radio" value="FRAGIL" ng-model="datosAguardar.aam_esgene" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td class="width-20-pct">  
+                                <label>   INDEPENDIENTE </label> 
+                                <input type="radio" value="INDEPENDIENTE" ng-model="datosAguardar.aam_esgene" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                              </tr>
+                           </table>
+                          </fieldset>
+                      </div>
+                   </div>     
+          
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-4"> 
+                          <h3 class="panel-title"> 3 REVISIÓN ACTUAL DE ÓRGANOS Y SISTEMA</h3>
+                          </div>
+                           <div class="col-sm-7row text-right"> 
+                          <h9><b>CP</b> = Con evidencia de patologia: Describir abajo anotano el número y letra</h9>
+                           <h9><b>SP</b> = Sin evidencia de patologia: No Describir </h9>
+                          </div>
+                         </div> 
+                      </div>
+
+                      <div class="panel-body">
+                      <div class="table table-responsive">
+                     
+                       <table class="table ">
+                        <tr>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        </tr>
+                        <tr>
+                        <td><div class="col-sm-1">1</div><div class="col-sm-11row text-right">VISIÓN</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.vision" value="CP" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.vision" value="SP" type="radio" class="ace" disabled />
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">2</div><div class="col-sm-11row text-right">AUDISIÓN</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.audision" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.audision"  value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td> <div class="col-sm-1">3</div> <div class="col-sm-11row text-right">OLFATO Y GUSTO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.olfatogusto" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.olfatogusto" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">4</div><div class="col-sm-11row text-right">RESPIRATORIO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.reacsirespitatorio" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.reacsirespitatorio" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">5</div><div class="col-sm-11row text-right">CARDIO VASCULAR </div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.reacsicardiovascular" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.reacsicardiovascular" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">6</div><div class="col-sm-11row text-right">DIGESTIVO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.reacsidigestivo" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.reacsidigestivo" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                         </tr>
+                        <tr>
+                        <td> <div class="col-sm-1">7</div> <div class="col-sm-11row text-right">GENITO URINARIO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.genitourinario" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.genitourinario" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">8</div><div class="col-sm-11row text-right">MUSCULO ESQUELÉTICO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.rasmusculo" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.rasmusculo" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">9</div> <div class="col-sm-11row text-right">ENDOCRINO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.endocriono10" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.endocriono10" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">10</div> <div class="col-sm-11row text-right">HEMO LINFÁTICO </div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.hemolinfatico" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.hemolinfatico" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td ><div class="col-sm-1">11</div> <div class="col-sm-11row text-right"> NERVIOSO</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.nervioso" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.nervioso" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                         </tr>
+                      </table>
+                      </div>
+                      <textarea type="text"  ng-model="datosAguardar.aam_reacsi" class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                     </div>
+
+                   </div>
+                    <div class="panel panel-default ">
+                      <div class="panel-heading">
+                      <div class="row">
+                      <div class="col-sm-5">
+                        <h3 class="panel-title">4 ANTECEDENTES PERSONALES</h3> 
+                      </div >
+                           <div class="col-sm-7 row text-right">  
+                           
+                               <h9><b>CP</b> = Con evidencia de patologia: Describir abajo anotano el númeo y letra 
+                                <b>SP</b> = Sin evidencia de patologia: No Describir </h9>
+                            
+                          </div>
+                      </div>
+                     </div>
+                     <div class="panel-body">
+                        <div class="table table-responsive"> 
+                            <table class="table">   
+                              <tr>  
+                                <td>  
+                                  <label><b> ALERTAS DE RIESGO :</b> </label>
+                                </td>     
+                                <td>  
+                                <label> 1.-CAIDA  </label>
+                                </td><td> 
+                                <input type="checkbox" checked="" ng-model="items.caidas" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td >  
+                                 <label> 2.- DISMOVILIDAD </label>
+                                </td>
+                                <td> 
+                                 <input type="checkbox" checked="checked" value="FRAGIL" ng-model="items.dismovilidad" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td >  
+                                <label>  3.- PÉRDIDA DE PESO </label>
+                                </td>
+                                <td> 
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.perdidapeso" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                  <td>  
+                                <label>4.- ASTENIA </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.astenia" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  5.- DESORIENTACIÓN </label>
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.desorientacion" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  6.- ALTERACION DEL COMPORTAMIENTO </label>
+                                </td>
+                                <td> 
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.alteracion" class="ace" disabled>   
+                                     <span class="lbl"></span> 
+                                </td>
+                             </tr>
+                            </table>
+
+                            <table class="table" >
+                              <tr> <td></td> <td></td> <td>CP</td><td>SP</td> 
+                                     <td></td> <td>CP</td><td>SP</td> <td></td> <td>CP</td><td>SP</td> <td></td> <td>CP</td><td>SP</td> <td></td> <td>CP</td><td>SP</td>
+                              </tr>
+                              <tr>  
+                                <td>  
+                                  <label><b>GENERALES: </b></label>   
+                                </td>
+                                <fieldset>
+                                  <td> 
+                                    <label> 1.-INMUNIZACIONES</label> 
+                                  </td>   
+                                  <td>
+                                    <input type="radio" value="CP" ng-model="items.inmunoizaciones" class="ace" disabled>
+                                    <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                   <input type="radio" value="SP" ng-model="items.inmunoizaciones" class="ace" disabled><span class="lbl"></span>   
+                                  </td>  
+                                </fieldset> 
+                                <fieldset>
+                                  <td> 
+                                    <label> 2.- HIGIENE GENERAL</label> </td>
+                                  <td>
+                                     <input type="RADIO" value="CP" ng-model="items.higienegeneral" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                   <input type="radio" value="SP" ng-model="items.higienegeneral" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                 </fieldset>     
+                                 <fieldset>
+                                   <td> 
+                                     <label> 3.- HIGIENE ORAL</label> 
+                                   <td>
+                                     <input type="RADIO" value="CP" ng-model="items.higieneoral" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                   </td>
+                                    <td>      
+                                      <input type="radio" value="SP" ng-model="items.higieneoral" class="ace" disabled><span class="lbl"></span>
+                                    </td>    
+                                </fieldset>     
+                                <fieldset>
+                                  <td> 
+                                    <label> 4.- EJERCICIO</label> 
+                                  <td>
+                                     <input type="RADIO" value="CP" ng-model="items.ejercicios" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                    <input type="radio" value="SP" ng-model="items.ejercicios" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                </fieldset>  
+                                <fieldset>   
+                                  <td> 
+                                   <label> 5.- ALIMENTACIÓN</label> 
+                                  <td>
+                                   <input type="RADIO" value="CP" ng-model="items.alimentacion" class="ace" disabled>
+                                   <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                   <input type="radio" value="SP" ng-model="items.alimentacion" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                </fieldset> 
+                                    
+                              </tr>
+
+                               <tr>  
+                                <td>  
+                                  <label></label>   
+                                </td>
+                                
+                                <fieldset>   
+                                  <td> 
+                                   <label> 6.- ACTIVIDAD RECREATIVA</label> 
+                                  <td>
+                                   <input type="RADIO" value="CP" ng-model="items.actividadrecreativa" class="ace" disabled>
+                                   <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                   <input type="radio" value="SP" ng-model="items.actividadrecreativa" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                </fieldset>  
+                                <fieldset>
+                                  <td> 
+                                    <label> 7.- CONTROLES DE SALUD</label> </td>
+                                  <td>
+                                     <input type="RADIO" value="CP" ng-model="items.controlessalud" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                   <input type="radio" value="SP" ng-model="items.controlessalud" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                 </fieldset>     
+                                 <fieldset>
+                                   <td> 
+                                     <label> 8.- ALERGIAS</label> 
+                                   <td>
+                                     <input type="RADIO" value="CP" ng-model="items.alergias" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                   </td>
+                                    <td>      
+                                      <input type="radio" value="SP" ng-model="items.alergias" class="ace" disabled><span class="lbl"></span>
+                                    </td>    
+                                </fieldset>     
+                                <fieldset>
+                                  <td> 
+                                    <label> 9.- OTROS</label> 
+                                  <td>
+                                     <input type="RADIO" value="CP" ng-model="items.otros" class="ace" disabled>
+                                     <span class="lbl"></span> 
+                                  </td>
+                                  <td>      
+                                    <input type="radio" value="SP" ng-model="items.otros" class="ace" disabled><span class="lbl"></span>
+                                  </td>    
+                                </fieldset>  
+                                  <td></td><td></td><td></td>                            
+                              </tr>
+                           </table>
+                          <div class="row">   
+                           <div class="col-sm-8">
+                           <table class="table">
+                         
+                              <tr>  
+                                <td>  
+                                  <label><b> HÁBITOS NOCIVOS: </b> </label>
+                                </td>     
+                                <td>  
+                                <label> 1.-TABAQUISMO</label>
+                                 </td>
+                                 <td>
+                                <input type="checkbox" value="DEPENDIENTE" checked="checked" ng-model="items.tabaquismo" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                 <label> 2.- ALCOHOLISMO </label> 
+                                 </td>
+                                 <td>
+                                 <input type="checkbox" checked="checked"  value="FRAGIL" ng-model="items.alcoholismo" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  3.- ADICCIONES  </label>
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.adicciones" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  4.- OTRO HABITO </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.otrohabito" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                              </tr>
+                            
+                            </table>
+                              </div>
+                            </div>  
+                            <table class="table">   
+                              <tr>  
+                                <td>  
+                                  <label> <b> CLINICO QUIRÚRGICOS: </b></label>
+                                </td>     
+                                <td>  
+                                <label> 1.-DEMARTOLÓGOS</label>
+                                </td>
+                                <td> 
+                                <input type="checkbox" value="DEPENDIENTE" checked="checked" ng-model="items.demartologico" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                 <label> 2.- VISUALES </label> 
+                                </td>
+                                <td> 
+                                 <input type="checkbox" checked=checked"   value="FRAGIL" ng-model="items.visuales" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  3.- OTORRINO  </label>
+                                </td>
+                                <td> 
+                                 <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.otorrino" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  4.- ESTOMATO-LOGICOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.estomatologicos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  5.- ENDOCRINOS </label>
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.endocrinos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label> 6.- CARDIO VASCULAR </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.cardio" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>  
+
+                              </tr>
+
+                              <tr>
+                                <td>  
+                                  <label></label>
+                                </td>     
+                                <td>  
+                                <label> 7.-RESPIRATORIOS  </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" value="caida" checked="" ng-model="items.respiratorios" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td >  
+                                 <label> 8.-DIGESTIVOS </label> 
+                                </td>
+                                <td>
+                                 <input type="checkbox" checked="checked" value="FRAGIL" ng-model="items.digestivos" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  9.-NEUROLÓGICOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.neurologicos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  10.- UROLÓGICOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.urologicos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  11. HEMOLINFATICOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.hemolinfaticos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  12.INFECCIOSOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.infecciosos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td>
+                              </tr>
+
+                                   <tr>
+                                <td>  
+                                  <label></label>
+                                </td>     
+                                <td>  
+                                <label> 13.-ONCOLÓGICOS  </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" value="caida" checked="" ng-model="items.oncologicos" class="ace" disabled> 
+                                     <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                 <label> 14.-MUSCULO ESQUELÉTICO </label> 
+                                </td>
+                                <td> 
+                                 <input type="checkbox" checked="checked" value="FRAGIL" ng-model="items.musculoesqueletico" class="ace" disabled>
+                                      <span class="lbl"></span> 
+                                </td>
+                                <td>  
+                                <label>  15.-PSIQUIÁTRICOS </label> 
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="checked"   value="INDEPENDIENTE" ng-model="items.psiquiatricos" class="ace" disabled>  
+                                     <span class="lbl"></span> 
+                                </td> <td></td><td></td><td></td><td></td><td></td><td></td>
+                                
+                              </tr>
+                            </table>
+
+                            <table class="table">   
+                              <tr>  
+                                <th>  
+                                  <label><b>GINECO OBSTETRICO : </b></label>
+                                </th>     
+                                <td>  
+                                <label> 1.-EDAD MENOPAUSIA
+                                </label>
+                                </td>
+                                <td>  
+                                <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  ng-model="items.menopausia" class="" size="2" maxlength="3" disabled> 
+                                </td>
+                                <td>  
+                                 <label> 2.EDAD DE ULTIMA MAMOGRAFIA 
+                                 </label>
+                                 </td>
+                                 <td>
+                                 <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="items.mamografia" class="" size="2" maxlength="3" disabled>
+                                </td>
+                                <td>  
+                                <label>  3.EDAD DE ULTIMA CITOLOGIA  </label>
+                                </td>
+                                <td>
+                                <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="items.citologia" class=""  size="2" maxlength="3" disabled>
+                                </td>
+                                <td>  
+                                <label>  4.EMBARAZOS 
+                                </label>
+                                </td>
+                                <td>
+                                <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="items.embarazos" class=""  size="2" maxlength="3" disabled> 
+                                </td>
+                                <td>  
+                                <label>  5. PARTOS </label>
+                                </td>
+                                <td>  
+                                 <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="items.partos" class=""  size="2" maxlength="3" disabled>
+                                </td>
+                                 </tr>
+                                 <tr>
+                                 <td></td> 
+                                  <td>  
+                                   <label>  6. CESÁREAS </label>
+                                  </td>
+                                  <td> 
+                                   <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" value="" ng-model="items.cesareas" class=""  size="2" maxlength="3" disabled>
+                                </td>
+                                  <td >  
+                                <label>  7. TERAPIA HORMONAL</label>
+                                </td>
+                                <td>
+                                <input type="text"  ng-model="items.tehormonal" size="2"  maxlength="3" disabled>  
+                                </td>
+                                <td></td><td></td><td></td><td></td><td></td><td></td>
+                             </tr>
+                            </table>
+                            <div class="row">
+                            <div class="col-sm-7">
+                            <table class="table">   
+                              <tr>  
+                                <td>  
+                                  <label><b>ANDROLÓGIA :</b> </label>
+                                </td>
+                                
+                                <td>  
+                                <label> 1.-EDAD ULTIMA ANTÍGENO PROSTÁTICA </label>
+                                </td>
+                                <td>  
+                                 <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="items.prostatica" size="5" maxlength="3" disabled>
+                                </td> 
+                                <td>  
+                                 <label> 2.TERAPIA HORMONL </label>
+                                </td>
+                                <td>  
+                                 <input type="text" checked="checked" value="FRAGIL" ng-model="items.terapiahor" size="5" maxlength="3" disabled>
+                                </td>
+                             </tr>
+                            </table>
+                            </div></div>
+                            <table class="table">   
+                              <tr>  
+                                <td>  
+                                  <label><b>FARCOLÓGICOS :</b> </label>
+                                </td>     
+                                <td>  
+                                <label> 1.-AINES</label>
+                                </td>
+                                <td>
+                                <input type="checkbox" checked="" ng-model="items.aines" class="ace" disabled> 
+                                     <span class="lbl"></span>
+                                </td>
+                                <td>  
+                                 <label> 2.-ANALGÉSICOS </label>
+                                </td>
+                                <td>  
+                                 <input type="checkbox"  checked="checked" value="FRAGIL" ng-model="items.analgesicos" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+
+                                <td>  
+                                 <label> 3.-ANTI DIABÉTICOS </label>
+                                 </td>
+                                 <td>
+                                 <input type="checkbox"  checked="checked" ng-model="items.antidiabeticos" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+                                <td>  
+                                 <label> 4.-ANTI HIPERTENSIVOS </label>
+                                 </td>
+                                 <td>
+                                 <input type="checkbox"  checked="checked" ng-model="items.antihipertensivos" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+
+                                <td>  
+                                 <label> 5.-ANTI CUAGULANTES </label>
+                                 </td>
+                                 <td>
+                                 <input type="checkbox"  checked="checked"  ng-model="items.anticuagulantes" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+                                </tr>
+                                <tr>
+                                 <th></th>
+                                <td>
+                                 <label> 6.-PSICO FÁRMACOS </label>
+                                 </td>
+                                 <td>
+                                  <input type="checkbox"  checked="checked" ng-model="items.psicofarmacos" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+                                <td>  
+                                    <label>7.- ANTIBIÓTICOS</label>
+                                </td>
+                                <td>     
+                                        <input type="checkbox"  checked="checked"  ng-model="items.antibioticos" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>  
+                                    <label>8.- OTROS</label>
+                                </td>
+                                <td>    
+                                        <input type="checkbox"  checked="checked"  ng-model="items.otrofarcologico" class=" ace" disabled>
+                                    <span class="lbl"></span>
+                                </td>
+                                <td>  
+                                    <label> 9.- NÚMERO DE PRESCRIPTORES</label>
+                                </td>
+                                <td>   
+                                        <input type="text"  onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  ng-model="items.prescritores" maxlength="3" size="3" disabled>
+                                </td>
+                              </tr>
+                            </table>
+
+                        </div>
+                           <textarea type="text"  ng-model="datosAguardar.aam_antepe " class = "form-control" capitalize required   maxlength="80" disabled> </textarea> <br>  
+
+                      </div>
+                   </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-sm-4"> 
+                          <h3 class="panel-title"> 5 ANTECEDENTES FAMILIARES Y SOCIALES </h3>
+                          </div>
+                           <div class="col-sm-7row text-right"> 
+                          <h9><b>CP</b> = Con evidencia de patologia: Describir abajo anotano el número y letra</h9>
+                           <h9><b>SP</b> = Sin evidencia de patologia: No Describir </h9>
+                          </div>
+                         </div> 
+                      </div>
+
+                      <div class="panel-body">
+                      <div class="table table-responsive">
+                       
+                       <table class="table ">
+                        <tr>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        <td ></td><td>CP</td><td>SP</td>
+                        </tr>
+                        <tr >
+                        <td><div class="col-sm-1">1</div><div class="col-sm-11row text-right">CARDIOPATÍAS</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.cardiopatias" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.cardiopatias" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">2</div><div class="col-sm-11row text-right">DIABETES</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.diabetes" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.diabetes"  value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td> <div class="col-sm-1">3</div> <div class="col-sm-11row text-right">HIPERTENSIÓN ARTERIAL</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.hipertencion" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.hipertencion" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">4</div><div class="col-sm-11row text-right">NEOPLASIA</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.neoplasia" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.neoplasia" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">5</div><div class="col-sm-11row text-right">ALZHEIMER</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.alzheimer" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.alzheimer" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">6</div><div class="col-sm-11row text-right">PARKINSON</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.parkinson" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.parkinson" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                         </tr>
+                        <tr>
+                        <td> <div class="col-sm-1">7</div> <div class="col-sm-11row text-right">TUBERCULOSIS</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.tuberculosis" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.tuberculosis" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">8</div><div class="col-sm-11row text-right">VIOLENCIA INTRAFAMILIAR</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.violencia" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.violencia" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">9</div> <div class="col-sm-11row text-right">SINDROME DEL CUIDADOR</div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.sindrome" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.sindrome" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+                          <td><div class="col-sm-1">10</div> <div class="col-sm-11row text-right">OTROS </div> </td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="items.otrosantecedentes" value="CP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="items.otrosantecedentes" value="SP" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                          </div>
+
+                          <td ><div class="col-sm-1"></div> <div class="col-sm-11row text-right"> </div></td> 
+                        <div class="control-group">
+                                <th class="bt_tab">
+                                      
+                                </th>
+                                <th class="bt_tab">
+                                      
+                                </th>
+                          </div>
+                          <td> </td><td></td><td> </td>
+                         </tr>
+                      </table>
+                      </div>
+                      <textarea type="text"  ng-model="datosAguardar.aam_antfam" class = "form-control" capitalize required   maxlength="2000" disabled> </textarea>
+                     </div>
+                   </div> 
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">6 SIGNOS VITALES Y MEDICIONES</h3>
+                      </div>
+
+                      <div class="panel-body">
+                       <div class="table table-responsive">   
+                       <table class="table">  
+                       <tr>
+                         <td> <center>P.ARTERIAL ACOSTADO</center></td> <td><input type="text"  onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="4" ng-model="datosAguardar.siv_prarta"  required  capitalize maxlength="10" disabled>
+                         </td>
+                         <td> <center>P.ARTERIAL SENTADO</center></td> <td><input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="4" ng-model="datosAguardar.siv_prarte"  required  capitalize maxlength="10" disabled>
+                         </td>  
+                         <td><center>TEMPERATURA °C</center></td> <td><input type="text" size="3"  ng-model="datosAguardar.siv_temper" required  capitalize maxlength="10" disabled></td>
+                         <td><center>PULSO</center></td><td> <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="3" ng-model="datosAguardar.siv_pulso"  required  capitalize maxlength="10" disabled></td>  
+                         <td><center>FRECUENCIA RESPIRTATORIA / MIN </center></td><td> 
+                         <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  size="3" ng-model="datosAguardar.siv_freres"  required  capitalize maxlength="10" disabled></td>  
+                         <td><center>PESO. Kg </center></td> <td><input type="text" size="3"  onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" ng-model="datosAguardar.siv_peso" required  capitalize maxlength="10" disabled></td>
+                         </tr>
+                         <tr>
+                         <td><center>TALLA / cm </center></td><td> <input type="text" size="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  ng-model="datosAguardar.siv_talla" required  capitalize maxlength="10" disabled></td>
+                         <td><center>IMC</center></td><td> <input type="text" size="3" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  ng-model="datosAguardar.siv_imc" required  capitalize maxlength="10" disabled></td>
+                         <td><center>PERÍMETRO CINTURA</center></td><td> <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="3"  ng-model="datosAguardar.siv_percint" required  capitalize maxlength="10" disabled></td>
+                         <td><center>PERÍMETRO CADERA</center></td><td> <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="3"  ng-model="datosAguardar.siv_percad" required  capitalize maxlength="10" disabled></td>
+                         <td><center>PERÍMETRO PANTORRILLA</center></td><td> <input type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" size="3"  ng-model="datosAguardar.siv_perpan" required  capitalize maxlength="10" disabled></td>
+                          <td></td>
+                       </tr>
+                       <tr>
+                         <th>TAMIZAJE PÁPIDO :</th>
+                         <td>1 DIFICULTAD VISUAL</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_defvis" class="ace"  disabled> <span class="lbl"></span></td> 
+                         <td>2 DIFICULTAD AUDITIVA</td><td>   <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_defaud" class="ace"  disabled> <span class="lbl"></span></td>
+
+                         <td>3 "LEVANTATE Y ANDA" MAYOR A 15a</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_levand" class="ace" disabled> <span class="lbl"></span></td>
+
+                         <td>4 PÉRDIDA INVT. DE ORINA</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_peinor" class="ace" disabled> <span class="lbl"></span></td>
+
+                         <td>5 PERDIDA DE MEMORIA RECIENTE</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_pemere" class="ace" disabled> <span class="lbl"></span></td> 
+                       </tr>
+
+                        <tr>
+                         <th></th>
+                         <td>6 PIERDE PESO MAS DE 4.5 KG. EN 6 MESES</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_perpes" class="ace" disabled> <span class="lbl"></span></td> 
+                         <td>7 SE SIENTE TRISTE O DEPRIMIDO</td><td>   <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_triste" class="ace" disabled> <span class="lbl"></span></td>
+
+                         <td>8 PUEDE BAÑARSE SOLO</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_pubaso" class="ace" disabled> <span class="lbl"></span></td>
+
+                         <td>9 SALE DE COMPRAS SOLO</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_sacoso" class="ace" disabled> <span class="lbl"></span></td>
+
+                         <td>10 VIVE SOLO</td><td> <input type="checkbox" checked="checked" ng-model="datosAguardar.siv_vivsol" class="ace" disabled> <span class="lbl"></span></td> 
+                       </tr> 
+                       </table>   
+                       </div> 
+
+                     </div>
+                   </div>
+
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-sm-2"> 
+                          <h3 class="panel-title">7 EXAMEN FÍSICO</h3>
+                          </div>
+                          <div class="col-sm-10row text-right"> 
+                          <h9><b>R = Regional S = Sistémico</b></h9>   
+                          <h9><b>CP</b> = Con evidencia de patologia: Describir abajo anotano el númeo y letra </h9>
+                           <h9><b>SP</b> = Sin evidencia de patologia: No Describir </h9>
+                          </div>
+                         </div> 
+                      </div>
+
+                      <div class="panel-body">
+                       <div class="table table-responsive">
+                         
+                         <table class="table ">
+                            <tr>
+                                <td></td><td>CP</td><td>SP</td>
+                                <td ></td><td>CP</td><td>SP</td>
+                                <td ></td><td>CP</td><td>SP</td>
+                                <td ></td><td>CP</td><td>SP</td>
+                                <td ></td><td>CP</td><td>SP</td>
+                            </tr>
+                            <tr>
+                              <td><div class="col-sm-4">1-R</div><div class="col-sm-6row text-right">PIFI</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                      <label>
+                                              <input ng-model="items.pifi" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                          </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.pifi" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">2-R</div><div class="col-sm-6row text-right">CABEZA</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.cabeza" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.cabeza" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td> <div class="col-sm-6">3-R</div> <div class="col-sm-6row text-right">OJOS</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.ojos" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.ojos" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-3">1-S</div><div class="col-sm-9row text-right">ORG. DE LOS SENTIDOS</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.orgsentidos" value="CP" type="radio" class="ace"  disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.orgsentidos" value="SP" type="radio" class="ace"  disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">2-S</div><div class="col-sm-6row text-right">RESPIRATORIO</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.respiratorio" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.respiratorio" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                            </tr>
+                            <tr>
+                              <td> <div class="col-sm-6">4-R</div> <div class="col-sm-6row text-right">OÍDOS</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.oidos" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.oidos" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">5-R</div><div class="col-sm-11row text-right">BOCA</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.boca" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.boca" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">6-R</div> <div class="col-sm-6row text-right">NARIZ</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.nariz" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.nariz" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-3">3-S</div> <div class="col-sm-6row text-right">CARDIO VASCULAR</div> </td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.cardiovascular" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.cardiovascular" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td ><div class="col-sm-6">4-S</div> <div class="col-sm-6row text-right">DIGESTIVO</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.digestivo" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.digestivo" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                             </tr>
+                            <tr>
+                              <td> <div class="col-sm-4">7-R</div> <div class="col-sm-6row text-right">CUELLO</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.cuello" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.cuello" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-4">8-R</div><div class="col-sm-7row text-right">AXILA-MAMA</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.axilamama" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.axilamama" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">9-R</div> <div class="col-sm-6row text-right">TORAX</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.torax" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.torax" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-3">5-S</div> <div class="col-sm-6row text-right">GENITO URINARIO</div> </td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.genito" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.genito" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td ><div class="col-sm-3">6-S</div> <div class="col-sm-6row text-right">MÚSCULOS ESQUELETICOS</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.musculos" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.musculos" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                            </tr>
+                            <tr>
+                              <td> <div class="col-sm-6">10-R</div> <div class="col-sm-6row text-right">ABDOMEN</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.abdomen" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.abdomen" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-6">11-R</div><div class="col-sm-11row text-right">COLUMNA</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.columna" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.columna" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-7">12-R</div> <div class="col-sm-5row text-right">PERINÉ</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.perine" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.perine" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-3">7-S</div> <div class="col-sm-6row text-right">EDOCRINO</div> </td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.endocrio" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.endocrio" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                <td ><div class="col-sm-6">8-S</div> <div class="col-sm-6row text-right">HEMO LINFÁTICO</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.hemolinf" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.hemolinf" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                             </tr>
+                            <tr>
+                              <td> <div class="col-sm-4">13-R</div> <div class="col-sm-6row text-right">M. SUPERIORES</div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.msuperiores" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.msuperiores" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                               
+                                <td><div class="col-sm-6"></div> <div class="col-sm-6row text-right"></div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            
+                                      </th>
+                                      <th class="bt_tab">
+                                            
+                                      </th>
+                                </div>
+                                 <td><div class="col-sm-4">14-R</div><div class="col-sm-7row text-right">M. INFERIORES </div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.minferiores" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.minferiores" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                                
+                                <td ><div class="col-sm-6"></div> <div class="col-sm-6row text-right"></div></td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                           
+                                      </th>
+                                      <th class="bt_tab">
+                                          
+                                      </th>
+                                </div>
+                                <td><div class="col-sm-3">9-S</div> <div class="col-sm-6row text-right">NEUROLÓGIA</div> </td> 
+                              <div class="control-group">
+                                      <th class="bt_tab">
+                                            <label>
+                                              <input ng-model="items.neurologio" value="CP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                      <th class="bt_tab">
+                                            <label>
+                                            <input ng-model="items.neurologio" value="SP" type="radio" class="ace" disabled/>
+                                              <span class="lbl"></span>
+                                            </label>
+                                      </th>
+                                </div>
+                             </tr>
+                        </table>
+
+                       </div>
+                      <textarea type="text"  ng-model="datosAguardar.aam_exafis " class = "form-control" capitalize required   maxlength="1000" disabled=""> </textarea>
+                      </div>
+                     </div>
+
+                     <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <div class="row">
+                            <div class="col-sm-6"><h3 class="panel-title">8 DIAGNOSTICO</h3></div>
+                            <div class="col-sm-6 row text-right"><h9> PRE = PRESUNTIVO   DEF = DEFINITIVO </h9></div>
+                          </div>
+                        </div>
+                          <div class="panel-body">
+                            <div class="row">
+                             <div class="table table-responsive">
+                              <div class="col-sm-8">
+                                 <table class="table">  
+                                  <tr>
+                                    <th class="bt_tab, th"><center><h9>#</h9></center></th>
+                                    <th class="width-30-pct, th"><center><h9>DESCRIPCIÓN</h9></center></th>
+                                    <th class="bt_tab, th"><center><h9>CIE</h9></center></th>
+                                    <th class="bt_tab, th"><center><h9>PRE</h9></center></th>
+                                    <th class="bt_tab, th"><center><h9>DEF</h9></center></th>
+                                    <th class="width-20-pct, th"><center><h9>CLINICO,SINDRÓMICO,<br>PSICOLOGICO,FUNCIONAL</h9></center></th>
+                                  </tr>
+                                  <tr ng-repeat="c10 in cie10">
+                                <th class="bt_tab"><center>{{c10.c10_id + 1}}</center></th>
+                                <th class="width-30-pct">
+                                <b>{{c10.c10_nombre}}</b>
+                                </th>
+                                <th class="bt_tab">
+                                <b><center>{{c10.c10_codigo}}</center></b>
+                                </th>                                
+                                <div class="control-group">
+                                <th class="bt_tab">
+                                      <label>
+                                        <input ng-model="c10.dia_resp" value="true" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                <th class="bt_tab">
+                                      <label>
+                                      <input ng-model="c10.dia_resp" value="false" type="radio" class="ace" disabled/>
+                                        <span class="lbl"></span>
+                                      </label>
+                                </th>
+                                </div>
+                                <td class="width-20-pct" class="form-control">
+                                    <center>
+                                      <b>{{c10.descrip}}</b>
+                                    </center>    
+                                  </td> 
+                            </tr>    
+                                 
+                                 </table>
+                               </div>
+                               <div class="col-sm-4">
+                                    <table class="table">
+                                        <tr ><td colspan="4" class="th">SNDROMES GERIÁTRICOS</td></tr>
+                                        <tr>
+                                          <td>  
+                                            <label> FRAGILIDAD  </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.dfragilidad" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                            <td>  
+                                            <label> DISMOVILIDAD</label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.ddismovilidad" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>  
+                                            <label> DEPRESIÓN  </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.ddepresion" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                            <td>  
+                                            <label> CAIDA</label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.dcaida" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>  
+                                            <label> DELIRIO  </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.ddelirio" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                            <td>  
+                                            <label> MAL NUTRICIÓN</label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.dmalnutricion" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                          <td>  
+                                            <label> ÚLCERAS POR PRESIÓN </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.dulcera" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                            <td>  
+                                            <label>DEMENCIA </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.ddemencia" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                          <td>  
+                                            <label> INCONTINENCIA  </label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.dincontinencia" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                            <td>  
+                                            <label>IATROGENIA</label>
+                                            </td><td> 
+                                            <input type="checkbox" checked="" ng-model="items.diatrogenia" class="ace" disabled> 
+                                                 <span class="lbl"></span> 
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                     </div>
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="row" >
+                          <div class="col-sm-6">
+                            <h3 class="panel-title">9 PRUEBAS DIAGNÓSTICAS</h3>
+                          </div>
+                          <div class="col-sm-6 row text-right">
+                            <h9>Registrar los examenes de laboratorio y especiales solicitados</h9>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                          <textarea type="text"  ng-model="datosAguardar.aam_prudia " class = "form-control" capitalize required   maxlength="800" disabled=""> </textarea>
+                     </div>
+                    </div> 
+
+                   <div class="panel panel-default">
+                      <div class="panel-heading">
+                          <div class="row" >
+                             <div class="col-sm-4">
+                               <h3 class="panel-title">10  TRATAMIENTO</h3>
+                            </div>
+                            <div class="col-sm-8 row text-right">
+                              <h9>1.- Funciona, 2.-Nutricional, 3.-Psicologico, 4.-social, 5.-Educativo,6.-Farmacologico</h9>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="panel-body">
+                          <textarea type="text"  ng-model="datosAguardar.aam_trata " class = "form-control" capitalize required   maxlength="800" disabled=""> </textarea>
+                     </div>
+                    </div> 
+                
