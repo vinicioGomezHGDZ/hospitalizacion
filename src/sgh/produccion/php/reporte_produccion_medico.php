@@ -50,6 +50,10 @@ try {
     $writer = new Html($spreadsheet);
     $writer->save("php://output");
 
+
+
+
 } catch (Exception $e) {
     echo json_encode(array('Estado' => 3, 'Mensaje' => 'Error: ' . $e->getMessage()));
 }
+

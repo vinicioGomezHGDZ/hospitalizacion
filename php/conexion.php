@@ -25,7 +25,7 @@
                 //$sghUser="sih.hospitalizacion";
 				//$sghPass="Hgdz.H0sp1t@lizac10n.2019";
 				$sghUser="vinicio.gomez";
-                $sghPass="Evolution89*";
+                $sghPass="Sport2023*";
                 parent::__construct($sghUrl,$sghUser,$sghPass);
 				$this->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		    }
